@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How do you feel about your job? — Lenny's Polls</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FFFFFF;
+    --card: #FFFFFF;
+    --text: #1A1A1A;
+    --text-secondary: #6B6B6B;
+    --text-light: #999999;
+    --border: #E8E5E0;
+    --border-orange: #E8A880;
+
+    /* Lenny orange palette */
+    --orange: #EF7B4E;
+    --orange-dark: #D96A3E;
+    --orange-light: #F5B07A;
+    --orange-gradient: linear-gradient(to right, #EF7B4E, #F5B88A);
+    --orange-bg: #FEF8F4;
+    --orange-bg-deep: #FEF0E6;
+
+    /* Neutral for inactive tracks and surfaces */
+    --neutral-surface: #F7F6F4;
+    --neutral-track: #EDECEA;
+
+    /* Semantic */
+    --love: #3D9B6A;
+    --love-light: #E8F5EE;
+    --love-bg: #F5FAF7;
+    --hate: #C44536;
+    --hate-light: #FCECEA;
+    --hate-bg: #FDF7F6;
+
+    /* Rating scale - orange tonal */
+    --r1: #C4724A;
+    --r2: #D4894B;
+    --r3: #E0A050;
+    --r4: #EF7B4E;
+    --r5: #EF7B4E;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Nav bar */
+  .site-nav {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .nav-logo {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+  }
+
+  .nav-title {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .nav-link {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .nav-link:hover { color: var(--orange); }
+
+  .container {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 48px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .header .eyebrow {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--orange);
+    margin-bottom: 20px;
+  }
+
+  .header h1 {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-weight: 700;
+    font-size: clamp(30px, 5vw, 44px);
+    line-height: 1.15;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+
+  .header .subtitle {
+    font-size: 16px;
+    color: var(--text-secondary);
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .header .meta {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+    font-size: 13px;
+    color: var(--text-light);
+  }
+
+  .header .meta span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .header .meta .dot {
+    width: 5px;
+    height: 5px;
+    background: var(--orange);
+    border-radius: 50%;
+  }
+
+  /* Hero stat */
+  .hero-stat {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 48px;
+    padding: 40px;
+    background: var(--bg);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+  }
+
+  .hero-number { text-align: center; }
+
+  .hero-number .big {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 72px;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--orange);
+  }
+
+  .hero-number .label {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+  }
+
+  .hero-bar { flex: 1; max-width: 600px; }
+
+  .stacked-bar {
+    display: flex;
+    height: 44px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 12px;
+    border: 1px solid var(--border);
+  }
+
+  .stacked-bar .segment {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 12px;
+    color: white;
+  }
+
+  .stacked-bar .s1 { background: #D4926A; }
+  .stacked-bar .s2 { background: #E09060; }
+  .stacked-bar .s3 { background: #E8A46E; }
+  .stacked-bar .s4 { background: #EF7B4E; }
+  .stacked-bar .s5 { background: #D96535; }
+
+  .bar-question {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+  }
+
+  .bar-labels {
+    display: flex;
+    margin-top: 6px;
+  }
+
+  .bar-label-item {
+    font-size: 11px;
+    color: var(--text-secondary);
+    text-align: center;
+  }
+
+  /* Section title with orange underline accent */
+  .section-title {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-weight: 700;
+    font-size: 22px;
+    margin-bottom: 6px;
+    display: inline-block;
+    position: relative;
+  }
+
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 32px;
+    height: 3px;
+    background: var(--orange);
+    border-radius: 2px;
+  }
+
+  .section-subtitle {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-top: 8px;
+  }
+
+  .section-header {
+    margin-bottom: 24px;
+  }
+
+  /* Section divider */
+  .section-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 48px 0;
+  }
+
+  /* Rating cards */
+  .rating-cards {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin-bottom: 48px;
+  }
+
+  .rating-card {
+    background: var(--bg);
+    border-radius: 10px;
+    padding: 20px 14px;
+    text-align: center;
+    border: 1px solid var(--border);
+    transition: transform 0.2s;
+  }
+
+  .rating-card:hover { transform: translateY(-2px); }
+  .rating-card .emoji { font-size: 26px; margin-bottom: 8px; }
+  .rating-card .count {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .rating-card .pct {
+    font-size: 13px;
+    color: var(--text-secondary);
+    margin-top: 2px;
+  }
+  .rating-card .lbl {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-top: 6px;
+    font-weight: 500;
+  }
+
+  .rc1 .count, .rc2 .count, .rc3 .count, .rc4 .count, .rc5 .count { color: var(--text); }
+
+  /* Two-col */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 48px;
+  }
+
+  .card {
+    background: var(--bg);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    padding: 28px;
+  }
+
+  .card h3 {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+  }
+
+  .card h3::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 24px;
+    height: 2px;
+    background: var(--orange);
+    border-radius: 2px;
+  }
+
+  /* Horizontal bar (orange gradient, rounded) */
+  .h-bar-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 14px;
+    gap: 12px;
+  }
+
+  .h-bar-label {
+    width: 110px;
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .h-bar-track {
+    flex: 1;
+    height: 32px;
+    background: var(--neutral-track);
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.04);
+  }
+
+  .h-bar-fill {
+    height: 100%;
+    border-radius: 8px;
+    background: var(--orange-gradient);
+    display: flex;
+    align-items: center;
+    padding-left: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    color: white;
+  }
+
+  .h-bar-value {
+    width: 52px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+    flex-shrink: 0;
+  }
+
+  /* Insight callout */
+  .insight-box {
+    background: var(--orange-bg);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 48px;
+    border: 1px solid #F0E0D4;
+  }
+
+  .insight-box .insight-title {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-weight: 700;
+    font-size: 21px;
+    margin-bottom: 12px;
+    color: var(--orange-dark);
+  }
+
+  .insight-box p {
+    font-size: 15px;
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  .insight-box .top3-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 16px;
+  }
+
+  .top3-col h4 {
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+
+  .top3-col.love-col h4 { color: var(--love); }
+  .top3-col.hate-col h4 { color: var(--hate); }
+
+  .top3-item {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 4px;
+  }
+
+  .top3-num {
+    font-weight: 700;
+    font-size: 12px;
+    flex-shrink: 0;
+    width: 18px;
+  }
+
+  .love-col .top3-num { color: var(--love); }
+  .hate-col .top3-num { color: var(--hate); }
+
+  /* Compare bars */
+  .compare-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 14px;
+    gap: 12px;
+  }
+
+  .compare-label {
+    width: 130px;
+    font-size: 13px;
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .compare-bar-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .compare-bar {
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 10px;
+    font-size: 13px;
+    font-weight: 700;
+    color: white;
+    min-width: 40px;
+    background: var(--orange-gradient);
+    border: 1px solid rgba(0,0,0,0.04);
+  }
+
+  .compare-n {
+    font-size: 11px;
+    color: var(--text-light);
+    white-space: nowrap;
+  }
+
+  /* Love/Hate themes */
+  .love-hate-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .theme-card {
+    background: var(--bg);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    padding: 28px;
+  }
+
+  .theme-card.love { border-top: 3px solid var(--love); }
+  .theme-card.hate { border-top: 3px solid var(--hate); }
+
+  .theme-card h3 {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 4px;
+  }
+
+  .theme-card h3::after { display: none; }
+
+  .theme-card .card-subtitle {
+    font-size: 12px;
+    color: var(--text-light);
+    margin-bottom: 20px;
+  }
+
+  .theme-card.love h3 { color: var(--love); }
+  .theme-card.hate h3 { color: var(--hate); }
+
+  .theme-item {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .theme-item:last-child { border-bottom: none; }
+
+  .theme-item-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .theme-rank {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .love .theme-rank { background: var(--love-light); color: var(--love); }
+  .hate .theme-rank { background: var(--hate-light); color: var(--hate); }
+
+  .theme-name {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .theme-count {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-secondary);
+  }
+
+  .theme-bar-mini {
+    width: 50px;
+    height: 5px;
+    background: var(--neutral-track);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .love .theme-bar-mini .fill { background: var(--love); }
+  .hate .theme-bar-mini .fill { background: var(--hate); }
+
+  .theme-toggle {
+    font-size: 9px;
+    color: var(--text-light);
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+
+  .theme-item.open .theme-toggle { transform: rotate(180deg); }
+
+  /* Quote drawer */
+  .quote-drawer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, opacity 0.25s ease;
+    opacity: 0;
+  }
+
+  .theme-item.open .quote-drawer {
+    max-height: 600px;
+    opacity: 1;
+  }
+
+  .quote-drawer-inner {
+    padding: 10px 0 4px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .mini-quote {
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    line-height: 1.55;
+    font-style: italic;
+    color: var(--text);
+  }
+
+  .love .mini-quote {
+    background: var(--love-bg);
+    border-left: 3px solid var(--love);
+  }
+
+  .hate .mini-quote {
+    background: var(--hate-bg);
+    border-left: 3px solid var(--hate);
+  }
+
+  .mini-quote .quote-attr {
+    font-style: normal;
+    font-size: 11px;
+    color: var(--text-light);
+    margin-top: 5px;
+    font-weight: 500;
+  }
+
+  /* Data tables */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-top: 12px;
+  }
+
+  .data-table th {
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-secondary);
+    padding: 8px 12px;
+    border-bottom: 2px solid var(--border);
+  }
+
+  .data-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+  }
+
+  .data-table tbody tr:hover {
+    background: var(--neutral-surface);
+  }
+
+  .data-table tfoot td {
+    border-top: 2px solid var(--border);
+    border-bottom: none;
+    font-weight: 600;
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    padding-top: 40px;
+    border-top: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--text-light);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .rating-cards { grid-template-columns: repeat(5, 1fr); gap: 6px; }
+    .rating-card { padding: 12px 6px; }
+    .rating-card .emoji { font-size: 18px; }
+    .rating-card .count { font-size: 20px; }
+    .two-col, .love-hate-grid { grid-template-columns: 1fr; }
+    .hero-stat { flex-direction: column; gap: 24px; }
+    .h-bar-label { width: 80px; font-size: 12px; }
+    .compare-label { width: 100px; font-size: 12px; }
+    .insight-box .top3-grid { grid-template-columns: 1fr; }
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .animate-in {
+    animation: fadeInUp 0.45s ease forwards;
+    opacity: 0;
+  }
+
+  .delay-1 { animation-delay: 0.08s; }
+  .delay-2 { animation-delay: 0.16s; }
+  .delay-3 { animation-delay: 0.24s; }
+  .delay-4 { animation-delay: 0.32s; }
+  .delay-5 { animation-delay: 0.4s; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <a href="/" class="nav-brand">
+    <img src="/lennylogo.svg" alt="Lenny's Newsletter" class="nav-logo">
+  </a>
+  <a href="https://www.lennysnewsletter.com/" class="nav-link" target="_blank">Newsletter ↗</a>
+</nav>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header animate-in">
+    <div class="eyebrow">Lenny's Polls</div>
+    <h1>How do you feel<br>about your job?</h1>
+    <p class="subtitle">323 product and tech professionals shared how they really feel about their jobs, and what drives their feelings.</p>
+    <div class="meta">
+      <span><span class="dot"></span> 323 responses</span>
+      <span><span class="dot"></span> Jan 28 – Feb 4, 2026</span>
+      <span><span class="dot"></span> Polly survey</span>
+    </div>
+  </div>
+
+  <!-- HERO STAT -->
+  <div class="hero-stat animate-in delay-1">
+    <div class="hero-bar" style="max-width:100%;flex:1">
+      <div class="bar-question">How do you feel about your job? (1 = hate it, 5 = love it)</div>
+      <div class="stacked-bar">
+        <div class="segment s1" style="flex: 5.9;">6%</div>
+        <div class="segment s2" style="flex: 21.1;">21%</div>
+        <div class="segment s3" style="flex: 28.5;">28%</div>
+        <div class="segment s4" style="flex: 31.3;">31%</div>
+        <div class="segment s5" style="flex: 13.3;">13%</div>
+      </div>
+      <div class="bar-labels">
+        <div class="bar-label-item" style="flex: 5.9;">Hate it</div>
+        <div class="bar-label-item" style="flex: 21.1;">Not great</div>
+        <div class="bar-label-item" style="flex: 28.5;">It's okay</div>
+        <div class="bar-label-item" style="flex: 31.3;">Pretty good</div>
+        <div class="bar-label-item" style="flex: 13.3;">Love it</div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- TL;DR -->
+  <div class="insight-box animate-in delay-3">
+    <div class="insight-title">The tl;dr</div>
+    <p>Only 13% truly love their jobs. 27% are actively unhappy (rating 1 or 2). Most people land somewhere between "it's okay" and "pretty good."</p>
+    <p style="margin-top:12px"><strong>What keeps people happy:</strong></p>
+    <ul style="margin:8px 0 0 20px;font-size:15px;line-height:1.7;color:var(--text)">
+      <li style="margin-bottom:6px"><strong>The people around them.</strong> Colleagues they trust, cultures where they feel part of something, teams that actually collaborate. This was the single most mentioned theme among happy respondents (60 mentions).</li>
+      <li style="margin-bottom:6px"><strong>Autonomy.</strong> The freedom to decide how they work, where they work (remote flexibility comes up repeatedly), and what tools they use. People who feel trusted to make decisions love their jobs more.</li>
+      <li style="margin-bottom:6px"><strong>AI as a source of energy.</strong> Among happy people, AI shows up as excitement and new capability. "Work feels like play," one Lead PM said. The key seems to be having permission to experiment rather than being told to adopt.</li>
+    </ul>
+    <p style="margin-top:14px"><strong>What drives people away:</strong></p>
+    <ul style="margin:8px 0 0 20px;font-size:15px;line-height:1.7;color:var(--text)">
+      <li style="margin-bottom:6px"><strong>Bad leadership.</strong> The single biggest driver of dissatisfaction. People describe executives who are misaligned with each other, who micromanage, who change direction monthly without data to back it up, and who can't articulate where the company is headed.</li>
+      <li style="margin-bottom:6px"><strong>Broken team culture.</strong> Politics, finger-pointing, layoff anxiety, and low talent density. Several people said they love the work itself but the environment around it has become toxic.</li>
+      <li style="margin-bottom:6px"><strong>No strategic clarity.</strong> "It's complete chaos right now" was a common sentiment. People feel stuck executing without understanding why, or watching priorities shift every quarter.</li>
+    </ul>
+    <p style="margin-top:14px">One more thing: solopreneurs average 4.25 while employees at 5,000+ person companies average 2.96. The bigger the company, the less happy the people.</p>
+  </div>
+
+  <!-- LOVE / HATE THEMES -->
+  <div class="section-header animate-in delay-3">
+    <div class="section-title">What people love vs. hate</div>
+    <p class="section-subtitle">Click any theme to see representative quotes.</p>
+  </div>
+
+  <div class="love-hate-grid animate-in delay-4">
+
+    <!-- LOVE -->
+    <div class="theme-card love">
+      <h3>What people love</h3>
+      <div class="card-subtitle">Top themes from those rating 4–5</div>
+
+      <div class="theme-item" onclick="this.classList.toggle('open')">
+        <div class="theme-item-header">
+          <div class="theme-rank">1</div>
+          <div class="theme-name">Team and people</div>
+          <div class="theme-bar-mini"><div class="fill" style="width:100%;height:100%;border-radius:3px"></div></div>
+          <div class="theme-count">60</div>
+          <div class="theme-toggle">▼</div>
+        </div>
+        <div class="quote-drawer">
+          <div class="quote-drawer-inner">
+            <div class="mini-quote">"I absolutely love working with the team."<div class="quote-attr">Head of Product · 51–250</div></div>
+            <div class="mini-quote">"Love the people I work with. You spend the most time weekly with your colleagues, so it makes a big difference if you have a good relationship with them."<div class="quote-attr">Data Analyst · 1,001–5,000</div></div>
+            <div class="mini-quote">"I am working in an AI accelerator and I feel like a kid again. Getting to play with new tooling daily with a kind, smart team is a dream."<div class="quote-attr">Principal Product Manager · 1,001–5,000</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="theme-item" onclick="this.classList.toggle('open')">
+        <div class="theme-item-header">
+          <div class="theme-rank">2</div>
+          <div class="theme-name">Autonomy and freedom</div>
+          <div class="theme-bar-mini"><div class="fill" style="width:82%;height:100%;border-radius:3px"></div></div>
+          <div class="theme-count">49</div>
+          <div class="theme-toggle">▼</div>
+        </div>
+        <div class="quote-drawer">
+          <div class="quote-drawer-inner">
+            <div class="mini-quote">"I love that I have a lot of autonomy and freedom to experiment and lead the charge in the direction I want. Love how flexible my schedule is."<div class="quote-attr">Head of Product · 11–50</div></div>
+            <div class="mini-quote">"Freedom. Moves fast. Zero corporate politics."<div class="quote-attr">Cofounder, Product &amp; Design · 2–10</div></div>
+            <div class="mini-quote">"I work on my own time, don't have to work if I'm feeling unproductive so I can save my deep work for when my mind is at its best. I control my destiny."<div class="quote-attr">Founder/CEO · 2–10</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="theme-item" onclick="this.classList.toggle('open')">
+        <div class="theme-item-header">
+          <div class="theme-rank">3</div>
+          <div class="theme-name">AI and innovation</div>
+          <div class="theme-bar-mini"><div class="fill" style="width:67%;height:100%;border-radius:3px"></div></div>
+          <div class="theme-count">40</div>
+          <div class="theme-toggle">▼</div>
+        </div>
+        <div class="quote-drawer">
+          <div class="quote-drawer-inner">
+            <div class="mini-quote">"Time to experiment with AI. Work feels like play."<div class="quote-attr">Lead PM · 51–250</div></div>
+            <div class="mini-quote">"I am working in an AI accelerator and I feel like a kid again. Work is suddenly fun again. GenAI has fundamentally changed the industry forever."<div class="quote-attr">Principal Product Manager · 1,001–5,000</div></div>
+            <div class="mini-quote">"I love that to be a non-technical PM who can build things with AI makes me better at my job because I can show my work and ideas, and it helps me grasp technical concepts in ways I couldn't before."<div class="quote-attr">Product Manager · 11–50</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="theme-item" onclick="this.classList.toggle('open')">
+        <div class="theme-item-header">
+          <div class="theme-rank">4</div>
+          <div class="theme-name">Learning and growth</div>
+          <div class="theme-bar-mini"><div class="fill" style="width:57%;height:100%;border-radius:3px"></div></div>
+          <div class="theme-count">34</div>
+          <div class="theme-toggle">▼</div>
+        </div>
+        <div class="quote-drawer">
+          <div class="quote-drawer-inner">
+            <div class="mini-quote">"I really get to get my hands dirty and build new skills that I wouldn't just by reading or taking a course: evals, prompt design, consumer AI UX."<div class="quote-attr">Head of Product · 2–10</div></div>
+            <div class="mini-quote">"Stimulating. We are strongly pushed to upskill and we have budget for it."<div class="quote-attr">Senior Product Designer · 11–50</div></div>
+            <div class="mini-quote">"Being able to learn so much every day and having real impact on the business."<div class="quote-attr">Product Manager · 11–50</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="theme-item" onclick="this.classList.toggle('open')">
+        <div class="theme-item-header">
+          <div class="theme-rank">5</div>
+          <div class="theme-name">Impact and mission</div>
+          <div class="theme-bar-mini"><div class="fill" style="width:40%;height:100%;border-radius:3px"></div></div>
+          <div class="theme-count">24</div>
+          <div class="theme-toggle">▼</div>
+        </div>
+        <div class="quote-drawer">
+          <div class="quote-drawer-inner">
+            <div class="mini-quote">"Big scope, big impact, customer-facing, strategic, and kinda cool."<div class="quote-attr">Director, Product Management · 5,001+</div></div>
+            <div class="mini-quote">"Love the nature of working at a mission-driven govtech early-stage startup."<div class="quote-attr">Senior PM · 11–50</div></div>
+            <div class="mini-quote">"Solving real problems for real people, in an organization that has not yet leveraged the scaling power that comes from tech. And our mission is amazing."<div class="quote-attr">Head of Product · 51–250</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="theme-item" onclick="this.classList.toggle('open')">
+        <div class="theme-item-header">
+          <div class="theme-rank">6</div>
+          <div class="theme-name">Ownership and empowerment</div>
+          <div class="theme-bar-mini"><div class="fill" style="width:37%;height:100%;border-radius:3px"></div></div>
+          <div class="theme-count">22</div>
+          <div class="theme-toggle">▼</div>
+        </div>
+        <div class="quote-drawer">
+          <div class="quote-drawer-inner">
+            <div class="mini-quote">"The ownership and accountability I have: being able to find an opportunity, build buy-in, and deliver on it is really fulfilling."<div class="quote-attr">Senior Product Manager · 51–250</div></div>
+            <div class="mini-quote">"I'm now enabled to do more with more autonomy. I can be a single founder."<div class="quote-attr">Group PM · 1,001–5,000</div></div>
+            <div class="mini-quote">"I love that I am encouraged to bring my ideas to fruition as an engineer, even though we have a dedicated PM."<div class="quote-attr">Software Engineer I · 1,001–5,000</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HATE -->
+    <div class="theme-card hate">
+      <h3>What people hate</h3>
+      <div class="card-subtitle">Top themes from those rating 1–2</div>
+
+      <div class="theme-item" onclick="this.classList.toggle('open')">
+        <div class="theme-item-header">
+          <div class="theme-rank">1</div>
+          <div class="theme-name">Bad leadership</div>
+          <div class="theme-bar-mini"><div class="fill" style="width:100%;height:100%;border-radius:3px"></div></div>
+          <div class="theme-count">39</div>
+          <div class="theme-toggle">▼</div>
+        </div>
+        <div class="quote-drawer">
+          <div class="quote-drawer-inner">
+            <div class="mini-quote">"Love the product and my team. Hate leadership."<div class="quote-attr">Director of Product · 51–250</div></div>
+            <div class="mini-quote">"High pressure, low autonomy, terrible management."<div class="quote-attr">Staff ML Engineer · 1,001–5,000</div></div>
+            <div class="mini-quote">"I hate that the vision is being hijacked and micromanaged by my CEO and CPO who don't seem to be in sync with each other. The product direction keeps changing every month without any supporting data."<div class="quote-attr">Senior Product Manager · 51–250</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="theme-item" onclick="this.classList.toggle('open')">
+        <div class="theme-item-header">
+          <div class="theme-rank">2</div>
+          <div class="theme-name">Team and culture issues</div>
+          <div class="theme-bar-mini"><div class="fill" style="width:85%;height:100%;border-radius:3px"></div></div>
+          <div class="theme-count">33</div>
+          <div class="theme-toggle">▼</div>
+        </div>
+        <div class="quote-drawer">
+          <div class="quote-drawer-inner">
+            <div class="mini-quote">"Intensely political and finger-pointy. Doesn't feel like we're a team all aiming for the same goals anymore."<div class="quote-attr">Product Manager · 1,001–5,000</div></div>
+            <div class="mini-quote">"Low talent density from teams outside of technology, intense focus on profitability with fear of layoffs constantly looming."<div class="quote-attr">VP of Product · 251–1,000</div></div>
+            <div class="mini-quote">"I love the work and the people. I hate leadership's tunnel vision on AI at the expense of company culture."<div class="quote-attr">Advocate · 1,001–5,000</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="theme-item" onclick="this.classList.toggle('open')">
+        <div class="theme-item-header">
+          <div class="theme-rank">3</div>
+          <div class="theme-name">No clear strategy</div>
+          <div class="theme-bar-mini"><div class="fill" style="width:69%;height:100%;border-radius:3px"></div></div>
+          <div class="theme-count">27</div>
+          <div class="theme-toggle">▼</div>
+        </div>
+        <div class="quote-drawer">
+          <div class="quote-drawer-inner">
+            <div class="mini-quote">"It's complete chaos right now. No sign of leadership."<div class="quote-attr">Senior in tech · 5,001+</div></div>
+            <div class="mini-quote">"Too much ambiguity, even the leaders are not sure on what they want."<div class="quote-attr">Product Manager · 1,001–5,000</div></div>
+            <div class="mini-quote">"Prioritization mess from the C-level. Constant strategy changes, uncertainty. I'm afraid to mention issues to leadership."<div class="quote-attr">Senior PM · 1,001–5,000</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="theme-item" onclick="this.classList.toggle('open')">
+        <div class="theme-item-header">
+          <div class="theme-rank">4</div>
+          <div class="theme-name">AI disruption and pressure</div>
+          <div class="theme-bar-mini"><div class="fill" style="width:49%;height:100%;border-radius:3px"></div></div>
+          <div class="theme-count">19</div>
+          <div class="theme-toggle">▼</div>
+        </div>
+        <div class="quote-drawer">
+          <div class="quote-drawer-inner">
+            <div class="mini-quote">"Clueless execs who continue to force employees to do more with less because of AI. Execs over-inflating the value of AI, it's getting hilariously bad."<div class="quote-attr">UX Researcher · 251–1,000</div></div>
+            <div class="mini-quote">"So many new expectations with the rise of AI."<div class="quote-attr">Group PM · 1,001–5,000</div></div>
+            <div class="mini-quote">"Corporate decision making is so slow but everyone is in panic over AI. The role of a PM is changing but my company is risk-averse and slow to adapt."<div class="quote-attr">Sr. Product Manager · 5,001+</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="theme-item" onclick="this.classList.toggle('open')">
+        <div class="theme-item-header">
+          <div class="theme-rank">5</div>
+          <div class="theme-name">No learning or growth</div>
+          <div class="theme-bar-mini"><div class="fill" style="width:41%;height:100%;border-radius:3px"></div></div>
+          <div class="theme-count">16</div>
+          <div class="theme-toggle">▼</div>
+        </div>
+        <div class="quote-drawer">
+          <div class="quote-drawer-inner">
+            <div class="mini-quote">"It's boring. The hours are long. There is zero chance to be creative."<div class="quote-attr">Team Lead · 251–1,000</div></div>
+            <div class="mini-quote">"Not intellectually demanding; routine."<div class="quote-attr">Finance Operations · 251–1,000</div></div>
+            <div class="mini-quote">"It's unclear what my career growth looks like and I don't think leadership values me. I'm not sure what to do differently to add value."<div class="quote-attr">PM, ML &amp; Computer Vision · 51–250</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="theme-item" onclick="this.classList.toggle('open')">
+        <div class="theme-item-header">
+          <div class="theme-rank">6</div>
+          <div class="theme-name">No autonomy</div>
+          <div class="theme-bar-mini"><div class="fill" style="width:36%;height:100%;border-radius:3px"></div></div>
+          <div class="theme-count">14</div>
+          <div class="theme-toggle">▼</div>
+        </div>
+        <div class="quote-drawer">
+          <div class="quote-drawer-inner">
+            <div class="mini-quote">"Micromanaging C-suite."<div class="quote-attr">Vice President · 5,001+</div></div>
+            <div class="mini-quote">"We are pulled in so many directions and most of my time is spent providing an update of some sort rather than solving problems."<div class="quote-attr">Director of Product · 1,001–5,000</div></div>
+            <div class="mini-quote">"So much Product/Agile theatre with a severe lack of empowerment. Everything is decided by committee and takes forever."<div class="quote-attr">Delivery Lead · 251–1,000</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- COMPANY SIZE & TENURE & ROLE -->
+  <div class="section-header animate-in delay-4">
+    <div class="section-title">Satisfaction by company size, tenure, and role</div>
+  </div>
+
+  <div style="height:24px"></div>
+
+  <div class="two-col animate-in delay-4">
+    <div class="card">
+      <h3>By company size</h3>
+      
+      <div class="compare-row">
+        <div class="compare-label">Just me</div>
+        <div class="compare-bar-container">
+          <div class="compare-bar" style="width:85%">4.25</div>
+          <div class="compare-n">n=8</div>
+        </div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">2–10</div>
+        <div class="compare-bar-container">
+          <div class="compare-bar" style="width:69%">3.45</div>
+          <div class="compare-n">n=22</div>
+        </div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">11–50</div>
+        <div class="compare-bar-container">
+          <div class="compare-bar" style="width:68%">3.41</div>
+          <div class="compare-n">n=46</div>
+        </div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">251–1,000</div>
+        <div class="compare-bar-container">
+          <div class="compare-bar" style="width:66%">3.32</div>
+          <div class="compare-n">n=57</div>
+        </div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">51–250</div>
+        <div class="compare-bar-container">
+          <div class="compare-bar" style="width:65%">3.26</div>
+          <div class="compare-n">n=76</div>
+        </div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">1,001–5,000</div>
+        <div class="compare-bar-container">
+          <div class="compare-bar" style="width:62%">3.10</div>
+          <div class="compare-n">n=60</div>
+        </div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">5,001+</div>
+        <div class="compare-bar-container">
+          <div class="compare-bar" style="width:59%">2.96</div>
+          <div class="compare-n">n=54</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>By tenure</h3>
+      
+      <div class="compare-row">
+        <div class="compare-label">Less than 1 year</div>
+        <div class="compare-bar-container">
+          <div class="compare-bar" style="width:71%">3.55</div>
+          <div class="compare-n">n=91</div>
+        </div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">11+ years</div>
+        <div class="compare-bar-container">
+          <div class="compare-bar" style="width:70%">3.50</div>
+          <div class="compare-n">n=12</div>
+        </div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">6–10 years</div>
+        <div class="compare-bar-container">
+          <div class="compare-bar" style="width:65%">3.23</div>
+          <div class="compare-n">n=31</div>
+        </div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">3–5 years</div>
+        <div class="compare-bar-container">
+          <div class="compare-bar" style="width:62%">3.11</div>
+          <div class="compare-n">n=98</div>
+        </div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">1–2 years</div>
+        <div class="compare-bar-container">
+          <div class="compare-bar" style="width:62%">3.08</div>
+          <div class="compare-n">n=91</div>
+        </div>
+      </div>
+
+      <div style="height:28px"></div>
+      <h3>By role level</h3>
+      <div style="height:16px"></div>
+      
+      <div class="compare-row">
+        <div class="compare-label">Founder / C-suite</div>
+        <div class="compare-bar-container">
+          <div class="compare-bar" style="width:73%">3.63</div>
+          <div class="compare-n">n=27</div>
+        </div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">VP / Director / Head</div>
+        <div class="compare-bar-container">
+          <div class="compare-bar" style="width:63%">3.16</div>
+          <div class="compare-n">n=74</div>
+        </div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">Group PM / Manager</div>
+        <div class="compare-bar-container">
+          <div class="compare-bar" style="width:68%">3.40</div>
+          <div class="compare-n">n=15</div>
+        </div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">IC</div>
+        <div class="compare-bar-container">
+          <div class="compare-bar" style="width:64%">3.22</div>
+          <div class="compare-n">n=207</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PATTERNS INSIGHT -->
+  <div class="insight-box animate-in delay-5">
+    <div class="insight-title">Patterns worth noting</div>
+    <p><strong>The honeymoon is real.</strong> People under 1 year at their company rate satisfaction highest (3.55). At 1–5 years, it drops to about 3.1. The novelty wears off, the frustrations accumulate, and the things you accepted on the way in become harder to tolerate.</p>
+    <p style="margin-top:10px"><strong>Company size and happiness move in opposite directions.</strong> Every step up in company size brings satisfaction down, likely because the things people love most (autonomy, close-knit teams, moving fast) get harder to maintain at scale.</p>
+    <p style="margin-top:10px"><strong>VPs and directors feel the squeeze.</strong> They rate lowest of any role level (3.16), below both the ICs who report to them and the C-suite above them. They're caught between strategy they didn't set and execution they have to deliver.</p>
+    <p style="margin-top:10px"><strong>AI shows up on both sides.</strong> Among happy people, AI is mentioned 40 times as a source of energy and new capability. Among unhappy people, it comes up 19 times as top-down pressure and unrealistic expectations. The difference seems to be whether leadership is enabling experimentation or mandating adoption without clarity.</p>
+  </div>
+
+  <!-- RESPONDENT PROFILE -->
+  <div class="section-header animate-in delay-4">
+    <div class="section-title">Who responded</div>
+  </div>
+
+  <div style="height:24px"></div>
+
+  <div class="two-col animate-in delay-5">
+    <div class="card">
+      <h3>Company size</h3>
+      <div class="h-bar-row">
+        <div class="h-bar-label">51–250</div>
+        <div class="h-bar-track"><div class="h-bar-fill" style="width:76%">76</div></div>
+        <div class="h-bar-value">23.5%</div>
+      </div>
+      <div class="h-bar-row">
+        <div class="h-bar-label">1,001–5,000</div>
+        <div class="h-bar-track"><div class="h-bar-fill" style="width:60%">60</div></div>
+        <div class="h-bar-value">18.6%</div>
+      </div>
+      <div class="h-bar-row">
+        <div class="h-bar-label">251–1,000</div>
+        <div class="h-bar-track"><div class="h-bar-fill" style="width:57%">57</div></div>
+        <div class="h-bar-value">17.6%</div>
+      </div>
+      <div class="h-bar-row">
+        <div class="h-bar-label">5,001+</div>
+        <div class="h-bar-track"><div class="h-bar-fill" style="width:54%">54</div></div>
+        <div class="h-bar-value">16.7%</div>
+      </div>
+      <div class="h-bar-row">
+        <div class="h-bar-label">11–50</div>
+        <div class="h-bar-track"><div class="h-bar-fill" style="width:46%">46</div></div>
+        <div class="h-bar-value">14.2%</div>
+      </div>
+      <div class="h-bar-row">
+        <div class="h-bar-label">2–10</div>
+        <div class="h-bar-track"><div class="h-bar-fill" style="width:22%">22</div></div>
+        <div class="h-bar-value">6.8%</div>
+      </div>
+      <div class="h-bar-row">
+        <div class="h-bar-label">Just me</div>
+        <div class="h-bar-track"><div class="h-bar-fill" style="width:10%">8</div></div>
+        <div class="h-bar-value">2.5%</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Tenure in current role</h3>
+      <div class="h-bar-row">
+        <div class="h-bar-label">3–5 years</div>
+        <div class="h-bar-track"><div class="h-bar-fill" style="width:98%">98</div></div>
+        <div class="h-bar-value">30.3%</div>
+      </div>
+      <div class="h-bar-row">
+        <div class="h-bar-label">Less than 1 year</div>
+        <div class="h-bar-track"><div class="h-bar-fill" style="width:91%">91</div></div>
+        <div class="h-bar-value">28.2%</div>
+      </div>
+      <div class="h-bar-row">
+        <div class="h-bar-label">1–2 years</div>
+        <div class="h-bar-track"><div class="h-bar-fill" style="width:91%">91</div></div>
+        <div class="h-bar-value">28.2%</div>
+      </div>
+      <div class="h-bar-row">
+        <div class="h-bar-label">6–10 years</div>
+        <div class="h-bar-track"><div class="h-bar-fill" style="width:31%">31</div></div>
+        <div class="h-bar-value">9.6%</div>
+      </div>
+      <div class="h-bar-row">
+        <div class="h-bar-label">11+ years</div>
+        <div class="h-bar-track"><div class="h-bar-fill" style="width:12%">12</div></div>
+        <div class="h-bar-value">3.7%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer animate-in delay-5">
+    <p>Data collected via Polly · Jan 28 – Feb 4, 2026 · 323 responses · Lenny's Polls</p>
+  </div>
+
+</div>
+
+</body>
+</html>

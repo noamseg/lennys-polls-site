@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lenny's Polls</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #FFFFFF;
+    --text: #1A1A1A;
+    --text-secondary: #6B6B6B;
+    --text-light: #999999;
+    --border: #E8E5E0;
+    --orange: #EF7B4E;
+    --orange-dark: #D96A3E;
+    --orange-light: #F5B07A;
+    --neutral-surface: #F7F6F4;
+    --neutral-track: #EDECEA;
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Nav */
+  .site-nav {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .nav-logo {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+  }
+
+  .nav-title {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .nav-link {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .nav-link:hover { color: var(--orange); }
+
+  /* Hero */
+  .hero {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 80px 24px 60px;
+    text-align: center;
+  }
+
+  .hero h1 {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--text);
+    margin-bottom: 16px;
+  }
+
+  .hero .tagline {
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .accent-bar {
+    width: 48px;
+    height: 3px;
+    background: var(--orange);
+    border-radius: 2px;
+    margin: 32px auto 0;
+  }
+
+  /* Polls grid */
+  .polls-section {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  .polls-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .poll-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 28px 32px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    text-decoration: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .poll-card:hover {
+    border-color: var(--orange-light);
+    box-shadow: 0 2px 12px rgba(239, 123, 78, 0.08);
+  }
+
+  .poll-card-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .poll-card-title {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.3;
+    margin-bottom: 8px;
+  }
+
+  .poll-card-meta {
+    font-size: 13px;
+    color: var(--text-light);
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .poll-card-arrow {
+    font-size: 20px;
+    color: var(--text-light);
+    transition: color 0.2s, transform 0.2s;
+    flex-shrink: 0;
+  }
+
+  .poll-card:hover .poll-card-arrow {
+    color: var(--orange);
+    transform: translateX(3px);
+  }
+
+  /* Footer */
+  .site-footer {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 40px 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-light);
+  }
+
+  .site-footer a {
+    color: var(--text-secondary);
+    text-decoration: none;
+  }
+
+  .site-footer a:hover {
+    color: var(--orange);
+  }
+
+  /* Animations */
+  .animate-in {
+    opacity: 0;
+    transform: translateY(16px);
+    animation: fadeUp 0.5s ease forwards;
+  }
+
+  .delay-1 { animation-delay: 0.1s; }
+  .delay-2 { animation-delay: 0.2s; }
+  .delay-3 { animation-delay: 0.3s; }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero { padding: 48px 24px 40px; }
+    .hero h1 { font-size: 36px; }
+    .poll-card { padding: 20px 24px; }
+    .poll-card-title { font-size: 18px; }
+  }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="/" class="nav-brand">
+    <img src="/lennylogo.svg" alt="Lenny's Newsletter" class="nav-logo">
+  </a>
+  <a href="https://www.lennysnewsletter.com/" class="nav-link" target="_blank">Newsletter ↗</a>
+</nav>
+
+<div class="hero animate-in">
+  <h1>Lenny's Polls</h1>
+  <p class="tagline">A pulse on what's happening in your work lives — tracking what operators and leaders like you are experiencing on the ground.</p>
+  <div class="accent-bar"></div>
+</div>
+
+<div class="polls-section">
+  <div class="polls-grid">
+
+    <!-- POLL 1 -->
+    <a href="/polls/how-do-you-feel-about-your-job.html" class="poll-card animate-in delay-1">
+      <div class="poll-card-content">
+        <div class="poll-card-title">How do you feel about your job?</div>
+        <div class="poll-card-meta">
+          <span>323 responses</span>
+          <span>Jan 28 – Feb 4, 2026</span>
+        </div>
+      </div>
+      <div class="poll-card-arrow">→</div>
+    </a>
+
+    <!-- ADD MORE POLLS HERE -->
+    <!--
+    <a href="/polls/your-next-poll-slug.html" class="poll-card animate-in delay-2">
+      <div class="poll-card-content">
+        <div class="poll-card-title">Your next poll question?</div>
+        <div class="poll-card-meta">
+          <span>N responses</span>
+          <span>Date range</span>
+        </div>
+      </div>
+      <div class="poll-card-arrow">→</div>
+    </a>
+    -->
+
+  </div>
+</div>
+
+<div class="site-footer">
+  <p>Lenny's Polls · Research by Noam Segal</p>
+</div>
+
+</body>
+</html>
