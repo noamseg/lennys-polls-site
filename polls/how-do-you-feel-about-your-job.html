@@ -228,6 +228,17 @@
     margin-bottom: 8px;
   }
 
+  .bar-question strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .bar-scale {
+    font-size: 12px;
+    color: var(--text-light);
+    margin-bottom: 8px;
+  }
+
   .bar-labels {
     display: flex;
     margin-top: 6px;
@@ -702,7 +713,7 @@
     .rating-card .emoji { font-size: 18px; }
     .rating-card .count { font-size: 20px; }
     .two-col, .love-hate-grid { grid-template-columns: 1fr; }
-    .hero-stat { flex-direction: column; gap: 24px; }
+    .hero-stat { flex-direction: column; gap: 24px; padding: 24px 16px; }
     .bar-labels { display: none; }
     .bar-labels-mobile { display: flex; }
     .h-bar-label { width: 80px; font-size: 12px; }
@@ -755,7 +766,8 @@
   <!-- HERO STAT -->
   <div class="hero-stat animate-in delay-1">
     <div class="hero-bar" style="max-width:100%;flex:1">
-      <div class="bar-question">How do you feel about your job? (1 = hate it, 5 = love it)</div>
+      <div class="bar-question"><strong>How do you feel about your job?</strong></div>
+      <div class="bar-scale">1 = hate it, 5 = love it</div>
       <div class="stacked-bar">
         <div class="segment s1" style="flex: 5.9;">6%</div>
         <div class="segment s2" style="flex: 21.1;">21%</div>
