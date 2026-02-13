@@ -114,7 +114,6 @@ body {
 .card-wrapper {
   position: relative;
   width: 100%;
-  /* Aspect ratio: 675/1200 = 0.5625 */
   padding-bottom: 56.25%;
   border-radius: 12px;
   overflow: hidden;
@@ -144,35 +143,44 @@ body {
   flex-shrink: 0;
 }
 
+/* Logo in top-left corner of every card */
+.card-logo {
+  position: absolute;
+  top: 20px;
+  left: 48px;
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+}
+
 .card-body {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 48px 64px;
+  padding: 56px 48px 24px;
   min-height: 0;
 }
 
 /* Branded footer on every card */
 .card-footer {
   flex-shrink: 0;
-  padding: 16px 64px;
+  padding: 14px 48px;
   border-top: 1px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 13px;
 }
 .card-footer .brand {
   font-weight: 700;
   letter-spacing: 1.5px;
   text-transform: uppercase;
   color: var(--text);
-  font-size: 12px;
+  font-size: 14px;
 }
 .card-footer .url {
   color: var(--text-light);
-  font-size: 12px;
+  font-size: 14px;
 }
 
 /* Hover overlay */
@@ -203,20 +211,10 @@ body {
   cursor: pointer;
   transition: transform 0.1s;
 }
-.overlay-btn:hover {
-  transform: scale(1.04);
-}
-.overlay-btn:active {
-  transform: scale(0.97);
-}
-.btn-copy {
-  background: var(--orange);
-  color: white;
-}
-.btn-download {
-  background: white;
-  color: var(--text);
-}
+.overlay-btn:hover { transform: scale(1.04); }
+.overlay-btn:active { transform: scale(0.97); }
+.btn-copy { background: var(--orange); color: white; }
+.btn-download { background: white; color: var(--text); }
 
 /* Toast notification */
 .toast {
@@ -245,23 +243,24 @@ body {
 /* Card 1: Hero stat — distribution bar */
 .card-hero .card-body {
   justify-content: center;
-  gap: 24px;
+  gap: 16px;
+  padding: 56px 48px 28px;
 }
 .card-hero .headline {
   font-family: 'Source Serif 4', Georgia, serif;
-  font-size: 36px;
+  font-size: 46px;
   font-weight: 700;
   color: var(--text);
-  line-height: 1.2;
+  line-height: 1.15;
 }
 .card-hero .subtext {
-  font-size: 16px;
+  font-size: 20px;
   color: var(--text-secondary);
-  line-height: 1.5;
+  line-height: 1.4;
 }
 .stacked-bar {
   display: flex;
-  height: 56px;
+  height: 64px;
   border-radius: 8px;
   overflow: hidden;
   border: 1px solid var(--border);
@@ -271,7 +270,7 @@ body {
   align-items: center;
   justify-content: center;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 17px;
   color: white;
 }
 .stacked-bar .s1 { background: #D4926A; }
@@ -284,43 +283,44 @@ body {
   margin-top: 8px;
 }
 .bar-label-item {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--text-secondary);
   text-align: center;
+  font-weight: 500;
 }
-.bar-label-item span { display: block; font-size: 11px; color: var(--text-light); }
+.bar-label-item span { display: block; font-size: 13px; color: var(--text-light); font-weight: 400; }
 
 /* Card 2-4: Key finding — big number centered */
 .card-keyfinding .card-body {
   align-items: center;
   text-align: center;
-  gap: 16px;
+  gap: 12px;
 }
 .card-keyfinding .big-number {
   font-family: 'Source Serif 4', Georgia, serif;
-  font-size: 96px;
+  font-size: 120px;
   font-weight: 700;
   color: var(--orange);
   line-height: 1;
 }
 .card-keyfinding .finding-text {
-  font-size: 24px;
+  font-size: 32px;
   color: var(--text);
-  line-height: 1.4;
-  max-width: 700px;
+  line-height: 1.35;
+  max-width: 800px;
 }
 .card-keyfinding .context {
-  font-size: 15px;
+  font-size: 18px;
   color: var(--text-secondary);
-  max-width: 600px;
-  line-height: 1.5;
+  max-width: 700px;
+  line-height: 1.45;
 }
 
 /* Card 5-6: Quote cards */
 .card-quote .card-body {
   justify-content: center;
   gap: 24px;
-  padding: 48px 80px;
+  padding: 56px 64px 24px;
 }
 .card-quote-positive .card-body {
   background: var(--orange-bg);
@@ -329,7 +329,7 @@ body {
   background: #FDF7F6;
 }
 .card-quote .quote-label {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -338,27 +338,29 @@ body {
 .card-quote-negative .quote-label { color: #C44536; }
 .card-quote .quote-text {
   font-family: 'Source Serif 4', Georgia, serif;
-  font-size: 32px;
+  font-size: 40px;
   font-weight: 400;
   font-style: italic;
-  line-height: 1.4;
+  line-height: 1.35;
   color: var(--text);
 }
 .card-quote .quote-attr {
-  font-size: 14px;
+  font-size: 17px;
   color: var(--text-secondary);
 }
 
 /* Card 7: Comparison — horizontal bars */
 .card-comparison .card-body {
-  gap: 20px;
-  padding: 40px 64px;
+  gap: 14px;
+  padding: 56px 48px 24px;
+  justify-content: center;
 }
 .card-comparison .comp-title {
   font-family: 'Source Serif 4', Georgia, serif;
-  font-size: 28px;
+  font-size: 34px;
   font-weight: 700;
   color: var(--text);
+  margin-bottom: 4px;
 }
 .comp-row {
   display: flex;
@@ -366,16 +368,16 @@ body {
   gap: 16px;
 }
 .comp-label {
-  width: 120px;
+  width: 130px;
   flex-shrink: 0;
-  font-size: 14px;
+  font-size: 16px;
   color: var(--text);
   text-align: right;
   font-weight: 500;
 }
 .comp-bar-track {
   flex: 1;
-  height: 32px;
+  height: 36px;
   background: var(--neutral-track);
   border-radius: 6px;
   position: relative;
@@ -389,30 +391,32 @@ body {
   align-items: center;
   justify-content: flex-end;
   padding-right: 10px;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 700;
   color: white;
 }
 .comp-n {
   width: 50px;
   flex-shrink: 0;
-  font-size: 12px;
+  font-size: 13px;
   color: var(--text-light);
 }
 
 /* Card 8-9: Theme summary */
 .card-theme .card-body {
-  gap: 20px;
-  padding: 44px 64px;
+  gap: 16px;
+  padding: 56px 48px 24px;
+  justify-content: center;
 }
 .card-theme .theme-heading {
   font-family: 'Source Serif 4', Georgia, serif;
-  font-size: 28px;
+  font-size: 34px;
   font-weight: 700;
   color: var(--text);
   display: flex;
   align-items: center;
   gap: 12px;
+  margin-bottom: 4px;
 }
 .card-theme .theme-heading .accent-line {
   display: inline-block;
@@ -434,38 +438,37 @@ body {
 }
 .theme-rank {
   font-family: 'Source Serif 4', Georgia, serif;
-  font-size: 36px;
+  font-size: 42px;
   font-weight: 700;
   line-height: 1;
   flex-shrink: 0;
-  width: 40px;
+  width: 44px;
 }
 .card-theme-love .theme-rank { color: #3D9B6A; }
 .card-theme-hate .theme-rank { color: #C44536; }
 
-.theme-content {
-  flex: 1;
-}
+.theme-content { flex: 1; }
 .theme-name {
-  font-size: 18px;
+  font-size: 22px;
   font-weight: 600;
   color: var(--text);
   margin-bottom: 4px;
 }
 .theme-mentions {
-  font-size: 13px;
+  font-size: 16px;
   color: var(--text-light);
+  line-height: 1.4;
 }
 
 /* Card 10-11: Pattern cards */
 .card-pattern .card-body {
   align-items: center;
   text-align: center;
-  gap: 28px;
+  gap: 24px;
 }
 .card-pattern .pattern-headline {
   font-family: 'Source Serif 4', Georgia, serif;
-  font-size: 38px;
+  font-size: 48px;
   font-weight: 700;
   color: var(--text);
 }
@@ -474,31 +477,34 @@ body {
   align-items: center;
   gap: 48px;
 }
-.pattern-point {
-  text-align: center;
-}
+.pattern-point { text-align: center; }
 .pattern-point .point-value {
   font-family: 'Source Serif 4', Georgia, serif;
-  font-size: 56px;
+  font-size: 72px;
   font-weight: 700;
   color: var(--orange);
   line-height: 1;
 }
 .pattern-point .point-label {
-  font-size: 14px;
+  font-size: 17px;
   color: var(--text-secondary);
   margin-top: 8px;
-  max-width: 200px;
+  max-width: 220px;
 }
 .pattern-arrow {
-  font-size: 32px;
+  font-size: 36px;
   color: var(--text-light);
 }
+.pattern-vs {
+  font-size: 20px;
+  color: var(--text-light);
+  font-weight: 500;
+}
 .card-pattern .pattern-context {
-  font-size: 16px;
+  font-size: 19px;
   color: var(--text-secondary);
-  max-width: 700px;
-  line-height: 1.5;
+  max-width: 800px;
+  line-height: 1.45;
 }
 
 /* Footer */
@@ -534,6 +540,7 @@ body {
   <!-- ===== CARD 1: Hero stat — distribution bar ===== -->
   <div class="card-wrapper" data-card="hero">
     <div class="social-card card-hero" id="card-1">
+      <img src="/lennylogo.svg" alt="" class="card-logo">
       <div class="card-body">
         <div class="headline">How do you feel about your job?</div>
         <div class="subtext">323 product and tech professionals rated their job satisfaction on a 1–5 scale.</div>
@@ -553,7 +560,6 @@ body {
             <div class="bar-label-item" style="flex:13.3">5<span>Love it</span></div>
           </div>
         </div>
-        <div class="subtext" style="font-size:18px; color:var(--text); font-weight:600;">27% unhappy. 13% love it.</div>
       </div>
       <div class="card-footer">
         <span class="brand">Lenny's Polls</span>
@@ -569,10 +575,11 @@ body {
   <!-- ===== CARD 2: Key finding — 27% actively unhappy ===== -->
   <div class="card-wrapper" data-card="keyfinding">
     <div class="social-card card-keyfinding" id="card-2">
+      <img src="/lennylogo.svg" alt="" class="card-logo">
       <div class="card-body">
         <div class="big-number">27%</div>
-        <div class="finding-text">are actively unhappy in their job</div>
-        <div class="context">Rating 1 ("Hate it") or 2 ("Not great") out of 5. Based on 323 responses from product and tech professionals.</div>
+        <div class="finding-text">of product and tech professionals are actively unhappy in their job</div>
+        <div class="context">Rating 1 ("Hate it") or 2 ("Not great") on a 1–5 scale. Only 13% said they love it.</div>
       </div>
       <div class="card-footer">
         <span class="brand">Lenny's Polls</span>
@@ -588,20 +595,21 @@ body {
   <!-- ===== CARD 3: Key finding — Solopreneurs vs large companies ===== -->
   <div class="card-wrapper" data-card="keyfinding">
     <div class="social-card card-keyfinding" id="card-3">
+      <img src="/lennylogo.svg" alt="" class="card-logo">
       <div class="card-body">
-        <div style="display:flex; align-items:baseline; gap:16px; justify-content:center;">
+        <div style="display:flex; align-items:baseline; gap:20px; justify-content:center;">
           <div style="text-align:center;">
-            <div class="big-number" style="font-size:80px;">4.25</div>
-            <div style="font-size:14px; color:var(--text-secondary); margin-top:4px;">Solopreneurs</div>
+            <div class="big-number" style="font-size:100px;">4.25</div>
+            <div style="font-size:17px; color:var(--text-secondary); margin-top:6px;">Solopreneurs</div>
           </div>
-          <div style="font-size:40px; color:var(--text-light); font-weight:300;">vs</div>
+          <div style="font-size:44px; color:var(--text-light); font-weight:300;">vs</div>
           <div style="text-align:center;">
-            <div class="big-number" style="font-size:80px;">2.96</div>
-            <div style="font-size:14px; color:var(--text-secondary); margin-top:4px;">5,000+ employees</div>
+            <div class="big-number" style="font-size:100px;">2.96</div>
+            <div style="font-size:17px; color:var(--text-secondary); margin-top:6px;">5,000+ employees</div>
           </div>
         </div>
-        <div class="finding-text" style="margin-top:8px;">The bigger the company, the less happy the people</div>
-        <div class="context">Average job satisfaction rating on a 1–5 scale</div>
+        <div class="finding-text">The bigger the company, the less happy the people</div>
+        <div class="context">Average job satisfaction on a 1–5 scale across 323 respondents</div>
       </div>
       <div class="card-footer">
         <span class="brand">Lenny's Polls</span>
@@ -617,10 +625,11 @@ body {
   <!-- ===== CARD 4: Key finding — VPs and directors rate lowest ===== -->
   <div class="card-wrapper" data-card="keyfinding">
     <div class="social-card card-keyfinding" id="card-4">
+      <img src="/lennylogo.svg" alt="" class="card-logo">
       <div class="card-body">
         <div class="big-number">3.16</div>
-        <div class="finding-text">VPs and directors rate lowest of any role level</div>
-        <div class="context">Below both the ICs who report to them (3.22) and the C-suite above them (3.63). Caught between strategy they didn't set and execution they have to deliver.</div>
+        <div class="finding-text">VPs and directors are the least satisfied of any role level</div>
+        <div class="context">Below the ICs who report to them (3.22) and the C-suite above them (3.63). Caught between strategy they didn't set and execution they have to deliver.</div>
       </div>
       <div class="card-footer">
         <span class="brand">Lenny's Polls</span>
@@ -636,6 +645,7 @@ body {
   <!-- ===== CARD 5: Quote card — positive ===== -->
   <div class="card-wrapper" data-card="quote">
     <div class="social-card card-quote card-quote-positive" id="card-5">
+      <img src="/lennylogo.svg" alt="" class="card-logo">
       <div class="card-body">
         <div class="quote-label">What people love</div>
         <div class="quote-text">"I am working in an AI accelerator and I feel like a kid again. Work is suddenly fun again."</div>
@@ -655,6 +665,7 @@ body {
   <!-- ===== CARD 6: Quote card — negative ===== -->
   <div class="card-wrapper" data-card="quote">
     <div class="social-card card-quote card-quote-negative" id="card-6">
+      <img src="/lennylogo.svg" alt="" class="card-logo">
       <div class="card-body">
         <div class="quote-label">What people hate</div>
         <div class="quote-text">"Love the product and my team. Hate leadership."</div>
@@ -674,6 +685,7 @@ body {
   <!-- ===== CARD 7: Comparison — satisfaction by company size ===== -->
   <div class="card-wrapper" data-card="comparison">
     <div class="social-card card-comparison" id="card-7">
+      <img src="/lennylogo.svg" alt="" class="card-logo">
       <div class="card-body">
         <div class="comp-title">Satisfaction by company size</div>
         <div class="comp-row">
@@ -726,6 +738,7 @@ body {
   <!-- ===== CARD 8: Theme summary — Love ===== -->
   <div class="card-wrapper" data-card="theme">
     <div class="social-card card-theme card-theme-love" id="card-8">
+      <img src="/lennylogo.svg" alt="" class="card-logo">
       <div class="card-body">
         <div class="theme-heading">
           <span class="accent-line"></span>
@@ -767,6 +780,7 @@ body {
   <!-- ===== CARD 9: Theme summary — Hate ===== -->
   <div class="card-wrapper" data-card="theme">
     <div class="social-card card-theme card-theme-hate" id="card-9">
+      <img src="/lennylogo.svg" alt="" class="card-logo">
       <div class="card-body">
         <div class="theme-heading">
           <span class="accent-line"></span>
@@ -808,6 +822,7 @@ body {
   <!-- ===== CARD 10: Pattern — The honeymoon is real ===== -->
   <div class="card-wrapper" data-card="pattern">
     <div class="social-card card-pattern" id="card-10">
+      <img src="/lennylogo.svg" alt="" class="card-logo">
       <div class="card-body">
         <div class="pattern-headline">The honeymoon is real.</div>
         <div class="pattern-data">
@@ -837,6 +852,7 @@ body {
   <!-- ===== CARD 11: Pattern — AI shows up on both sides ===== -->
   <div class="card-wrapper" data-card="pattern">
     <div class="social-card card-pattern" id="card-11">
+      <img src="/lennylogo.svg" alt="" class="card-logo">
       <div class="card-body">
         <div class="pattern-headline">AI shows up on both sides.</div>
         <div class="pattern-data">
@@ -844,10 +860,10 @@ body {
             <div class="point-value">40</div>
             <div class="point-label">mentions as energy and new capability</div>
           </div>
-          <div style="font-size:16px; color:var(--text-light); font-weight:500;">vs</div>
+          <div class="pattern-vs">vs</div>
           <div class="pattern-point">
             <div class="point-value">19</div>
-            <div class="point-label">mentions as top-down pressure and unrealistic expectations</div>
+            <div class="point-label">mentions as top-down pressure</div>
           </div>
         </div>
         <div class="pattern-context">The difference: whether leadership enables experimentation or mandates adoption without clarity.</div>
@@ -901,7 +917,6 @@ function showToast(msg) {
 // Capture card at native 1200x675 resolution
 function captureCard(cardId) {
   const card = document.getElementById(cardId);
-  // Temporarily remove CSS transform to capture at native resolution
   const originalTransform = card.style.transform;
   card.style.transform = 'none';
 
@@ -913,7 +928,6 @@ function captureCard(cardId) {
     backgroundColor: '#FFFFFF',
     logging: false
   }).then(canvas => {
-    // Restore transform
     card.style.transform = originalTransform;
     return canvas;
   }).catch(err => {
@@ -927,7 +941,6 @@ async function copyCard(cardId) {
   try {
     const canvas = await captureCard(cardId);
 
-    // Try clipboard API first
     if (navigator.clipboard && navigator.clipboard.write) {
       const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
       await navigator.clipboard.write([
@@ -935,13 +948,11 @@ async function copyCard(cardId) {
       ]);
       showToast('Copied to clipboard');
     } else {
-      // Fallback: download instead
       downloadFromCanvas(canvas, cardId.replace('card-', 'lennys-polls-card-'));
       showToast('Downloaded (clipboard not supported in this browser)');
     }
   } catch (err) {
     console.error('Copy failed:', err);
-    // Fallback to download
     try {
       const canvas = await captureCard(cardId);
       downloadFromCanvas(canvas, cardId.replace('card-', 'lennys-polls-card-'));
