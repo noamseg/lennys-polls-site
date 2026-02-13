@@ -112,6 +112,14 @@
     margin: 0 auto;
   }
 
+  .hero .intro {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text-light);
+    max-width: 520px;
+    margin: 12px auto 0;
+  }
+
   .accent-bar {
     width: 48px;
     height: 3px;
@@ -185,6 +193,46 @@
     transform: translateX(3px);
   }
 
+  .poll-coming-soon {
+    text-align: center;
+    padding: 24px;
+    color: var(--text-light);
+    font-size: 14px;
+    border: 1px dashed var(--border);
+    border-radius: 12px;
+  }
+
+  .newsletter-cta {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 32px 24px;
+    text-align: center;
+  }
+
+  .newsletter-cta-text {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+
+  .newsletter-cta-btn {
+    display: inline-block;
+    padding: 12px 28px;
+    background: var(--orange);
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background 0.15s;
+  }
+
+  .newsletter-cta-btn:hover {
+    background: var(--orange-dark);
+  }
+
   /* Footer */
   .site-footer {
     max-width: 880px;
@@ -247,6 +295,7 @@
 <div class="hero animate-in">
   <h1>Lenny's Polls</h1>
   <p class="tagline">A pulse on what's happening in your work lives</p>
+  <p class="intro">Surveys of product and tech professionals from Lenny's Newsletter community, analyzed and visualized.</p>
   <div class="accent-bar"></div>
 </div>
 
@@ -279,9 +328,18 @@
     </a>
     -->
 
+    <div class="poll-coming-soon animate-in delay-2">
+      <p>Next poll coming soon</p>
+    </div>
+
   </div>
 </div>
 </main>
+
+<div class="newsletter-cta">
+  <p class="newsletter-cta-text">Want more insights like this?</p>
+  <a href="https://www.lennysnewsletter.com/" target="_blank" class="newsletter-cta-btn">Subscribe to Lenny's Newsletter →</a>
+</div>
 
 <footer class="site-footer">
   <p>Lenny's Polls · Research by Noam Segal</p>

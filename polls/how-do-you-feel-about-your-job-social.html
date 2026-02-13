@@ -517,6 +517,63 @@ body {
   font-size: 12px;
   color: var(--text-light);
 }
+
+@media (max-width: 768px) {
+  .cards-grid { gap: 24px; }
+
+  .card-wrapper {
+    padding-bottom: calc(56.25% + 48px);
+  }
+
+  .card-overlay {
+    opacity: 1;
+    top: auto;
+    bottom: 0;
+    height: 48px;
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    border-radius: 0 0 12px 12px;
+  }
+
+  .overlay-btn {
+    padding: 10px 18px;
+    font-size: 13px;
+  }
+
+  .page-header { padding: 24px 24px 12px; }
+  .page-header h1 { font-size: 22px; }
+}
+
+.newsletter-cta {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 32px 24px;
+  text-align: center;
+}
+
+.newsletter-cta-text {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+.newsletter-cta-btn {
+  display: inline-block;
+  padding: 12px 28px;
+  background: var(--orange);
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background 0.15s;
+}
+
+.newsletter-cta-btn:hover {
+  background: var(--orange-dark);
+}
 </style>
 </head>
 <body>
@@ -882,6 +939,11 @@ body {
 
 </div>
 </main>
+
+<div class="newsletter-cta">
+  <p class="newsletter-cta-text">Want more insights like this?</p>
+  <a href="https://www.lennysnewsletter.com/" target="_blank" class="newsletter-cta-btn">Subscribe to Lenny's Newsletter →</a>
+</div>
 
 <footer class="site-footer">
   <p>Lenny's Polls · Internal sharing tool</p>

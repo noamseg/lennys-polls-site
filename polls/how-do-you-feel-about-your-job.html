@@ -757,6 +757,110 @@
 
   .theme-item:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
 
+  .sticky-toc {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    display: none;
+  }
+
+  .sticky-toc.visible { display: block; }
+
+  .sticky-toc-inner {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 10px 24px;
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+  }
+
+  .toc-link {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 4px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+    transition: color 0.15s, background 0.15s;
+  }
+
+  .toc-link:hover { color: var(--orange); }
+
+  .toc-link.active {
+    background: var(--orange-bg);
+    color: var(--orange);
+  }
+
+  .header-actions {
+    margin-top: 20px;
+  }
+
+  .pdf-btn {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s;
+  }
+
+  .pdf-btn:hover {
+    border-color: var(--orange);
+    color: var(--orange);
+  }
+
+  @media (max-width: 768px) {
+    .sticky-toc { display: none !important; }
+  }
+
+  @media print {
+    .site-nav, .sticky-toc, .header-actions, .newsletter-cta { display: none; }
+    .animate-in { animation: none; opacity: 1; transform: none; }
+    .theme-item.open .quote-drawer { max-height: none; opacity: 1; }
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    main.container { padding-top: 0; }
+  }
+
+  .newsletter-cta {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 32px 24px;
+    text-align: center;
+  }
+
+  .newsletter-cta-text {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+
+  .newsletter-cta-btn {
+    display: inline-block;
+    padding: 12px 28px;
+    background: var(--orange);
+    color: white;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background 0.15s;
+  }
+
+  .newsletter-cta-btn:hover {
+    background: var(--orange-dark);
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .animate-in { animation: none; opacity: 1; transform: none; }
   }
@@ -773,6 +877,17 @@
   <a href="https://www.lennysnewsletter.com/" class="nav-link" target="_blank">Lenny's Newsletter ↗</a>
 </nav>
 
+<div class="sticky-toc" id="sticky-toc">
+  <nav class="sticky-toc-inner" aria-label="Section navigation">
+    <a href="#overview" class="toc-link">Overview</a>
+    <a href="#tldr" class="toc-link">Key findings</a>
+    <a href="#themes" class="toc-link">Love vs. hate</a>
+    <a href="#breakdowns" class="toc-link">Breakdowns</a>
+    <a href="#patterns" class="toc-link">Patterns</a>
+    <a href="#respondents" class="toc-link">Respondents</a>
+  </nav>
+</div>
+
 <main class="container">
 
   <!-- HEADER -->
@@ -785,10 +900,13 @@
       <span><span class="dot"></span> Jan 28 – Feb 4, 2026</span>
       <span><span class="dot"></span> Polly survey</span>
     </div>
+    <div class="header-actions">
+      <button class="pdf-btn" onclick="window.print()">Download PDF ↓</button>
+    </div>
   </div>
 
   <!-- HERO STAT -->
-  <div class="hero-stat animate-in delay-1">
+  <div class="hero-stat animate-in delay-1" id="overview">
     <div class="hero-bar" style="max-width:100%;flex:1">
       <div class="bar-question"><strong>How do you feel about your job?</strong></div>
       <div class="bar-scale">1 = hate it, 5 = love it</div>
@@ -816,7 +934,7 @@
 
 
   <!-- TL;DR -->
-  <div class="insight-box animate-in delay-3">
+  <div class="insight-box animate-in delay-3" id="tldr">
     <div class="insight-title">The tl;dr</div>
     <p>13% truly love their jobs. 27% are actively unhappy in their job (rating 1 or 2).</p>
     <p style="margin-top:12px"><strong>What keeps people happy:</strong></p>
@@ -835,7 +953,7 @@
   </div>
 
   <!-- LOVE / HATE THEMES -->
-  <div class="section-header animate-in delay-3">
+  <div class="section-header animate-in delay-3" id="themes">
     <div class="section-title">What people love vs. hate</div>
     <p class="section-subtitle">Click any theme to see representative quotes.</p>
   </div>
@@ -1062,7 +1180,7 @@
   <div class="section-divider"></div>
 
   <!-- COMPANY SIZE & TENURE & ROLE -->
-  <div class="section-header animate-in delay-4">
+  <div class="section-header animate-in delay-4" id="breakdowns">
     <div class="section-title">Satisfaction by company size, tenure, and role</div>
   </div>
 
@@ -1198,7 +1316,7 @@
   </div>
 
   <!-- PATTERNS INSIGHT -->
-  <div class="insight-box animate-in delay-5">
+  <div class="insight-box animate-in delay-5" id="patterns">
     <div class="insight-title">Patterns worth noting</div>
     <p><strong>The honeymoon is real.</strong> People under 1 year at their company rate satisfaction highest (3.55). At 1–5 years, it drops to about 3.1. The novelty wears off, the frustrations accumulate, and the things you accepted on the way in become harder to tolerate.</p>
     <p style="margin-top:10px"><strong>Company size and happiness move in opposite directions.</strong> Every step up in company size brings satisfaction down, likely because the things people love most (autonomy, close-knit teams, moving fast) get harder to maintain at scale.</p>
@@ -1207,7 +1325,7 @@
   </div>
 
   <!-- RESPONDENT PROFILE -->
-  <div class="section-header animate-in delay-4">
+  <div class="section-header animate-in delay-4" id="respondents">
     <div class="section-title">Who responded</div>
   </div>
 
@@ -1283,6 +1401,11 @@
     </div>
   </div>
 
+  <div class="newsletter-cta">
+    <p class="newsletter-cta-text">Want more insights like this?</p>
+    <a href="https://www.lennysnewsletter.com/" target="_blank" class="newsletter-cta-btn">Subscribe to Lenny's Newsletter →</a>
+  </div>
+
   <!-- FOOTER -->
   <footer class="footer animate-in delay-5">
     <p>Data collected via Polly · Jan 28 – Feb 4, 2026 · 323 responses · Lenny's Polls</p>
@@ -1290,6 +1413,47 @@
   </footer>
 
 </main>
+
+<script>
+(function() {
+  const toc = document.getElementById('sticky-toc');
+  const links = toc.querySelectorAll('.toc-link');
+  const header = document.querySelector('.header');
+
+  // Show/hide toc based on scroll past header
+  const observer = new IntersectionObserver(([entry]) => {
+    toc.classList.toggle('visible', !entry.isIntersecting);
+  }, { threshold: 0 });
+  observer.observe(header);
+
+  // Highlight active section
+  const sections = [...links].map(link => ({
+    link,
+    target: document.querySelector(link.getAttribute('href'))
+  }));
+
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const active = sections.find(s => s.target === entry.target);
+        if (active) active.link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -60% 0px' });
+
+  sections.forEach(s => { if (s.target) sectionObserver.observe(s.target); });
+
+  // Smooth scroll
+  links.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+})();
+</script>
 
 <!-- Vercel Analytics -->
 <script>
