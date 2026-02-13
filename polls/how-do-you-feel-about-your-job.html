@@ -405,17 +405,14 @@
     flex-shrink: 0;
   }
 
-  .h-bar-track {
+  .h-bar-container {
     flex: 1;
-    height: 32px;
-    background: var(--neutral-track);
-    border-radius: 8px;
-    overflow: hidden;
-    border: 1px solid rgba(0,0,0,0.04);
+    display: flex;
+    align-items: center;
   }
 
   .h-bar-fill {
-    height: 100%;
+    height: 32px;
     border-radius: 8px;
     background: var(--orange-gradient);
     display: flex;
@@ -424,6 +421,8 @@
     font-size: 12px;
     font-weight: 600;
     color: white;
+    min-width: 36px;
+    border: 1px solid rgba(0,0,0,0.04);
   }
 
   .h-bar-value {
@@ -1213,37 +1212,37 @@
       <h3>Company size</h3>
       <div class="h-bar-row">
         <div class="h-bar-label">51–250</div>
-        <div class="h-bar-track"><div class="h-bar-fill" style="width:100%">76</div></div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:100%">76</div></div>
         <div class="h-bar-value">23.5%</div>
       </div>
       <div class="h-bar-row">
         <div class="h-bar-label">1,001–5,000</div>
-        <div class="h-bar-track"><div class="h-bar-fill" style="width:78.9%">60</div></div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:78.9%">60</div></div>
         <div class="h-bar-value">18.6%</div>
       </div>
       <div class="h-bar-row">
         <div class="h-bar-label">251–1,000</div>
-        <div class="h-bar-track"><div class="h-bar-fill" style="width:75%">57</div></div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:75%">57</div></div>
         <div class="h-bar-value">17.6%</div>
       </div>
       <div class="h-bar-row">
         <div class="h-bar-label">5,001+</div>
-        <div class="h-bar-track"><div class="h-bar-fill" style="width:71.1%">54</div></div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:71.1%">54</div></div>
         <div class="h-bar-value">16.7%</div>
       </div>
       <div class="h-bar-row">
         <div class="h-bar-label">11–50</div>
-        <div class="h-bar-track"><div class="h-bar-fill" style="width:60.5%">46</div></div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:60.5%">46</div></div>
         <div class="h-bar-value">14.2%</div>
       </div>
       <div class="h-bar-row">
         <div class="h-bar-label">2–10</div>
-        <div class="h-bar-track"><div class="h-bar-fill" style="width:28.9%">22</div></div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:28.9%">22</div></div>
         <div class="h-bar-value">6.8%</div>
       </div>
       <div class="h-bar-row">
         <div class="h-bar-label">Just me</div>
-        <div class="h-bar-track"><div class="h-bar-fill" style="width:10.5%">8</div></div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:10.5%">8</div></div>
         <div class="h-bar-value">2.5%</div>
       </div>
     </div>
@@ -1252,27 +1251,27 @@
       <h3>Tenure in current role</h3>
       <div class="h-bar-row">
         <div class="h-bar-label">3–5 years</div>
-        <div class="h-bar-track"><div class="h-bar-fill" style="width:100%">98</div></div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:100%">98</div></div>
         <div class="h-bar-value">30.3%</div>
       </div>
       <div class="h-bar-row">
         <div class="h-bar-label">Less than 1 year</div>
-        <div class="h-bar-track"><div class="h-bar-fill" style="width:92.9%">91</div></div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:92.9%">91</div></div>
         <div class="h-bar-value">28.2%</div>
       </div>
       <div class="h-bar-row">
         <div class="h-bar-label">1–2 years</div>
-        <div class="h-bar-track"><div class="h-bar-fill" style="width:92.9%">91</div></div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:92.9%">91</div></div>
         <div class="h-bar-value">28.2%</div>
       </div>
       <div class="h-bar-row">
         <div class="h-bar-label">6–10 years</div>
-        <div class="h-bar-track"><div class="h-bar-fill" style="width:31.6%">31</div></div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:31.6%">31</div></div>
         <div class="h-bar-value">9.6%</div>
       </div>
       <div class="h-bar-row">
         <div class="h-bar-label">11+ years</div>
-        <div class="h-bar-track"><div class="h-bar-fill" style="width:12.2%">12</div></div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:12.2%">12</div></div>
         <div class="h-bar-value">3.7%</div>
       </div>
     </div>
