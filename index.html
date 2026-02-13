@@ -30,7 +30,7 @@
     --bg: #FFFFFF;
     --text: #1A1A1A;
     --text-secondary: #6B6B6B;
-    --text-light: #999999;
+    --text-light: #767676;
     --border: #E8E5E0;
     --orange: #EF7B4E;
     --orange-dark: #D96A3E;
@@ -220,6 +220,10 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    .animate-in { animation: none; opacity: 1; transform: none; }
+  }
+
   /* Responsive */
   @media (max-width: 768px) {
     .hero { padding: 48px 24px 40px; }
@@ -239,6 +243,7 @@
   <a href="https://www.lennysnewsletter.com/" class="nav-link" target="_blank">Newsletter ↗</a>
 </nav>
 
+<main>
 <div class="hero animate-in">
   <h1>Lenny's Polls</h1>
   <p class="tagline">A pulse on what's happening in your work lives</p>
@@ -276,10 +281,11 @@
 
   </div>
 </div>
+</main>
 
-<div class="site-footer">
+<footer class="site-footer">
   <p>Lenny's Polls · Research by Noam Segal</p>
-</div>
+</footer>
 
 <!-- Vercel Analytics -->
 <script>
