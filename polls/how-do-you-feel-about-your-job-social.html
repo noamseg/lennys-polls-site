@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Social Cards — How do you feel about your job? — Lenny's Polls</title>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #FFFFFF;
+  --text: #1A1A1A;
+  --text-secondary: #6B6B6B;
+  --text-light: #999999;
+  --border: #E8E5E0;
+  --orange: #EF7B4E;
+  --orange-dark: #D96A3E;
+  --orange-light: #F5B07A;
+  --orange-bg: #FEF8F4;
+  --neutral-surface: #F7F6F4;
+  --neutral-track: #EDECEA;
+}
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--neutral-surface);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Nav */
+.site-nav {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.nav-logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+}
+.nav-back {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.nav-back:hover { color: var(--orange); }
+.nav-link {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.nav-link:hover { color: var(--orange); }
+
+/* Page header */
+.page-header {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 40px 24px 16px;
+  text-align: center;
+}
+.page-header .eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--orange);
+  margin-bottom: 12px;
+}
+.page-header h1 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+.page-header p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  max-width: 480px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+/* Cards grid */
+.cards-grid {
+  max-width: 880px;
+  margin: 32px auto 80px;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Card wrapper — holds the scaled card and hover overlay */
+.card-wrapper {
+  position: relative;
+  width: 100%;
+  /* Aspect ratio: 675/1200 = 0.5625 */
+  padding-bottom: 56.25%;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+/* The actual 1200x675 card, scaled to fit container */
+.social-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1200px;
+  height: 675px;
+  transform-origin: top left;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Orange accent bar at top of every card */
+.social-card::before {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 4px;
+  background: var(--orange);
+  flex-shrink: 0;
+}
+
+.card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 48px 64px;
+  min-height: 0;
+}
+
+/* Branded footer on every card */
+.card-footer {
+  flex-shrink: 0;
+  padding: 16px 64px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+}
+.card-footer .brand {
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text);
+  font-size: 12px;
+}
+.card-footer .url {
+  color: var(--text-light);
+  font-size: 12px;
+}
+
+/* Hover overlay */
+.card-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 26, 26, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  opacity: 0;
+  transition: opacity 0.2s;
+  border-radius: 12px;
+  z-index: 10;
+}
+.card-wrapper:hover .card-overlay {
+  opacity: 1;
+}
+
+.overlay-btn {
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: none;
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+.overlay-btn:hover {
+  transform: scale(1.04);
+}
+.overlay-btn:active {
+  transform: scale(0.97);
+}
+.btn-copy {
+  background: var(--orange);
+  color: white;
+}
+.btn-download {
+  background: white;
+  color: var(--text);
+}
+
+/* Toast notification */
+.toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--text);
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 0;
+  transition: opacity 0.25s, transform 0.25s;
+  z-index: 100;
+  pointer-events: none;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ===== Card-specific styles ===== */
+
+/* Card 1: Hero stat — distribution bar */
+.card-hero .card-body {
+  justify-content: center;
+  gap: 24px;
+}
+.card-hero .headline {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.2;
+}
+.card-hero .subtext {
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+.stacked-bar {
+  display: flex;
+  height: 56px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.stacked-bar .segment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 14px;
+  color: white;
+}
+.stacked-bar .s1 { background: #D4926A; }
+.stacked-bar .s2 { background: #E09060; }
+.stacked-bar .s3 { background: #E8A46E; }
+.stacked-bar .s4 { background: #EF7B4E; }
+.stacked-bar .s5 { background: #D96535; }
+.bar-labels {
+  display: flex;
+  margin-top: 8px;
+}
+.bar-label-item {
+  font-size: 12px;
+  color: var(--text-secondary);
+  text-align: center;
+}
+.bar-label-item span { display: block; font-size: 11px; color: var(--text-light); }
+
+/* Card 2-4: Key finding — big number centered */
+.card-keyfinding .card-body {
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+}
+.card-keyfinding .big-number {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 96px;
+  font-weight: 700;
+  color: var(--orange);
+  line-height: 1;
+}
+.card-keyfinding .finding-text {
+  font-size: 24px;
+  color: var(--text);
+  line-height: 1.4;
+  max-width: 700px;
+}
+.card-keyfinding .context {
+  font-size: 15px;
+  color: var(--text-secondary);
+  max-width: 600px;
+  line-height: 1.5;
+}
+
+/* Card 5-6: Quote cards */
+.card-quote .card-body {
+  justify-content: center;
+  gap: 24px;
+  padding: 48px 80px;
+}
+.card-quote-positive .card-body {
+  background: var(--orange-bg);
+}
+.card-quote-negative .card-body {
+  background: #FDF7F6;
+}
+.card-quote .quote-label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.card-quote-positive .quote-label { color: #3D9B6A; }
+.card-quote-negative .quote-label { color: #C44536; }
+.card-quote .quote-text {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 32px;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--text);
+}
+.card-quote .quote-attr {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+/* Card 7: Comparison — horizontal bars */
+.card-comparison .card-body {
+  gap: 20px;
+  padding: 40px 64px;
+}
+.card-comparison .comp-title {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text);
+}
+.comp-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.comp-label {
+  width: 120px;
+  flex-shrink: 0;
+  font-size: 14px;
+  color: var(--text);
+  text-align: right;
+  font-weight: 500;
+}
+.comp-bar-track {
+  flex: 1;
+  height: 32px;
+  background: var(--neutral-track);
+  border-radius: 6px;
+  position: relative;
+  overflow: hidden;
+}
+.comp-bar-fill {
+  height: 100%;
+  background: linear-gradient(to right, #EF7B4E, #F5B88A);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  color: white;
+}
+.comp-n {
+  width: 50px;
+  flex-shrink: 0;
+  font-size: 12px;
+  color: var(--text-light);
+}
+
+/* Card 8-9: Theme summary */
+.card-theme .card-body {
+  gap: 20px;
+  padding: 44px 64px;
+}
+.card-theme .theme-heading {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.card-theme .theme-heading .accent-line {
+  display: inline-block;
+  width: 32px;
+  height: 3px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.card-theme-love .accent-line { background: #3D9B6A; }
+.card-theme-hate .accent-line { background: #C44536; }
+
+.theme-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 20px 24px;
+  background: var(--neutral-surface);
+  border-radius: 10px;
+}
+.theme-rank {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1;
+  flex-shrink: 0;
+  width: 40px;
+}
+.card-theme-love .theme-rank { color: #3D9B6A; }
+.card-theme-hate .theme-rank { color: #C44536; }
+
+.theme-content {
+  flex: 1;
+}
+.theme-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.theme-mentions {
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+/* Card 10-11: Pattern cards */
+.card-pattern .card-body {
+  align-items: center;
+  text-align: center;
+  gap: 28px;
+}
+.card-pattern .pattern-headline {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 38px;
+  font-weight: 700;
+  color: var(--text);
+}
+.card-pattern .pattern-data {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
+.pattern-point {
+  text-align: center;
+}
+.pattern-point .point-value {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 56px;
+  font-weight: 700;
+  color: var(--orange);
+  line-height: 1;
+}
+.pattern-point .point-label {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-top: 8px;
+  max-width: 200px;
+}
+.pattern-arrow {
+  font-size: 32px;
+  color: var(--text-light);
+}
+.card-pattern .pattern-context {
+  font-size: 16px;
+  color: var(--text-secondary);
+  max-width: 700px;
+  line-height: 1.5;
+}
+
+/* Footer */
+.site-footer {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 40px 24px;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-light);
+}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="/" class="nav-brand">
+    <img src="/lennylogo.svg" alt="Lenny's Newsletter" class="nav-logo">
+  </a>
+  <a href="/polls/how-do-you-feel-about-your-job.html" class="nav-back">← Back to results</a>
+  <a href="https://www.lennysnewsletter.com/" class="nav-link" target="_blank">Newsletter ↗</a>
+</nav>
+
+<div class="page-header">
+  <div class="eyebrow">Social Cards</div>
+  <h1>How do you feel about your job?</h1>
+  <p>Hover any card to copy it to your clipboard or download as PNG. Cards are optimized for Twitter/X and LinkedIn (1200 × 675).</p>
+</div>
+
+<div class="cards-grid">
+
+  <!-- ===== CARD 1: Hero stat — distribution bar ===== -->
+  <div class="card-wrapper" data-card="hero">
+    <div class="social-card card-hero" id="card-1">
+      <div class="card-body">
+        <div class="headline">How do you feel about your job?</div>
+        <div class="subtext">323 product and tech professionals rated their job satisfaction on a 1–5 scale.</div>
+        <div>
+          <div class="stacked-bar">
+            <div class="segment s1" style="flex:5.9">6%</div>
+            <div class="segment s2" style="flex:21.1">21%</div>
+            <div class="segment s3" style="flex:28.5">28%</div>
+            <div class="segment s4" style="flex:31.3">31%</div>
+            <div class="segment s5" style="flex:13.3">13%</div>
+          </div>
+          <div class="bar-labels">
+            <div class="bar-label-item" style="flex:5.9">1<span>Hate it</span></div>
+            <div class="bar-label-item" style="flex:21.1">2<span>Not great</span></div>
+            <div class="bar-label-item" style="flex:28.5">3<span>It's okay</span></div>
+            <div class="bar-label-item" style="flex:31.3">4<span>Pretty good</span></div>
+            <div class="bar-label-item" style="flex:13.3">5<span>Love it</span></div>
+          </div>
+        </div>
+        <div class="subtext" style="font-size:18px; color:var(--text); font-weight:600;">27% unhappy. 13% love it.</div>
+      </div>
+      <div class="card-footer">
+        <span class="brand">Lenny's Polls</span>
+        <span class="url">lennyspolls.com</span>
+      </div>
+    </div>
+    <div class="card-overlay">
+      <button class="overlay-btn btn-copy" onclick="copyCard('card-1')">Copy to clipboard</button>
+      <button class="overlay-btn btn-download" onclick="downloadCard('card-1', 'lennys-polls-hero-stat')">Download PNG</button>
+    </div>
+  </div>
+
+  <!-- ===== CARD 2: Key finding — 27% actively unhappy ===== -->
+  <div class="card-wrapper" data-card="keyfinding">
+    <div class="social-card card-keyfinding" id="card-2">
+      <div class="card-body">
+        <div class="big-number">27%</div>
+        <div class="finding-text">are actively unhappy in their job</div>
+        <div class="context">Rating 1 ("Hate it") or 2 ("Not great") out of 5. Based on 323 responses from product and tech professionals.</div>
+      </div>
+      <div class="card-footer">
+        <span class="brand">Lenny's Polls</span>
+        <span class="url">lennyspolls.com</span>
+      </div>
+    </div>
+    <div class="card-overlay">
+      <button class="overlay-btn btn-copy" onclick="copyCard('card-2')">Copy to clipboard</button>
+      <button class="overlay-btn btn-download" onclick="downloadCard('card-2', 'lennys-polls-27pct-unhappy')">Download PNG</button>
+    </div>
+  </div>
+
+  <!-- ===== CARD 3: Key finding — Solopreneurs vs large companies ===== -->
+  <div class="card-wrapper" data-card="keyfinding">
+    <div class="social-card card-keyfinding" id="card-3">
+      <div class="card-body">
+        <div style="display:flex; align-items:baseline; gap:16px; justify-content:center;">
+          <div style="text-align:center;">
+            <div class="big-number" style="font-size:80px;">4.25</div>
+            <div style="font-size:14px; color:var(--text-secondary); margin-top:4px;">Solopreneurs</div>
+          </div>
+          <div style="font-size:40px; color:var(--text-light); font-weight:300;">vs</div>
+          <div style="text-align:center;">
+            <div class="big-number" style="font-size:80px;">2.96</div>
+            <div style="font-size:14px; color:var(--text-secondary); margin-top:4px;">5,000+ employees</div>
+          </div>
+        </div>
+        <div class="finding-text" style="margin-top:8px;">The bigger the company, the less happy the people</div>
+        <div class="context">Average job satisfaction rating on a 1–5 scale</div>
+      </div>
+      <div class="card-footer">
+        <span class="brand">Lenny's Polls</span>
+        <span class="url">lennyspolls.com</span>
+      </div>
+    </div>
+    <div class="card-overlay">
+      <button class="overlay-btn btn-copy" onclick="copyCard('card-3')">Copy to clipboard</button>
+      <button class="overlay-btn btn-download" onclick="downloadCard('card-3', 'lennys-polls-company-size')">Download PNG</button>
+    </div>
+  </div>
+
+  <!-- ===== CARD 4: Key finding — VPs and directors rate lowest ===== -->
+  <div class="card-wrapper" data-card="keyfinding">
+    <div class="social-card card-keyfinding" id="card-4">
+      <div class="card-body">
+        <div class="big-number">3.16</div>
+        <div class="finding-text">VPs and directors rate lowest of any role level</div>
+        <div class="context">Below both the ICs who report to them (3.22) and the C-suite above them (3.63). Caught between strategy they didn't set and execution they have to deliver.</div>
+      </div>
+      <div class="card-footer">
+        <span class="brand">Lenny's Polls</span>
+        <span class="url">lennyspolls.com</span>
+      </div>
+    </div>
+    <div class="card-overlay">
+      <button class="overlay-btn btn-copy" onclick="copyCard('card-4')">Copy to clipboard</button>
+      <button class="overlay-btn btn-download" onclick="downloadCard('card-4', 'lennys-polls-vp-director')">Download PNG</button>
+    </div>
+  </div>
+
+  <!-- ===== CARD 5: Quote card — positive ===== -->
+  <div class="card-wrapper" data-card="quote">
+    <div class="social-card card-quote card-quote-positive" id="card-5">
+      <div class="card-body">
+        <div class="quote-label">What people love</div>
+        <div class="quote-text">"I am working in an AI accelerator and I feel like a kid again. Work is suddenly fun again."</div>
+        <div class="quote-attr">Principal Product Manager · 1,001–5,000 employees</div>
+      </div>
+      <div class="card-footer">
+        <span class="brand">Lenny's Polls</span>
+        <span class="url">lennyspolls.com</span>
+      </div>
+    </div>
+    <div class="card-overlay">
+      <button class="overlay-btn btn-copy" onclick="copyCard('card-5')">Copy to clipboard</button>
+      <button class="overlay-btn btn-download" onclick="downloadCard('card-5', 'lennys-polls-quote-positive')">Download PNG</button>
+    </div>
+  </div>
+
+  <!-- ===== CARD 6: Quote card — negative ===== -->
+  <div class="card-wrapper" data-card="quote">
+    <div class="social-card card-quote card-quote-negative" id="card-6">
+      <div class="card-body">
+        <div class="quote-label">What people hate</div>
+        <div class="quote-text">"Love the product and my team. Hate leadership."</div>
+        <div class="quote-attr">Director of Product · 51–250 employees</div>
+      </div>
+      <div class="card-footer">
+        <span class="brand">Lenny's Polls</span>
+        <span class="url">lennyspolls.com</span>
+      </div>
+    </div>
+    <div class="card-overlay">
+      <button class="overlay-btn btn-copy" onclick="copyCard('card-6')">Copy to clipboard</button>
+      <button class="overlay-btn btn-download" onclick="downloadCard('card-6', 'lennys-polls-quote-negative')">Download PNG</button>
+    </div>
+  </div>
+
+  <!-- ===== CARD 7: Comparison — satisfaction by company size ===== -->
+  <div class="card-wrapper" data-card="comparison">
+    <div class="social-card card-comparison" id="card-7">
+      <div class="card-body">
+        <div class="comp-title">Satisfaction by company size</div>
+        <div class="comp-row">
+          <div class="comp-label">Just me</div>
+          <div class="comp-bar-track"><div class="comp-bar-fill" style="width:85%">4.25</div></div>
+          <div class="comp-n">n=8</div>
+        </div>
+        <div class="comp-row">
+          <div class="comp-label">2–10</div>
+          <div class="comp-bar-track"><div class="comp-bar-fill" style="width:69%">3.45</div></div>
+          <div class="comp-n">n=22</div>
+        </div>
+        <div class="comp-row">
+          <div class="comp-label">11–50</div>
+          <div class="comp-bar-track"><div class="comp-bar-fill" style="width:68.2%">3.41</div></div>
+          <div class="comp-n">n=46</div>
+        </div>
+        <div class="comp-row">
+          <div class="comp-label">51–250</div>
+          <div class="comp-bar-track"><div class="comp-bar-fill" style="width:65.2%">3.26</div></div>
+          <div class="comp-n">n=76</div>
+        </div>
+        <div class="comp-row">
+          <div class="comp-label">251–1,000</div>
+          <div class="comp-bar-track"><div class="comp-bar-fill" style="width:66.4%">3.32</div></div>
+          <div class="comp-n">n=57</div>
+        </div>
+        <div class="comp-row">
+          <div class="comp-label">1,001–5,000</div>
+          <div class="comp-bar-track"><div class="comp-bar-fill" style="width:62%">3.10</div></div>
+          <div class="comp-n">n=60</div>
+        </div>
+        <div class="comp-row">
+          <div class="comp-label">5,001+</div>
+          <div class="comp-bar-track"><div class="comp-bar-fill" style="width:59.2%">2.96</div></div>
+          <div class="comp-n">n=54</div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="brand">Lenny's Polls</span>
+        <span class="url">lennyspolls.com</span>
+      </div>
+    </div>
+    <div class="card-overlay">
+      <button class="overlay-btn btn-copy" onclick="copyCard('card-7')">Copy to clipboard</button>
+      <button class="overlay-btn btn-download" onclick="downloadCard('card-7', 'lennys-polls-company-size-bars')">Download PNG</button>
+    </div>
+  </div>
+
+  <!-- ===== CARD 8: Theme summary — Love ===== -->
+  <div class="card-wrapper" data-card="theme">
+    <div class="social-card card-theme card-theme-love" id="card-8">
+      <div class="card-body">
+        <div class="theme-heading">
+          <span class="accent-line"></span>
+          What people love about their jobs
+        </div>
+        <div class="theme-item">
+          <div class="theme-rank">1</div>
+          <div class="theme-content">
+            <div class="theme-name">Team and people</div>
+            <div class="theme-mentions">60 mentions — colleagues they trust, cultures where they feel part of something</div>
+          </div>
+        </div>
+        <div class="theme-item">
+          <div class="theme-rank">2</div>
+          <div class="theme-content">
+            <div class="theme-name">Autonomy and freedom</div>
+            <div class="theme-mentions">49 mentions — freedom to decide how, where, and what they work on</div>
+          </div>
+        </div>
+        <div class="theme-item">
+          <div class="theme-rank">3</div>
+          <div class="theme-content">
+            <div class="theme-name">AI and innovation</div>
+            <div class="theme-mentions">40 mentions — "Work feels like play." Having permission to experiment.</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="brand">Lenny's Polls</span>
+        <span class="url">lennyspolls.com</span>
+      </div>
+    </div>
+    <div class="card-overlay">
+      <button class="overlay-btn btn-copy" onclick="copyCard('card-8')">Copy to clipboard</button>
+      <button class="overlay-btn btn-download" onclick="downloadCard('card-8', 'lennys-polls-love-themes')">Download PNG</button>
+    </div>
+  </div>
+
+  <!-- ===== CARD 9: Theme summary — Hate ===== -->
+  <div class="card-wrapper" data-card="theme">
+    <div class="social-card card-theme card-theme-hate" id="card-9">
+      <div class="card-body">
+        <div class="theme-heading">
+          <span class="accent-line"></span>
+          What people hate about their jobs
+        </div>
+        <div class="theme-item">
+          <div class="theme-rank">1</div>
+          <div class="theme-content">
+            <div class="theme-name">Bad leadership</div>
+            <div class="theme-mentions">39 mentions — misaligned execs, micromanaging, constant direction changes</div>
+          </div>
+        </div>
+        <div class="theme-item">
+          <div class="theme-rank">2</div>
+          <div class="theme-content">
+            <div class="theme-name">Team and culture issues</div>
+            <div class="theme-mentions">33 mentions — politics, finger-pointing, layoff anxiety, low talent density</div>
+          </div>
+        </div>
+        <div class="theme-item">
+          <div class="theme-rank">3</div>
+          <div class="theme-content">
+            <div class="theme-name">No clear strategy</div>
+            <div class="theme-mentions">27 mentions — "It's complete chaos right now." Priorities shifting every quarter.</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <span class="brand">Lenny's Polls</span>
+        <span class="url">lennyspolls.com</span>
+      </div>
+    </div>
+    <div class="card-overlay">
+      <button class="overlay-btn btn-copy" onclick="copyCard('card-9')">Copy to clipboard</button>
+      <button class="overlay-btn btn-download" onclick="downloadCard('card-9', 'lennys-polls-hate-themes')">Download PNG</button>
+    </div>
+  </div>
+
+  <!-- ===== CARD 10: Pattern — The honeymoon is real ===== -->
+  <div class="card-wrapper" data-card="pattern">
+    <div class="social-card card-pattern" id="card-10">
+      <div class="card-body">
+        <div class="pattern-headline">The honeymoon is real.</div>
+        <div class="pattern-data">
+          <div class="pattern-point">
+            <div class="point-value">3.55</div>
+            <div class="point-label">Under 1 year at company</div>
+          </div>
+          <div class="pattern-arrow">→</div>
+          <div class="pattern-point">
+            <div class="point-value">3.08</div>
+            <div class="point-label">1–2 years at company</div>
+          </div>
+        </div>
+        <div class="pattern-context">The novelty wears off, the frustrations accumulate, and the things you accepted on the way in become harder to tolerate.</div>
+      </div>
+      <div class="card-footer">
+        <span class="brand">Lenny's Polls</span>
+        <span class="url">lennyspolls.com</span>
+      </div>
+    </div>
+    <div class="card-overlay">
+      <button class="overlay-btn btn-copy" onclick="copyCard('card-10')">Copy to clipboard</button>
+      <button class="overlay-btn btn-download" onclick="downloadCard('card-10', 'lennys-polls-honeymoon')">Download PNG</button>
+    </div>
+  </div>
+
+  <!-- ===== CARD 11: Pattern — AI shows up on both sides ===== -->
+  <div class="card-wrapper" data-card="pattern">
+    <div class="social-card card-pattern" id="card-11">
+      <div class="card-body">
+        <div class="pattern-headline">AI shows up on both sides.</div>
+        <div class="pattern-data">
+          <div class="pattern-point">
+            <div class="point-value">40</div>
+            <div class="point-label">mentions as energy and new capability</div>
+          </div>
+          <div style="font-size:16px; color:var(--text-light); font-weight:500;">vs</div>
+          <div class="pattern-point">
+            <div class="point-value">19</div>
+            <div class="point-label">mentions as top-down pressure and unrealistic expectations</div>
+          </div>
+        </div>
+        <div class="pattern-context">The difference: whether leadership enables experimentation or mandates adoption without clarity.</div>
+      </div>
+      <div class="card-footer">
+        <span class="brand">Lenny's Polls</span>
+        <span class="url">lennyspolls.com</span>
+      </div>
+    </div>
+    <div class="card-overlay">
+      <button class="overlay-btn btn-copy" onclick="copyCard('card-11')">Copy to clipboard</button>
+      <button class="overlay-btn btn-download" onclick="downloadCard('card-11', 'lennys-polls-ai-both-sides')">Download PNG</button>
+    </div>
+  </div>
+
+</div>
+
+<div class="site-footer">
+  <p>Lenny's Polls · Internal sharing tool</p>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast">Copied to clipboard</div>
+
+<!-- html2canvas from CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<script>
+// Scale cards to fit container on load and resize
+function scaleCards() {
+  const wrappers = document.querySelectorAll('.card-wrapper');
+  wrappers.forEach(wrapper => {
+    const card = wrapper.querySelector('.social-card');
+    const containerWidth = wrapper.offsetWidth;
+    const scale = containerWidth / 1200;
+    card.style.transform = `scale(${scale})`;
+  });
+}
+
+window.addEventListener('load', scaleCards);
+window.addEventListener('resize', scaleCards);
+
+// Show toast notification
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg || 'Copied to clipboard';
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2000);
+}
+
+// Capture card at native 1200x675 resolution
+function captureCard(cardId) {
+  const card = document.getElementById(cardId);
+  // Temporarily remove CSS transform to capture at native resolution
+  const originalTransform = card.style.transform;
+  card.style.transform = 'none';
+
+  return html2canvas(card, {
+    width: 1200,
+    height: 675,
+    scale: 1,
+    useCORS: true,
+    backgroundColor: '#FFFFFF',
+    logging: false
+  }).then(canvas => {
+    // Restore transform
+    card.style.transform = originalTransform;
+    return canvas;
+  }).catch(err => {
+    card.style.transform = originalTransform;
+    throw err;
+  });
+}
+
+// Copy card image to clipboard
+async function copyCard(cardId) {
+  try {
+    const canvas = await captureCard(cardId);
+
+    // Try clipboard API first
+    if (navigator.clipboard && navigator.clipboard.write) {
+      const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+      await navigator.clipboard.write([
+        new ClipboardItem({ 'image/png': blob })
+      ]);
+      showToast('Copied to clipboard');
+    } else {
+      // Fallback: download instead
+      downloadFromCanvas(canvas, cardId.replace('card-', 'lennys-polls-card-'));
+      showToast('Downloaded (clipboard not supported in this browser)');
+    }
+  } catch (err) {
+    console.error('Copy failed:', err);
+    // Fallback to download
+    try {
+      const canvas = await captureCard(cardId);
+      downloadFromCanvas(canvas, cardId.replace('card-', 'lennys-polls-card-'));
+      showToast('Downloaded (clipboard not available)');
+    } catch (e) {
+      showToast('Failed to capture card');
+    }
+  }
+}
+
+// Download card as PNG
+async function downloadCard(cardId, filename) {
+  try {
+    const canvas = await captureCard(cardId);
+    downloadFromCanvas(canvas, filename);
+    showToast('Downloaded');
+  } catch (err) {
+    console.error('Download failed:', err);
+    showToast('Failed to capture card');
+  }
+}
+
+function downloadFromCanvas(canvas, filename) {
+  const link = document.createElement('a');
+  link.download = (filename || 'lennys-polls-card') + '.png';
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+}
+</script>
+
+<!-- Vercel Analytics -->
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+
+</body>
+</html>
