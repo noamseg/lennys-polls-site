@@ -42,8 +42,8 @@
   <nav class="sticky-toc-inner" aria-label="Section navigation">
     <a href="#overview" class="toc-link">Overview</a>
     <a href="#tldr" class="toc-link">Key findings</a>
-    <a href="#breakdowns" class="toc-link">Breakdowns</a>
     <a href="#patterns" class="toc-link">Patterns</a>
+    <a href="#breakdowns" class="toc-link">Breakdowns</a>
     <a href="#respondents" class="toc-link">Respondents</a>
   </nav>
 </div>
@@ -97,7 +97,7 @@
   {%- set non_rating_dists = question_distributions | selectattr('is_rating', 'false') | list %}
   {%- if non_rating_dists %}
   <div class="section-header animate-in delay-2" id="survey-results">
-    <div class="section-title">Survey results</div>
+    <div class="section-title">Poll results</div>
   </div>
 
   <div style="height:24px"></div>
@@ -109,7 +109,7 @@
       {%- for c in qd.choices %}
       <div class="h-bar-row">
         <div class="h-bar-label">{{ c.label }}</div>
-        <div class="h-bar-container"><div class="h-bar-fill" style="width:{{ c.pct }}%">{{ c.count }}</div></div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:{{ c.bar_width }}%">{{ c.count }}</div></div>
         <div class="h-bar-value">{{ c.pct | round(0) | int }}%</div>
       </div>
       {%- endfor %}
@@ -119,6 +119,12 @@
 
   <div class="section-divider"></div>
   {%- endif %}
+
+  <!-- PATTERNS INSIGHT -->
+  <div class="insight-box animate-in delay-3" id="patterns">
+    <div class="insight-title">Patterns worth noting</div>
+    {{ qual.editorial.patterns_html | safe }}
+  </div>
 
   <!-- THEMES -->
   <div class="section-header animate-in delay-3" id="themes">
@@ -183,7 +189,8 @@
 
   <!-- COMPANY SIZE & TENURE & ROLE -->
   <div class="section-header animate-in delay-4" id="breakdowns">
-    <div class="section-title">Satisfaction by company size, tenure, and role</div>
+    <div class="section-title">"{{ config.title }}"</div>
+    <p class="section-subtitle">By company size, tenure, and role · Scale: {{ config.scale_description }}</p>
   </div>
 
   <div style="height:24px"></div>
@@ -227,12 +234,6 @@
       </div>
       {%- endfor %}
     </div>
-  </div>
-
-  <!-- PATTERNS INSIGHT -->
-  <div class="insight-box animate-in delay-5" id="patterns">
-    <div class="insight-title">Patterns worth noting</div>
-    {{ qual.editorial.patterns_html | safe }}
   </div>
 
   <!-- RESPONDENT PROFILE -->

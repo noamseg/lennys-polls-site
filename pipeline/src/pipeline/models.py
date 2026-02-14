@@ -125,6 +125,7 @@ class ThemeResults(BaseModel):
     negative_themes: list[Theme]
     positive_label: str = "What people love"
     negative_label: str = "What people hate"
+    subtitle: str = ""
 
 
 class EditorialResults(BaseModel):

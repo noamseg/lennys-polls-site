@@ -68,6 +68,8 @@ def _detect_config(survey_id: str, survey_data: dict) -> SurveyConfig:
             continue
         responses = [r for r in q.get("results", []) if not r.get("deleted")]
         if _is_rating_question(responses):
+            title = q.get("text", title)
+            slug = re.sub(r"[^a-z0-9]+", "-", title.lower()).strip("-")
             # Extract unique scale labels from response texts
             seen: set[int] = set()
             for r in responses:
@@ -209,6 +211,10 @@ def _build_question_distributions(survey_data: dict) -> list[dict[str, Any]]:
 
         for c in choices:
             del c["_raw"]
+
+        max_pct = max((c["pct"] for c in choices), default=1)
+        for c in choices:
+            c["bar_width"] = round(c["pct"] / max_pct * 100, 1) if max_pct > 0 else 0
 
         results.append({
             "question": q.get("text", ""),

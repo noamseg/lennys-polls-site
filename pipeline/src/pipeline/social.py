@@ -7,7 +7,7 @@ from pathlib import Path
 from jinja2 import Environment, FileSystemLoader
 
 from .models import PipelineOutput
-from .render import _load_logo_data_uri
+from .render import _load_logo_data_uri, _build_subtitle
 
 TEMPLATES_DIR = Path(__file__).resolve().parent.parent.parent / "templates"
 
@@ -27,10 +27,7 @@ def render_social(output: PipelineOutput) -> str:
     template = env.get_template("social.html.j2")
 
     social_css = _load_social_css()
-    subtitle = output.config.subtitle_template.format(
-        n=output.quant.total_responses,
-        audience=output.config.audience,
-    )
+    subtitle = _build_subtitle(output.config, output.quant, output.qual.themes)
 
     logo_data_uri = _load_logo_data_uri()
     scale_max = max(output.config.scale_labels.keys())

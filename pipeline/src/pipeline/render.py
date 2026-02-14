@@ -7,7 +7,7 @@ from pathlib import Path
 
 from jinja2 import Environment, FileSystemLoader
 
-from .models import PipelineOutput, SurveyConfig, QuantResults, QualResults
+from .models import PipelineOutput, SurveyConfig, QuantResults, QualResults, ThemeResults
 
 TEMPLATES_DIR = Path(__file__).resolve().parent.parent.parent / "templates"
 LOGO_PATH = Path(__file__).resolve().parent.parent.parent.parent / "lennylogo.svg"
@@ -26,8 +26,13 @@ def _load_logo_data_uri() -> str:
     return f"data:image/svg+xml;base64,{b64}"
 
 
-def _build_subtitle(config: SurveyConfig, quant: QuantResults) -> str:
-    """Build the subtitle from the template string."""
+_AUTO_DETECT_SUBTITLE = "{n} {audience} shared their perspectives."
+
+
+def _build_subtitle(config: SurveyConfig, quant: QuantResults, themes: ThemeResults | None = None) -> str:
+    """Build the subtitle — prefer Claude-generated subtitle for auto-detected surveys."""
+    if themes and themes.subtitle and config.subtitle_template == _AUTO_DETECT_SUBTITLE:
+        return themes.subtitle
     return config.subtitle_template.format(
         n=quant.total_responses,
         audience=config.audience,
@@ -43,7 +48,7 @@ def render_dashboard(output: PipelineOutput) -> str:
     template = env.get_template("dashboard.html.j2")
 
     css = _load_css()
-    subtitle = _build_subtitle(output.config, output.quant)
+    subtitle = _build_subtitle(output.config, output.quant, output.qual.themes)
     logo_data_uri = _load_logo_data_uri()
     scale_max = max(output.config.scale_labels.keys())
 
