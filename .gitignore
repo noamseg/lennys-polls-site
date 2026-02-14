@@ -1,2 +1,10 @@
 .vercel
 node_modules/
+
+# Pipeline
+pipeline/.venv/
+pipeline/.env
+pipeline/drafts/*.html
+__pycache__/
+*.egg-info/
+.DS_Store

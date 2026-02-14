@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ config.title }} — Lenny's Polls</title>
+
+<!-- Open Graph -->
+<meta property="og:title" content="{{ config.title }} — Lenny's Polls">
+<meta property="og:description" content="{{ subtitle }}">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://lennyspolls.com/polls/{{ config.slug }}.html">
+<meta property="og:image" content="https://lennyspolls.com/apple-touch-icon.png">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{{ config.title }} — Lenny's Polls">
+<meta name="twitter:description" content="{{ subtitle }}">
+<meta name="twitter:image" content="https://lennyspolls.com/apple-touch-icon.png">
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+{{ css }}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <a href="/" class="nav-brand">
+    <img src="{{ logo_data_uri }}" alt="Lenny's Newsletter" class="nav-logo">
+  </a>
+  <a href="/" class="nav-back">← All Polls</a>
+  <a href="https://www.lennysnewsletter.com/" class="nav-link" target="_blank">Lenny's Newsletter ↗</a>
+</nav>
+
+<div class="sticky-toc" id="sticky-toc">
+  <nav class="sticky-toc-inner" aria-label="Section navigation">
+    <a href="#overview" class="toc-link">Overview</a>
+    <a href="#tldr" class="toc-link">Key findings</a>
+    <a href="#breakdowns" class="toc-link">Breakdowns</a>
+    <a href="#patterns" class="toc-link">Patterns</a>
+    <a href="#respondents" class="toc-link">Respondents</a>
+  </nav>
+</div>
+
+<main class="container">
+
+  <!-- HEADER -->
+  <div class="header animate-in">
+    <div class="eyebrow">Lenny's Polls</div>
+    <h1>{{ config.title }}</h1>
+    <p class="subtitle">{{ subtitle }}</p>
+    <div class="meta">
+      <span><span class="dot"></span> {{ quant.total_responses }} responses</span>
+      <span><span class="dot"></span> {{ quant.date_range }}</span>
+      <span><span class="dot"></span> {{ config.survey_tool }}</span>
+    </div>
+    <div class="header-actions">
+      <button class="pdf-btn" onclick="window.print()">Download PDF ↓</button>
+    </div>
+  </div>
+
+  <!-- HERO STAT -->
+  <div class="hero-stat animate-in delay-1" id="overview">
+    <div class="hero-bar" style="max-width:100%;flex:1">
+      <div class="bar-question"><strong>{{ config.title }}</strong></div>
+      <div class="bar-scale">{{ config.scale_description }}</div>
+      <div class="stacked-bar">
+        {%- for bucket in quant.distribution %}
+        <div class="segment s{{ bucket.rating }}" style="flex: {{ bucket.flex }};">{{ bucket.pct | round(0) | int }}%</div>
+        {%- endfor %}
+      </div>
+      <div class="bar-labels">
+        {%- for bucket in quant.distribution %}
+        <div class="bar-label-item" style="flex: {{ bucket.flex }};">{{ config.scale_labels[bucket.rating] }}</div>
+        {%- endfor %}
+      </div>
+      <div class="bar-labels-mobile">
+        <span>{{ config.scale_labels[quant.distribution[0].rating] }}</span>
+        <span>{{ config.scale_labels[quant.distribution[-1].rating] }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TL;DR -->
+  <div class="insight-box animate-in delay-3" id="tldr">
+    <div class="insight-title">The tl;dr</div>
+    {{ qual.editorial.tldr_html | safe }}
+  </div>
+
+  <!-- LOVE / HATE THEMES -->
+  <div class="section-header animate-in delay-3" id="themes">
+    <div class="section-title">What people love vs. hate</div>
+    <p class="section-subtitle">Click any theme to see representative quotes.</p>
+  </div>
+
+  <div class="love-hate-grid animate-in delay-4">
+
+    <!-- LOVE -->
+    <div class="theme-card love">
+      <h3>What people love</h3>
+      <div class="card-subtitle">Top themes from those rating {{ config.love_threshold }}–5</div>
+      {%- for theme in qual.themes.love_themes %}
+
+      <div class="theme-item" tabindex="0" role="button" aria-expanded="false" onclick="this.classList.toggle('open');this.setAttribute('aria-expanded',this.classList.contains('open'))" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.classList.toggle('open');this.setAttribute('aria-expanded',this.classList.contains('open'))}">
+        <div class="theme-item-header">
+          <div class="theme-rank">{{ loop.index }}</div>
+          <div class="theme-name">{{ theme.name }}</div>
+          <div class="theme-bar-mini"><div class="fill" style="width:{{ theme.bar_width }}%;height:100%;border-radius:3px"></div></div>
+          <div class="theme-count">{{ theme.count }}</div>
+          <div class="theme-toggle">▼</div>
+        </div>
+        <div class="quote-drawer">
+          <div class="quote-drawer-inner">
+            {%- for quote in theme.quotes %}
+            <div class="mini-quote">"{{ quote.text }}"<div class="quote-attr">{{ quote.title }} · {{ quote.company_size }}</div></div>
+            {%- endfor %}
+          </div>
+        </div>
+      </div>
+      {%- endfor %}
+    </div>
+
+    <!-- HATE -->
+    <div class="theme-card hate">
+      <h3>What people hate</h3>
+      <div class="card-subtitle">Top themes from those rating 1–{{ config.hate_threshold }}</div>
+      {%- for theme in qual.themes.hate_themes %}
+
+      <div class="theme-item" tabindex="0" role="button" aria-expanded="false" onclick="this.classList.toggle('open');this.setAttribute('aria-expanded',this.classList.contains('open'))" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.classList.toggle('open');this.setAttribute('aria-expanded',this.classList.contains('open'))}">
+        <div class="theme-item-header">
+          <div class="theme-rank">{{ loop.index }}</div>
+          <div class="theme-name">{{ theme.name }}</div>
+          <div class="theme-bar-mini"><div class="fill" style="width:{{ theme.bar_width }}%;height:100%;border-radius:3px"></div></div>
+          <div class="theme-count">{{ theme.count }}</div>
+          <div class="theme-toggle">▼</div>
+        </div>
+        <div class="quote-drawer">
+          <div class="quote-drawer-inner">
+            {%- for quote in theme.quotes %}
+            <div class="mini-quote">"{{ quote.text }}"<div class="quote-attr">{{ quote.title }} · {{ quote.company_size }}</div></div>
+            {%- endfor %}
+          </div>
+        </div>
+      </div>
+      {%- endfor %}
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- COMPANY SIZE & TENURE & ROLE -->
+  <div class="section-header animate-in delay-4" id="breakdowns">
+    <div class="section-title">Satisfaction by company size, tenure, and role</div>
+  </div>
+
+  <div style="height:24px"></div>
+
+  <div class="two-col animate-in delay-4">
+    <div class="card">
+      <h3>By company size</h3>
+      {%- for row in quant.by_company_size %}
+      <div class="compare-row">
+        <div class="compare-label">{{ row.label }}</div>
+        <div class="compare-bar-container">
+          <div class="compare-bar" style="width:{{ row.bar_width }}%">{{ row.mean }}</div>
+          <div class="compare-n">n={{ row.n }}</div>
+        </div>
+      </div>
+      {%- endfor %}
+    </div>
+
+    <div class="card">
+      <h3>By tenure</h3>
+      {%- for row in quant.by_tenure %}
+      <div class="compare-row">
+        <div class="compare-label">{{ row.label }}</div>
+        <div class="compare-bar-container">
+          <div class="compare-bar" style="width:{{ row.bar_width }}%">{{ row.mean }}</div>
+          <div class="compare-n">n={{ row.n }}</div>
+        </div>
+      </div>
+      {%- endfor %}
+
+      <div style="height:28px"></div>
+      <h3>By role level</h3>
+      <div style="height:16px"></div>
+      {%- for row in quant.by_role_level %}
+      <div class="compare-row">
+        <div class="compare-label">{{ row.label }}</div>
+        <div class="compare-bar-container">
+          <div class="compare-bar" style="width:{{ row.bar_width }}%">{{ row.mean }}</div>
+          <div class="compare-n">n={{ row.n }}</div>
+        </div>
+      </div>
+      {%- endfor %}
+    </div>
+  </div>
+
+  <!-- PATTERNS INSIGHT -->
+  <div class="insight-box animate-in delay-5" id="patterns">
+    <div class="insight-title">Patterns worth noting</div>
+    {{ qual.editorial.patterns_html | safe }}
+  </div>
+
+  <!-- RESPONDENT PROFILE -->
+  <div class="section-header animate-in delay-4" id="respondents">
+    <div class="section-title">Who responded</div>
+  </div>
+
+  <div style="height:24px"></div>
+
+  <div class="two-col animate-in delay-5">
+    <div class="card">
+      <h3>Company size</h3>
+      {%- for row in quant.profile_company_size %}
+      <div class="h-bar-row">
+        <div class="h-bar-label">{{ row.label }}</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:{{ row.bar_width }}%">{{ row.count }}</div></div>
+        <div class="h-bar-value">{{ row.pct }}%</div>
+      </div>
+      {%- endfor %}
+    </div>
+
+    <div class="card">
+      <h3>Tenure in current role</h3>
+      {%- for row in quant.profile_tenure %}
+      <div class="h-bar-row">
+        <div class="h-bar-label">{{ row.label }}</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:{{ row.bar_width }}%">{{ row.count }}</div></div>
+        <div class="h-bar-value">{{ row.pct }}%</div>
+      </div>
+      {%- endfor %}
+    </div>
+  </div>
+
+  <div class="newsletter-cta">
+    <p class="newsletter-cta-text">Want more insights like this?</p>
+    <a href="https://www.lennysnewsletter.com/" target="_blank" class="newsletter-cta-btn">Subscribe to Lenny's Newsletter →</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer animate-in delay-5">
+    <p>Data collected via {{ config.survey_tool }} · {{ quant.date_range }} · {{ quant.total_responses }} responses · Lenny's Polls</p>
+    <p>Research by Noam Segal</p>
+  </footer>
+
+</main>
+
+<script>
+(function() {
+  const toc = document.getElementById('sticky-toc');
+  const links = toc.querySelectorAll('.toc-link');
+  const header = document.querySelector('.header');
+
+  // Show/hide toc based on scroll past header
+  const observer = new IntersectionObserver(([entry]) => {
+    toc.classList.toggle('visible', !entry.isIntersecting);
+  }, { threshold: 0 });
+  observer.observe(header);
+
+  // Highlight active section
+  const sections = [...links].map(link => ({
+    link,
+    target: document.querySelector(link.getAttribute('href'))
+  }));
+
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const active = sections.find(s => s.target === entry.target);
+        if (active) active.link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -60% 0px' });
+
+  sections.forEach(s => { if (s.target) sectionObserver.observe(s.target); });
+
+  // Smooth scroll
+  links.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+})();
+</script>
+
+<!-- Vercel Analytics -->
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+surveys:
+  - id: "rrkwy5nyNTNaAyi3g"
+    title: "How do you feel about your job?"
+    slug: "how-do-you-feel-about-your-job"
+    audience: "product and tech professionals"
+    subtitle_template: "{n} {audience} shared how they really feel about their jobs, and why."
+    scale_description: "1 = hate it, 5 = love it"
+    scale_labels:
+      1: "Hate it"
+      2: "Not great"
+      3: "It's okay"
+      4: "Pretty good"
+      5: "Love it"
+    love_threshold: 4
+    hate_threshold: 2
+    survey_tool: "Polly survey"

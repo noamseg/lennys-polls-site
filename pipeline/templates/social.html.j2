@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Social Cards — {{ config.title }} — Lenny's Polls</title>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+{{ social_css }}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="/" class="nav-brand">
+    <img src="{{ logo_data_uri }}" alt="Lenny's Newsletter" class="nav-logo">
+  </a>
+  <a href="/polls/{{ config.slug }}.html" class="nav-back">← Back to results</a>
+  <a href="https://www.lennysnewsletter.com/" class="nav-link" target="_blank">Lenny's Newsletter ↗</a>
+</nav>
+
+<main>
+<div class="page-header">
+  <div class="eyebrow">Social Cards</div>
+  <h1>{{ config.title }}</h1>
+  <p>Copy any card to your clipboard or download as PNG. Cards are optimized for Twitter/X and LinkedIn (1200 × 675).</p>
+</div>
+
+<div class="cards-grid">
+{% for card in cards %}
+  <!-- ===== CARD {{ loop.index }}: {{ card.card_type }} ===== -->
+  <div class="card-wrapper" data-card="{{ card.card_type }}">
+    <div class="social-card card-{{ card.card_type }}" id="card-{{ loop.index }}">
+      <img src="{{ logo_data_uri }}" alt="" class="card-logo">
+      <div class="card-body">
+        {% if card.card_type == 'hero' %}
+        <div class="headline">{{ config.title }}</div>
+        <div class="subtext">{{ card.data.get('subtext', subtitle) }}</div>
+        <div>
+          <div class="stacked-bar">
+            {%- for bucket in quant.distribution %}
+            <div class="segment s{{ bucket.rating }}" style="flex:{{ bucket.flex }}">{{ bucket.pct | round(0) | int }}%</div>
+            {%- endfor %}
+          </div>
+          <div class="bar-labels">
+            {%- for bucket in quant.distribution %}
+            <div class="bar-label-item" style="flex:{{ bucket.flex }}">{{ bucket.rating }}<span>{{ config.scale_labels[bucket.rating] }}</span></div>
+            {%- endfor %}
+          </div>
+        </div>
+        {% elif card.card_type == 'keyfinding' %}
+        {% if card.data.get('comparison') %}
+        <div style="display:flex; align-items:baseline; gap:20px; justify-content:center;">
+          {% for point in card.data['comparison'] %}
+          {% if not loop.first %}
+          <div style="font-size:44px; color:var(--text-light); font-weight:300;">{{ card.data.get('separator', 'vs') }}</div>
+          {% endif %}
+          <div style="text-align:center;">
+            <div class="big-number" style="font-size:100px;">{{ point.value }}<span style="font-size:40px; color:var(--text-light); font-weight:400;">/5</span></div>
+            <div style="font-size:17px; color:var(--text-secondary); margin-top:6px;">{{ point.label }}</div>
+          </div>
+          {% endfor %}
+        </div>
+        {% else %}
+        <div class="big-number">{{ card.data.get('big_number', '') }}{% if card.data.get('show_scale') %}<span style="font-size:48px; color:var(--text-light); font-weight:400;">/5</span>{% endif %}</div>
+        {% endif %}
+        <div class="finding-text">{{ card.data.get('finding_text', card.title) }}</div>
+        <div class="context">{{ card.data.get('context', '') }}</div>
+        {% elif card.card_type in ('quote_positive', 'quote_negative') %}
+        <div class="quote-label">{{ card.data.get('label', 'What people ' + ('love' if 'positive' in card.card_type else 'hate')) }}</div>
+        <div class="quote-text">"{{ card.data.get('quote_text', '') }}"</div>
+        <div class="quote-attr">{{ card.data.get('quote_attr', '') }}</div>
+        {% elif card.card_type == 'comparison' %}
+        <div class="comp-title">{{ card.data.get('title', card.title) }}</div>
+        {% for row in card.data.get('rows', []) %}
+        <div class="comp-row">
+          <div class="comp-label">{{ row.label }}</div>
+          <div class="comp-bar-track"><div class="comp-bar-fill" style="width:{{ (row.value / 5 * 100) | round(1) }}%">{{ row.value }}</div></div>
+          <div class="comp-n">n={{ row.n }}</div>
+        </div>
+        {% endfor %}
+        {% elif card.card_type in ('theme_love', 'theme_hate') %}
+        <div class="theme-heading">
+          <span class="accent-line"></span>
+          {{ card.title }}
+        </div>
+        {% for t in card.data.get('themes', []) %}
+        <div class="theme-item">
+          <div class="theme-rank">{{ t.rank }}</div>
+          <div class="theme-content">
+            <div class="theme-name">{{ t.name }}</div>
+            <div class="theme-mentions">{{ t.count }} mentions — {{ t.description }}</div>
+          </div>
+        </div>
+        {% endfor %}
+        {% elif card.card_type == 'pattern' %}
+        <div class="pattern-headline">{{ card.data.get('headline', card.title) }}</div>
+        <div class="pattern-data">
+          {% for point in card.data.get('points', []) %}
+          {% if not loop.first %}
+          <div class="{% if card.data.get('separator') == '→' %}pattern-arrow{% else %}pattern-vs{% endif %}" aria-hidden="true">{{ card.data.get('separator', 'vs') }}</div>
+          {% endif %}
+          <div class="pattern-point">
+            <div class="point-value">{{ point.value }}{% if point.get('show_scale') %}<span style="font-size:32px; color:var(--text-light); font-weight:400;">/5</span>{% endif %}</div>
+            <div class="point-label">{{ point.label }}</div>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="pattern-context">{{ card.data.get('context', '') }}</div>
+        {% endif %}
+      </div>
+      <div class="card-footer">
+        <span class="brand">Lenny's Polls</span>
+        <span class="url">lennyspolls.com</span>
+      </div>
+    </div>
+    <div class="card-overlay">
+      <button class="overlay-btn btn-copy" onclick="copyCard('card-{{ loop.index }}')">Copy to clipboard</button>
+      <button class="overlay-btn btn-download" onclick="downloadCard('card-{{ loop.index }}', 'lennys-polls-{{ config.slug }}-card-{{ loop.index }}')">Download PNG</button>
+    </div>
+  </div>
+{% endfor %}
+
+</div>
+</main>
+
+<div class="newsletter-cta">
+  <p class="newsletter-cta-text">Want more insights like this?</p>
+  <a href="https://www.lennysnewsletter.com/" target="_blank" class="newsletter-cta-btn">Subscribe to Lenny's Newsletter →</a>
+</div>
+
+<footer class="site-footer">
+  <p>Lenny's Polls · Internal sharing tool</p>
+</footer>
+
+<!-- Toast -->
+<div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true">Copied to clipboard</div>
+
+<!-- html2canvas from CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<script>
+// Scale cards to fit container on load and resize
+function scaleCards() {
+  const wrappers = document.querySelectorAll('.card-wrapper');
+  wrappers.forEach(wrapper => {
+    const card = wrapper.querySelector('.social-card');
+    const containerWidth = wrapper.offsetWidth;
+    const scale = containerWidth / 1200;
+    card.style.transform = `scale(${scale})`;
+  });
+}
+
+window.addEventListener('load', scaleCards);
+window.addEventListener('resize', scaleCards);
+
+// Show toast notification
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg || 'Copied to clipboard';
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2000);
+}
+
+// Capture card at native 1200x675 resolution
+function captureCard(cardId) {
+  const card = document.getElementById(cardId);
+  const originalTransform = card.style.transform;
+  card.style.transform = 'none';
+
+  return html2canvas(card, {
+    width: 1200,
+    height: 675,
+    scale: 1,
+    useCORS: true,
+    backgroundColor: '#FFFFFF',
+    logging: false
+  }).then(canvas => {
+    card.style.transform = originalTransform;
+    return canvas;
+  }).catch(err => {
+    card.style.transform = originalTransform;
+    throw err;
+  });
+}
+
+// Copy card image to clipboard
+async function copyCard(cardId) {
+  try {
+    const canvas = await captureCard(cardId);
+
+    if (navigator.clipboard && navigator.clipboard.write) {
+      const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+      await navigator.clipboard.write([
+        new ClipboardItem({ 'image/png': blob })
+      ]);
+      showToast('Copied to clipboard');
+    } else {
+      downloadFromCanvas(canvas, cardId.replace('card-', 'lennys-polls-card-'));
+      showToast('Downloaded (clipboard not supported in this browser)');
+    }
+  } catch (err) {
+    console.error('Copy failed:', err);
+    try {
+      const canvas = await captureCard(cardId);
+      downloadFromCanvas(canvas, cardId.replace('card-', 'lennys-polls-card-'));
+      showToast('Downloaded (clipboard not available)');
+    } catch (e) {
+      showToast('Failed to capture card');
+    }
+  }
+}
+
+// Download card as PNG
+async function downloadCard(cardId, filename) {
+  try {
+    const canvas = await captureCard(cardId);
+    downloadFromCanvas(canvas, filename);
+    showToast('Downloaded');
+  } catch (err) {
+    console.error('Download failed:', err);
+    showToast('Failed to capture card');
+  }
+}
+
+function downloadFromCanvas(canvas, filename) {
+  const link = document.createElement('a');
+  link.download = (filename || 'lennys-polls-card') + '.png';
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+}
+</script>
+
+<!-- Vercel Analytics -->
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+
+</body>
+</html>
