@@ -51,7 +51,7 @@ BANNED PHRASES — never use any of these:
 - Tricolon escalation ("X, Y, and most importantly Z")
 - Starting paragraphs with "When it comes to…"
 - Using "while" to create false balance ("While some love X, others hate Y")
-- Overuse of em-dashes for dramatic pause
+- Em-dashes (—) — do not use them at all. Use commas, periods, or colons instead.
 """
 
 
@@ -420,14 +420,20 @@ def select_social_cards(
     config: SurveyConfig,
 ) -> SocialCardResults:
     """Call 3: Select the best content for social cards."""
+    scale_labels_text = ", ".join(
+        f"{k} = {v}" for k, v in sorted(config.scale_labels.items())
+    )
     dist_text = ", ".join(
-        f"Rating {b.rating}: {b.pct}%" for b in quant.distribution
+        f"Rating {b.rating} ({config.scale_labels.get(b.rating, str(b.rating))}): {b.pct}%"
+        for b in quant.distribution
     )
     company_size_data = [
         {"label": r.label, "mean": r.mean, "n": r.n} for r in quant.by_company_size
     ]
 
     prompt = f"""Select content for 10-12 social media cards for the poll "{config.title}".
+
+RATING SCALE: {scale_labels_text}
 
 DATA:
 - {quant.total_responses} respondents, {config.audience}
@@ -456,10 +462,25 @@ Use "{themes.positive_label}" as the label for quote_positive and theme_positive
 Use "{themes.negative_label}" as the label for quote_negative and theme_negative cards.
 
 RULES:
+- CRITICAL: Each card will be shared individually on social media. It MUST be fully
+  self-contained — a reader seeing only this one card must understand what was asked,
+  what the numbers mean, and why it matters.
+- For keyfinding cards: finding_text must reference the poll question (e.g. "say AI has
+  made their job better" not "rated their feelings positively"). The poll question is
+  already shown on the card — do NOT restate it in the context field. Context should
+  add new information (e.g. a comparison, breakdown, or implication), not repeat the question.
+- For comparison cards: the title must mention what's being compared (e.g. "How AI changed
+  job feelings, by company size" not just "By company size").
+- For pattern cards: headline and labels must reference the poll topic, not use generic
+  terms like "average rating."
+- Interpret ratings using the actual scale labels above (e.g. if 3 = "no real change",
+  don't call a 3.5 average "skeptical").
 - Pick the most shareable, surprising insights
 - Quotes should be vivid and stand alone without context
 - All text should be readable at social media thumbnail size
-- Use data from the survey only — do not invent data"""
+- Use data from the survey only — do not invent data
+
+{BANNED_PHRASES}"""
 
     client = _client()
     response = client.messages.create(

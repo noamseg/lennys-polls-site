@@ -53,6 +53,7 @@
           </div>
         </div>
         {% elif card.card_type == 'keyfinding' %}
+        <div class="card-poll-question">{{ config.title }}</div>
         {% if card.data.get('comparison') %}
         <div style="display:flex; align-items:baseline; gap:20px; justify-content:center;">
           {% for point in card.data['comparison'] %}
@@ -75,6 +76,7 @@
         <div class="quote-text">"{{ card.data.get('quote_text', '') }}"</div>
         <div class="quote-attr">{{ card.data.get('quote_attr', '') }}</div>
         {% elif card.card_type == 'comparison' %}
+        <div class="card-poll-question">{{ config.title }}</div>
         <div class="comp-title">{{ card.data.get('title', card.title) }}</div>
         {% for row in card.data.get('rows', []) %}
         <div class="comp-row">
@@ -98,6 +100,7 @@
         </div>
         {% endfor %}
         {% elif card.card_type == 'pattern' %}
+        <div class="card-poll-question">{{ config.title }}</div>
         <div class="pattern-headline">{{ card.data.get('headline', card.title) }}</div>
         <div class="pattern-data">
           {% for point in card.data.get('points', []) %}
