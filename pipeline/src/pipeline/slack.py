@@ -1,4 +1,4 @@
-"""Slack webhook helpers for sending survey updates."""
+"""Slack helpers for webhook messages and bot Block Kit formatters."""
 
 from __future__ import annotations
 
@@ -8,6 +8,8 @@ from typing import Any
 
 import httpx
 from dotenv import load_dotenv
+
+from .core import SurveyListItem
 
 load_dotenv()
 
@@ -125,3 +127,64 @@ def format_peek_blocks(
             })
 
     return blocks
+
+
+def format_surveys_blocks(items: list[SurveyListItem]) -> list[dict[str, Any]]:
+    """Format the survey list as Slack Block Kit blocks."""
+    blocks: list[dict[str, Any]] = [
+        {
+            "type": "header",
+            "text": {"type": "plain_text", "text": "📋 Surveys", "emoji": True},
+        },
+    ]
+
+    if not items:
+        blocks.append({
+            "type": "section",
+            "text": {"type": "mrkdwn", "text": "No surveys found."},
+        })
+        return blocks
+
+    for s in items:
+        status = "🟢 Active" if s.active else "⚪ Closed"
+        configured = "  ✓ configured" if s.configured else ""
+        blocks.append({
+            "type": "section",
+            "text": {
+                "type": "mrkdwn",
+                "text": f"*{_sanitize_mrkdwn(s.title)}*\n`{s.id}`  {status}{configured}",
+            },
+        })
+
+    return blocks
+
+
+def format_generate_blocks(
+    slug: str,
+    title: str,
+    preview_url: str,
+) -> list[dict[str, Any]]:
+    """Format the generate completion message as Slack Block Kit blocks."""
+    return [
+        {
+            "type": "header",
+            "text": {"type": "plain_text", "text": f"📊 Dashboard Ready: {title}", "emoji": True},
+        },
+        {
+            "type": "section",
+            "text": {
+                "type": "mrkdwn",
+                "text": (
+                    f"Draft dashboard for *{_sanitize_mrkdwn(title)}* is live!\n\n"
+                    f"<{preview_url}|View Dashboard>\n"
+                    f"<{preview_url.replace('.html', '-social.html')}|View Social Cards>"
+                ),
+            },
+        },
+        {
+            "type": "context",
+            "elements": [
+                {"type": "mrkdwn", "text": f"Slug: `{slug}` · This is a draft preview — publish from CLI when ready."},
+            ],
+        },
+    ]

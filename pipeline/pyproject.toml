@@ -13,6 +13,9 @@ dependencies = [
     "python-dotenv>=1.0",
 ]
 
+[project.optional-dependencies]
+bot = ["slack-bolt>=1.18", "starlette>=0.37", "uvicorn>=0.29"]
+
 [project.scripts]
 pipeline = "pipeline.cli:main"
 
