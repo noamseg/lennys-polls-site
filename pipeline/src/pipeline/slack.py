@@ -48,6 +48,7 @@ def format_peek_blocks(
     date_range: str,
     question_dists: list[dict],
     analysis: dict[str, Any] | None,
+    close_label: str = "",
 ) -> list[dict[str, Any]]:
     """Format full early peek as Slack Block Kit blocks."""
     blocks: list[dict[str, Any]] = [
@@ -59,7 +60,7 @@ def format_peek_blocks(
             "type": "section",
             "text": {
                 "type": "mrkdwn",
-                "text": f"*{started}* responded, *{completed}* completed · {date_range}",
+                "text": f"*{started}* responded, *{completed}* completed · {date_range}{close_label}",
             },
         },
         {"type": "divider"},

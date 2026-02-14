@@ -596,6 +596,7 @@ def peek_analyze(
     title: str,
     survey_data: dict[str, Any],
     question_dists: list[dict[str, Any]],
+    config: SurveyConfig | None = None,
 ) -> dict[str, Any]:
     """Flexible Claude analysis of survey data — works with any survey topic."""
     questions = survey_data.get("questions", [])
@@ -643,8 +644,19 @@ def peek_analyze(
 
     responses_text = "\n\n".join(response_entries)
 
-    prompt = f"""You are analyzing results from a survey: "{title}".
+    # Build scale context if config available
+    scale_context = ""
+    if config and config.scale_labels:
+        scale_labels_text = ", ".join(
+            f"{k} = {v}" for k, v in sorted(config.scale_labels.items())
+        )
+        scale_context = f"""
+RATING SCALE: {scale_labels_text}
+Interpret all ratings and averages relative to what each value means on this scale.
+"""
 
+    prompt = f"""You are analyzing results from a survey: "{title}".
+{scale_context}
 QUANTITATIVE RESULTS (already computed — reference these in your analysis):
 {dist_text}
 
@@ -666,7 +678,9 @@ Analyze these results and extract insights:
 4. For each section, pick 1-3 standout quotes that illustrate that section's themes.
    Choose vivid, specific quotes that bring the data to life.
    Use the respondent context for attribution (e.g. "Senior PM, 51-250").
-   Use exact text from responses (light cleanup of typos OK)."""
+   Use exact text from responses (light cleanup of typos OK).
+
+{BANNED_PHRASES}"""
 
     client = _client()
     response = client.messages.create(

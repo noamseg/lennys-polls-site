@@ -245,6 +245,11 @@ body {
   margin-bottom: 4px;
 }
 
+/* Prevent orphaned words on all card text */
+.card-body {
+  text-wrap: balance;
+}
+
 /* ===== Card-specific styles ===== */
 
 /* Card: Hero stat — distribution bar */

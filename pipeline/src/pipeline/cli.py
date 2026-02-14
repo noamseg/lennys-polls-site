@@ -335,7 +335,19 @@ def cmd_peek(args: argparse.Namespace) -> None:
         or survey_data.get("question", "Survey")
     )
     started, completed, date_range = _compute_survey_meta(survey_data)
-    print(f"Survey: {title} ({started} responded, {completed} completed)")
+    active = survey_data.get("active", False)
+    close_at = survey_data.get("close_at")
+    close_label = ""
+    if close_at:
+        try:
+            close_dt = datetime.fromisoformat(close_at.replace("Z", "+00:00"))
+            if active:
+                close_label = f" · Closes {close_dt.strftime('%b %-d')}"
+            else:
+                close_label = f" · Closed {close_dt.strftime('%b %-d')}"
+        except (ValueError, TypeError):
+            pass
+    print(f"Survey: {title} ({started} responded, {completed} completed{close_label})")
     print()
 
     # Step 2: Build distributions for all MC questions
@@ -349,11 +361,14 @@ def cmd_peek(args: argparse.Namespace) -> None:
     )
     print(f"  {len(question_dists)} multiple-choice questions, {open_count} open-ended responses")
 
+    # Detect config for scale context in analysis
+    config = _detect_config(args.survey_id, survey_data)
+
     # Step 3: Claude analysis of open-ended responses
     analysis = None
     if open_count > 0:
         print("[3/3] Analyzing responses (Claude API)...")
-        analysis = peek_analyze(title, survey_data, question_dists)
+        analysis = peek_analyze(title, survey_data, question_dists, config)
         print("  Done")
     else:
         print("[3/3] No open-ended responses to analyze — skipping Claude API")
@@ -361,7 +376,7 @@ def cmd_peek(args: argparse.Namespace) -> None:
     # ── Console output ───────────────────────────────────────────────
     print()
     print(f"🔍 {title} — Early Peek")
-    print(f"{started} responded, {completed} completed · {date_range}")
+    print(f"{started} responded, {completed} completed · {date_range}{close_label}")
 
     for qd in question_dists:
         print()
@@ -400,6 +415,7 @@ def cmd_peek(args: argparse.Namespace) -> None:
         date_range=date_range,
         question_dists=question_dists,
         analysis=analysis,
+        close_label=close_label,
     )
     if _confirm_send():
         slack.send_blocks(blocks, f"{title}: Early Peek — {started} responded, {completed} completed")

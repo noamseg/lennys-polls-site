@@ -259,6 +259,7 @@ body {
   margin-bottom: 6px;
   display: inline-block;
   position: relative;
+  text-wrap: balance;
 }
 
 .section-title::after {
