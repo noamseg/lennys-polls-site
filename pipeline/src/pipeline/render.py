@@ -10,7 +10,11 @@ from jinja2 import Environment, FileSystemLoader
 from .models import PipelineOutput, SurveyConfig, QuantResults, QualResults, ThemeResults
 
 TEMPLATES_DIR = Path(__file__).resolve().parent.parent.parent / "templates"
-LOGO_PATH = Path(__file__).resolve().parent.parent.parent.parent / "lennylogo.svg"
+_PIPELINE_DIR = Path(__file__).resolve().parent.parent.parent
+# Logo lives at site repo root locally, but inside pipeline/ in Docker
+LOGO_PATH = _PIPELINE_DIR.parent / "lennylogo.svg"
+if not LOGO_PATH.exists():
+    LOGO_PATH = _PIPELINE_DIR / "lennylogo.svg"
 
 
 def _load_css() -> str:
