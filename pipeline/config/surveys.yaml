@@ -11,6 +11,6 @@ surveys:
       3: "It's okay"
       4: "Pretty good"
       5: "Love it"
-    love_threshold: 4
-    hate_threshold: 2
+    positive_threshold: 4
+    negative_threshold: 2
     survey_tool: "Polly survey"

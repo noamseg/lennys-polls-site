@@ -60,18 +60,18 @@
           <div style="font-size:44px; color:var(--text-light); font-weight:300;">{{ card.data.get('separator', 'vs') }}</div>
           {% endif %}
           <div style="text-align:center;">
-            <div class="big-number" style="font-size:100px;">{{ point.value }}<span style="font-size:40px; color:var(--text-light); font-weight:400;">/5</span></div>
+            <div class="big-number" style="font-size:100px;">{{ point.value }}<span style="font-size:40px; color:var(--text-light); font-weight:400;">/{{ scale_max }}</span></div>
             <div style="font-size:17px; color:var(--text-secondary); margin-top:6px;">{{ point.label }}</div>
           </div>
           {% endfor %}
         </div>
         {% else %}
-        <div class="big-number">{{ card.data.get('big_number', '') }}{% if card.data.get('show_scale') %}<span style="font-size:48px; color:var(--text-light); font-weight:400;">/5</span>{% endif %}</div>
+        <div class="big-number">{{ card.data.get('big_number', '') }}{% if card.data.get('show_scale') %}<span style="font-size:48px; color:var(--text-light); font-weight:400;">/{{ scale_max }}</span>{% endif %}</div>
         {% endif %}
         <div class="finding-text">{{ card.data.get('finding_text', card.title) }}</div>
         <div class="context">{{ card.data.get('context', '') }}</div>
         {% elif card.card_type in ('quote_positive', 'quote_negative') %}
-        <div class="quote-label">{{ card.data.get('label', 'What people ' + ('love' if 'positive' in card.card_type else 'hate')) }}</div>
+        <div class="quote-label">{{ card.data.get('label', card.title) }}</div>
         <div class="quote-text">"{{ card.data.get('quote_text', '') }}"</div>
         <div class="quote-attr">{{ card.data.get('quote_attr', '') }}</div>
         {% elif card.card_type == 'comparison' %}
@@ -79,11 +79,11 @@
         {% for row in card.data.get('rows', []) %}
         <div class="comp-row">
           <div class="comp-label">{{ row.label }}</div>
-          <div class="comp-bar-track"><div class="comp-bar-fill" style="width:{{ (row.value / 5 * 100) | round(1) }}%">{{ row.value }}</div></div>
+          <div class="comp-bar-track"><div class="comp-bar-fill" style="width:{{ (row.value / scale_max * 100) | round(1) }}%">{{ row.value }}</div></div>
           <div class="comp-n">n={{ row.n }}</div>
         </div>
         {% endfor %}
-        {% elif card.card_type in ('theme_love', 'theme_hate') %}
+        {% elif card.card_type in ('theme_positive', 'theme_negative') %}
         <div class="theme-heading">
           <span class="accent-line"></span>
           {{ card.title }}
@@ -105,7 +105,7 @@
           <div class="{% if card.data.get('separator') == '→' %}pattern-arrow{% else %}pattern-vs{% endif %}" aria-hidden="true">{{ card.data.get('separator', 'vs') }}</div>
           {% endif %}
           <div class="pattern-point">
-            <div class="point-value">{{ point.value }}{% if point.get('show_scale') %}<span style="font-size:32px; color:var(--text-light); font-weight:400;">/5</span>{% endif %}</div>
+            <div class="point-value">{{ point.value }}{% if point.get('show_scale') %}<span style="font-size:32px; color:var(--text-light); font-weight:400;">/{{ scale_max }}</span>{% endif %}</div>
             <div class="point-label">{{ point.label }}</div>
           </div>
           {% endfor %}

@@ -93,19 +93,46 @@
     {{ qual.editorial.tldr_html | safe }}
   </div>
 
-  <!-- LOVE / HATE THEMES -->
+  <!-- SURVEY RESULTS (additional MC question distributions) -->
+  {%- set non_rating_dists = question_distributions | selectattr('is_rating', 'false') | list %}
+  {%- if non_rating_dists %}
+  <div class="section-header animate-in delay-2" id="survey-results">
+    <div class="section-title">Survey results</div>
+  </div>
+
+  <div style="height:24px"></div>
+
+  <div class="survey-results-grid animate-in delay-3">
+    {%- for qd in non_rating_dists %}
+    <div class="card">
+      <h3>{{ qd.question }}</h3>
+      {%- for c in qd.choices %}
+      <div class="h-bar-row">
+        <div class="h-bar-label">{{ c.label }}</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:{{ c.pct }}%">{{ c.count }}</div></div>
+        <div class="h-bar-value">{{ c.pct | round(0) | int }}%</div>
+      </div>
+      {%- endfor %}
+    </div>
+    {%- endfor %}
+  </div>
+
+  <div class="section-divider"></div>
+  {%- endif %}
+
+  <!-- THEMES -->
   <div class="section-header animate-in delay-3" id="themes">
-    <div class="section-title">What people love vs. hate</div>
+    <div class="section-title">{{ qual.themes.positive_label }} vs. {{ qual.themes.negative_label | lower }}</div>
     <p class="section-subtitle">Click any theme to see representative quotes.</p>
   </div>
 
-  <div class="love-hate-grid animate-in delay-4">
+  <div class="theme-grid animate-in delay-4">
 
-    <!-- LOVE -->
-    <div class="theme-card love">
-      <h3>What people love</h3>
-      <div class="card-subtitle">Top themes from those rating {{ config.love_threshold }}–5</div>
-      {%- for theme in qual.themes.love_themes %}
+    <!-- POSITIVE -->
+    <div class="theme-card positive">
+      <h3>{{ qual.themes.positive_label }}</h3>
+      <div class="card-subtitle">Top themes from those rating {{ config.positive_threshold }}–{{ scale_max }}</div>
+      {%- for theme in qual.themes.positive_themes %}
 
       <div class="theme-item" tabindex="0" role="button" aria-expanded="false" onclick="this.classList.toggle('open');this.setAttribute('aria-expanded',this.classList.contains('open'))" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.classList.toggle('open');this.setAttribute('aria-expanded',this.classList.contains('open'))}">
         <div class="theme-item-header">
@@ -126,11 +153,11 @@
       {%- endfor %}
     </div>
 
-    <!-- HATE -->
-    <div class="theme-card hate">
-      <h3>What people hate</h3>
-      <div class="card-subtitle">Top themes from those rating 1–{{ config.hate_threshold }}</div>
-      {%- for theme in qual.themes.hate_themes %}
+    <!-- NEGATIVE -->
+    <div class="theme-card negative">
+      <h3>{{ qual.themes.negative_label }}</h3>
+      <div class="card-subtitle">Top themes from those rating 1–{{ config.negative_threshold }}</div>
+      {%- for theme in qual.themes.negative_themes %}
 
       <div class="theme-item" tabindex="0" role="button" aria-expanded="false" onclick="this.classList.toggle('open');this.setAttribute('aria-expanded',this.classList.contains('open'))" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.classList.toggle('open');this.setAttribute('aria-expanded',this.classList.contains('open'))}">
         <div class="theme-item-header">

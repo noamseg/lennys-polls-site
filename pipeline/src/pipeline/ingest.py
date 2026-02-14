@@ -18,6 +18,23 @@ from .models import (
 )
 
 
+# ── Rating question detection ────────────────────────────────────────
+
+def _is_rating_question(responses: list[dict]) -> bool:
+    """Detect if a MC question uses a numeric rating scale (e.g. '5 - Much better').
+
+    Must be 'N - label' format with a space before the dash, not 'N-N' ranges
+    like company size choices (e.g. '2-10', '51-250').
+    """
+    if not responses:
+        return False
+    matches = sum(
+        1 for r in responses
+        if re.match(r"^\d+\s+[-–—]\s+\S", r.get("text", "").strip())
+    )
+    return matches > len(responses) * 0.8
+
+
 # ── Role categorization ──────────────────────────────────────────────
 
 # Order matters: check founder/C-suite first, then VP/Director, then Group PM, then IC.
@@ -123,17 +140,27 @@ def _identify_questions(questions: list[dict]) -> dict[str, str]:
         q_text = q.get("text", "").lower()
         q_type = q.get("type", "")
 
-        if "how do you feel" in q_text or ("hate it" in q_text and "love it" in q_text):
-            mapping["rating"] = q_id
-        elif "what do you love" in q_text or "what do you hate" in q_text or "love or hate" in q_text:
-            mapping["open_text"] = q_id
-        elif "title" in q_text or "current title" in q_text or "your role" in q_text:
-            if q_type == "open_ended":
+        # Rating: first multiple_choice where 80%+ responses match "N - label" format
+        if "rating" not in mapping and q_type == "multiple_choice":
+            results = q.get("results", [])
+            if _is_rating_question(results):
+                mapping["rating"] = q_id
+        # Open text: first open-ended question that isn't asking for job title
+        if "open_text" not in mapping and q_type == "open_ended":
+            if not any(kw in q_text for kw in ("title", "current role", "your role")):
+                mapping["open_text"] = q_id
+        # Job title
+        if "title" not in mapping and q_type == "open_ended":
+            if "title" in q_text or "current title" in q_text or "your role" in q_text:
                 mapping["title"] = q_id
-        elif "size" in q_text and "company" in q_text:
-            mapping["company_size"] = q_id
-        elif "how long" in q_text or "tenure" in q_text:
-            mapping["tenure"] = q_id
+        # Company size
+        if "company_size" not in mapping:
+            if "size" in q_text and "company" in q_text:
+                mapping["company_size"] = q_id
+        # Tenure
+        if "tenure" not in mapping:
+            if "how long" in q_text or "tenure" in q_text:
+                mapping["tenure"] = q_id
 
     return mapping
 

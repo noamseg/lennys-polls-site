@@ -33,6 +33,7 @@ def render_social(output: PipelineOutput) -> str:
     )
 
     logo_data_uri = _load_logo_data_uri()
+    scale_max = max(output.config.scale_labels.keys())
 
     return template.render(
         config=output.config,
@@ -41,6 +42,7 @@ def render_social(output: PipelineOutput) -> str:
         social_css=social_css,
         subtitle=subtitle,
         logo_data_uri=logo_data_uri,
+        scale_max=scale_max,
     )
 
 

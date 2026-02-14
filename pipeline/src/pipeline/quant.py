@@ -67,6 +67,8 @@ def analyze(respondents: list[Respondent], config: SurveyConfig) -> QuantResults
 
     # ── Cross-tabs: mean rating by demographic ────────────────────
 
+    scale_max = max(config.scale_labels.keys())
+
     def cross_tab(col: str) -> list[CrossTabRow]:
         valid = rated[rated[col].notna() & (rated[col] != "")].copy()
         if valid.empty:
@@ -80,7 +82,7 @@ def analyze(respondents: list[Respondent], config: SurveyConfig) -> QuantResults
                 label=str(label),
                 mean=mean_val,
                 n=int(row["count"]),
-                bar_width=round(mean_val / 5 * 100, 1),
+                bar_width=round(mean_val / scale_max * 100, 1),
             ))
         return rows
 

@@ -406,10 +406,10 @@ body {
 }
 
 /* Card: Theme summary */
-.card-theme_love .card-body,
-.card-theme_hate .card-body,
-.card-theme-love .card-body,
-.card-theme-hate .card-body {
+.card-theme_positive .card-body,
+.card-theme_negative .card-body,
+.card-theme-positive .card-body,
+.card-theme-negative .card-body {
   gap: 16px;
   padding: 56px 48px 24px;
   justify-content: center;
@@ -431,10 +431,10 @@ body {
   border-radius: 2px;
   flex-shrink: 0;
 }
-.card-theme_love .accent-line,
-.card-theme-love .accent-line { background: #0a9396; }
-.card-theme_hate .accent-line,
-.card-theme-hate .accent-line { background: #ae2012; }
+.card-theme_positive .accent-line,
+.card-theme-positive .accent-line { background: #0a9396; }
+.card-theme_negative .accent-line,
+.card-theme-negative .accent-line { background: #ae2012; }
 
 .social-card[class*="theme"] .theme-item {
   display: flex;
@@ -452,10 +452,10 @@ body {
   flex-shrink: 0;
   width: 44px;
 }
-.card-theme_love .theme-rank,
-.card-theme-love .theme-rank { color: #0a9396; }
-.card-theme_hate .theme-rank,
-.card-theme-hate .theme-rank { color: #ae2012; }
+.card-theme_positive .theme-rank,
+.card-theme-positive .theme-rank { color: #0a9396; }
+.card-theme_negative .theme-rank,
+.card-theme-negative .theme-rank { color: #ae2012; }
 
 .social-card[class*="theme"] .theme-content { flex: 1; }
 .social-card[class*="theme"] .theme-name {

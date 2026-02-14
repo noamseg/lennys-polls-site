@@ -45,6 +45,7 @@ def render_dashboard(output: PipelineOutput) -> str:
     css = _load_css()
     subtitle = _build_subtitle(output.config, output.quant)
     logo_data_uri = _load_logo_data_uri()
+    scale_max = max(output.config.scale_labels.keys())
 
     return template.render(
         config=output.config,
@@ -53,6 +54,8 @@ def render_dashboard(output: PipelineOutput) -> str:
         css=css,
         subtitle=subtitle,
         logo_data_uri=logo_data_uri,
+        scale_max=scale_max,
+        question_distributions=output.question_distributions,
     )
 
 

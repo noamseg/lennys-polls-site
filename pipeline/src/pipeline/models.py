@@ -19,8 +19,8 @@ class SurveyConfig(BaseModel):
     subtitle_template: str
     scale_description: str
     scale_labels: dict[int, str]
-    love_threshold: int = 4
-    hate_threshold: int = 2
+    positive_threshold: int = 4
+    negative_threshold: int = 2
     survey_tool: str = "Polly survey"
 
 
@@ -121,8 +121,10 @@ class Theme(BaseModel):
 
 
 class ThemeResults(BaseModel):
-    love_themes: list[Theme]
-    hate_themes: list[Theme]
+    positive_themes: list[Theme]
+    negative_themes: list[Theme]
+    positive_label: str = "What people love"
+    negative_label: str = "What people hate"
 
 
 class EditorialResults(BaseModel):
@@ -131,7 +133,7 @@ class EditorialResults(BaseModel):
 
 
 class SocialCard(BaseModel):
-    card_type: str  # hero, keyfinding, quote_positive, quote_negative, comparison, theme_love, theme_hate, pattern
+    card_type: str  # hero, keyfinding, quote_positive, quote_negative, comparison, theme_positive, theme_negative, pattern
     title: str
     data: dict[str, Any] = Field(default_factory=dict)
 
@@ -152,3 +154,4 @@ class PipelineOutput(BaseModel):
     config: SurveyConfig
     quant: QuantResults
     qual: QualResults
+    question_distributions: list[dict[str, Any]] = Field(default_factory=list)
