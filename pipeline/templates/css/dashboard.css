@@ -373,11 +373,12 @@ body {
 }
 
 .h-bar-label {
-  width: 110px;
+  width: 140px;
   font-size: 13px;
   color: var(--text-secondary);
   text-align: right;
   flex-shrink: 0;
+  text-wrap: balance;
 }
 
 .h-bar-container {
@@ -717,7 +718,7 @@ body {
   .hero-stat { flex-direction: column; gap: 24px; padding: 24px 16px; align-items: stretch; }
   .bar-labels { display: none; }
   .bar-labels-mobile { display: flex; }
-  .h-bar-label { width: 80px; font-size: 12px; }
+  .h-bar-label { width: 100px; font-size: 12px; }
   .compare-label { width: 100px; font-size: 12px; }
   .insight-box .top3-grid { grid-template-columns: 1fr; }
 }

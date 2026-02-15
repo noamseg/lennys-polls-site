@@ -195,6 +195,38 @@ def _is_ordinal_choices(choice_texts: list[str]) -> bool:
     return numeric >= len(choice_texts) * 0.6
 
 
+# Likert keyword patterns ordered from most-negative to most-positive
+_LIKERT_KEYWORDS: list[tuple[re.Pattern[str], int]] = [
+    (re.compile(r"\bmuch\b.*\b(less|worse|lower|decrease)\b", re.I), -2),
+    (re.compile(r"\b(significantly|strongly)\b.*\b(less|worse|lower|decrease|disagree)\b", re.I), -2),
+    (re.compile(r"\bsomewhat\b.*\b(less|worse|lower|decrease)\b", re.I), -1),
+    (re.compile(r"\b(slightly)\b.*\b(less|worse|lower|decrease)\b", re.I), -1),
+    (re.compile(r"\bno\s+(change|difference|impact|effect)\b", re.I), 0),
+    (re.compile(r"\bneutral\b", re.I), 0),
+    (re.compile(r"\bneither\b", re.I), 0),
+    (re.compile(r"\bsomewhat\b.*\b(more|better|higher|increase)\b", re.I), 1),
+    (re.compile(r"\b(slightly)\b.*\b(more|better|higher|increase)\b", re.I), 1),
+    (re.compile(r"\bmuch\b.*\b(more|better|higher|increase)\b", re.I), 2),
+    (re.compile(r"\b(significantly|strongly)\b.*\b(more|better|higher|increase|agree)\b", re.I), 2),
+]
+
+
+def _likert_sort_key(text: str) -> int | None:
+    """Return a semantic sort key for Likert-style choices, or None if not recognized."""
+    for pattern, score in _LIKERT_KEYWORDS:
+        if pattern.search(text):
+            return score
+    return None
+
+
+def _is_likert_choices(choice_texts: list[str]) -> bool:
+    """Check if a set of choices follows a Likert pattern (e.g. Much less → No change → Much more)."""
+    if len(choice_texts) < 3:
+        return False
+    matched = sum(1 for t in choice_texts if _likert_sort_key(t) is not None)
+    return matched >= len(choice_texts) * 0.6
+
+
 def build_question_distributions(survey_data: dict) -> list[dict[str, Any]]:
     """Build response distributions for ALL multiple-choice questions."""
     questions = survey_data.get("questions", [])
@@ -214,6 +246,19 @@ def build_question_distributions(survey_data: dict) -> list[dict[str, Any]]:
 
         counts = Counter(r["text"] for r in responses)
 
+        # Check if Polly provides a canonical choice order
+        polly_choices = q.get("choices") or q.get("options")
+        polly_order = None
+        if polly_choices and isinstance(polly_choices, list):
+            # Build a text→index map from Polly's ordering
+            polly_order = {}
+            for idx, pc in enumerate(polly_choices):
+                if isinstance(pc, dict):
+                    txt = pc.get("text") or pc.get("label") or pc.get("value", "")
+                else:
+                    txt = str(pc)
+                polly_order[txt] = idx
+
         choices = []
         for choice_text, count in counts.most_common():
             pct = round(count / unique_users * 100, 1) if unique_users else 0
@@ -227,8 +272,12 @@ def build_question_distributions(survey_data: dict) -> list[dict[str, Any]]:
 
         if is_rating:
             choices.sort(key=lambda c: c.get("rating", 0))
+        elif polly_order:
+            choices.sort(key=lambda c: polly_order.get(c["_raw"], 999))
         elif _is_ordinal_choices([c["_raw"] for c in choices]):
             choices.sort(key=lambda c: _ordinal_sort_key(c["_raw"]) or 0)
+        elif _is_likert_choices([c["_raw"] for c in choices]):
+            choices.sort(key=lambda c: _likert_sort_key(c["_raw"]) or 0)
 
         for c in choices:
             del c["_raw"]
