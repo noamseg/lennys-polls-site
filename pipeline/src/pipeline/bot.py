@@ -9,6 +9,7 @@ from __future__ import annotations
 import logging
 import os
 import threading
+import time
 from typing import Any
 
 from dotenv import load_dotenv
@@ -21,7 +22,12 @@ from starlette.routing import Route
 
 from .core import run_generate, run_list_surveys, run_peek
 from .github import push_draft_to_github
-from .slack import format_generate_blocks, format_peek_blocks, format_surveys_blocks
+from .slack import (
+    format_generate_blocks,
+    format_new_survey_blocks,
+    format_peek_blocks,
+    format_surveys_blocks,
+)
 
 load_dotenv()
 
@@ -116,6 +122,7 @@ def handle_peek(ack: Any, respond: Any, command: dict) -> None:
                 question_dists=result.question_dists,
                 analysis=result.analysis,
                 close_label=result.close_label,
+                survey_id=survey_id,
             )
             respond(blocks=blocks, response_type="in_channel")
         except Exception as e:
@@ -165,6 +172,126 @@ def handle_generate(ack: Any, respond: Any, command: dict) -> None:
             _mark_done(key)
 
     threading.Thread(target=_run, daemon=True).start()
+
+
+# ── Button actions ────────────────────────────────────────────────────
+
+
+@app.action("peek_survey")
+def handle_peek_action(ack: Any, body: dict, client: Any) -> None:
+    ack()
+    survey_id = body["actions"][0]["value"]
+    channel_id = body["channel"]["id"]
+
+    if channel_id != ALLOWED_CHANNEL:
+        return
+
+    client.chat_postMessage(
+        channel=channel_id,
+        text=f"Running peek for `{survey_id}`... ~30-60 seconds.",
+    )
+
+    def _run() -> None:
+        try:
+            result = run_peek(survey_id)
+            blocks = format_peek_blocks(
+                title=result.title,
+                started=result.started,
+                completed=result.completed,
+                date_range=result.date_range,
+                question_dists=result.question_dists,
+                analysis=result.analysis,
+                close_label=result.close_label,
+                survey_id=survey_id,
+            )
+            client.chat_postMessage(channel=channel_id, blocks=blocks, text=f"Peek results for {survey_id}")
+        except Exception:
+            logger.exception("peek_survey action failed for %s", survey_id)
+            client.chat_postMessage(channel=channel_id, text=f"Peek failed for `{survey_id}`. Check the logs.")
+
+    threading.Thread(target=_run, daemon=True).start()
+
+
+@app.action("generate_survey")
+def handle_generate_action(ack: Any, body: dict, client: Any) -> None:
+    ack()
+    survey_id = body["actions"][0]["value"]
+    channel_id = body["channel"]["id"]
+
+    if channel_id != ALLOWED_CHANNEL:
+        return
+
+    key = f"generate:{survey_id}"
+    if not _mark_active(key):
+        client.chat_postMessage(
+            channel=channel_id,
+            text=f"Generate is already running for `{survey_id}`. Please wait.",
+        )
+        return
+
+    client.chat_postMessage(
+        channel=channel_id,
+        text=f"Generating dashboard for `{survey_id}`... ~2-3 minutes.",
+    )
+
+    def _run() -> None:
+        try:
+            result = run_generate(survey_id)
+            preview_url = push_draft_to_github(
+                result.config.slug,
+                result.dashboard_html,
+                result.social_html,
+            )
+            blocks = format_generate_blocks(
+                slug=result.config.slug,
+                title=result.config.title,
+                preview_url=preview_url,
+            )
+            client.chat_postMessage(channel=channel_id, blocks=blocks, text=f"Dashboard ready for {survey_id}")
+        except Exception:
+            logger.exception("generate_survey action failed for %s", survey_id)
+            client.chat_postMessage(channel=channel_id, text=f"Generate failed for `{survey_id}`. Check the logs.")
+        finally:
+            _mark_done(key)
+
+    threading.Thread(target=_run, daemon=True).start()
+
+
+# ── Survey watcher (new survey notifications) ────────────────────────
+
+SURVEY_CHECK_INTERVAL = 30 * 60  # 30 minutes
+
+
+def _survey_watcher() -> None:
+    """Background thread that checks for new surveys and posts notifications."""
+    try:
+        known_ids = {s.id for s in run_list_surveys()}
+        logger.info("Survey watcher initialized with %d known surveys", len(known_ids))
+    except Exception:
+        logger.exception("Survey watcher failed to initialize — will retry next cycle")
+        known_ids = set()
+
+    while True:
+        time.sleep(SURVEY_CHECK_INTERVAL)
+        try:
+            current = run_list_surveys()
+            current_ids = {s.id for s in current}
+            new_ids = current_ids - known_ids
+            for s in current:
+                if s.id in new_ids:
+                    logger.info("New survey detected: %s (%s)", s.title, s.id)
+                    blocks = format_new_survey_blocks(s)
+                    app.client.chat_postMessage(
+                        channel=ALLOWED_CHANNEL,
+                        blocks=blocks,
+                        text=f"New survey detected: {s.title}",
+                    )
+            known_ids = current_ids
+        except Exception:
+            logger.exception("Survey watcher error")
+
+
+threading.Thread(target=_survey_watcher, daemon=True).start()
 
 
 # ── Starlette app (HTTP adapter for Railway) ─────────────────────────

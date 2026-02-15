@@ -51,6 +51,7 @@ def format_peek_blocks(
     question_dists: list[dict],
     analysis: dict[str, Any] | None,
     close_label: str = "",
+    survey_id: str = "",
 ) -> list[dict[str, Any]]:
     """Format full early peek as Slack Block Kit blocks."""
     blocks: list[dict[str, Any]] = [
@@ -88,6 +89,19 @@ def format_peek_blocks(
         })
 
     if not analysis:
+        if survey_id:
+            blocks.append({"type": "divider"})
+            blocks.append({
+                "type": "actions",
+                "elements": [
+                    {
+                        "type": "button",
+                        "text": {"type": "plain_text", "text": "Generate Full Dashboard"},
+                        "action_id": "generate_survey",
+                        "value": survey_id,
+                    },
+                ],
+            })
         return blocks
 
     blocks.append({"type": "divider"})
@@ -126,6 +140,20 @@ def format_peek_blocks(
                 "text": {"type": "mrkdwn", "text": f"> _{text}_\n> — {attr}"},
             })
 
+    if survey_id:
+        blocks.append({"type": "divider"})
+        blocks.append({
+            "type": "actions",
+            "elements": [
+                {
+                    "type": "button",
+                    "text": {"type": "plain_text", "text": "Generate Full Dashboard"},
+                    "action_id": "generate_survey",
+                    "value": survey_id,
+                },
+            ],
+        })
+
     return blocks
 
 
@@ -158,12 +186,26 @@ def format_surveys_blocks(items: list[SurveyListItem]) -> list[dict[str, Any]]:
             "type": "section",
             "text": {
                 "type": "mrkdwn",
-                "text": (
-                    f"*{_sanitize_mrkdwn(s.title)}*  {status}{configured}\n"
-                    f"To peek at early results: /peek {s.id}\n"
-                    f"To generate a full dashboard: /generate {s.id}"
-                ),
+                "text": f"*{_sanitize_mrkdwn(s.title)}*  {status}{configured}",
             },
+        })
+        blocks.append({
+            "type": "actions",
+            "block_id": f"survey_actions_{s.id}",
+            "elements": [
+                {
+                    "type": "button",
+                    "text": {"type": "plain_text", "text": "Peek"},
+                    "action_id": "peek_survey",
+                    "value": s.id,
+                },
+                {
+                    "type": "button",
+                    "text": {"type": "plain_text", "text": "Generate Dashboard"},
+                    "action_id": "generate_survey",
+                    "value": s.id,
+                },
+            ],
         })
 
     if len(closed) > MAX_CLOSED:
@@ -175,6 +217,41 @@ def format_surveys_blocks(items: list[SurveyListItem]) -> list[dict[str, Any]]:
         })
 
     return blocks
+
+
+def format_new_survey_blocks(item: SurveyListItem) -> list[dict[str, Any]]:
+    """Format a notification for a newly detected survey."""
+    status = "🟢 Active" if item.active else "⚪ Closed"
+    return [
+        {
+            "type": "header",
+            "text": {"type": "plain_text", "text": "🆕 New Survey Detected", "emoji": True},
+        },
+        {
+            "type": "section",
+            "text": {
+                "type": "mrkdwn",
+                "text": f"*{_sanitize_mrkdwn(item.title)}*  {status}",
+            },
+        },
+        {
+            "type": "actions",
+            "elements": [
+                {
+                    "type": "button",
+                    "text": {"type": "plain_text", "text": "Peek"},
+                    "action_id": "peek_survey",
+                    "value": item.id,
+                },
+                {
+                    "type": "button",
+                    "text": {"type": "plain_text", "text": "Generate Dashboard"},
+                    "action_id": "generate_survey",
+                    "value": item.id,
+                },
+            ],
+        },
+    ]
 
 
 def format_generate_blocks(
