@@ -152,7 +152,11 @@ def format_surveys_blocks(items: list[SurveyListItem]) -> list[dict[str, Any]]:
             "type": "section",
             "text": {
                 "type": "mrkdwn",
-                "text": f"*{_sanitize_mrkdwn(s.title)}*\n`{s.id}`  {status}{configured}",
+                "text": (
+                    f"*{_sanitize_mrkdwn(s.title)}*  {status}{configured}\n"
+                    f"/peek {s.id}\n"
+                    f"/generate {s.id}"
+                ),
             },
         })
 
