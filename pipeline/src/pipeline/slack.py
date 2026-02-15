@@ -145,7 +145,13 @@ def format_surveys_blocks(items: list[SurveyListItem]) -> list[dict[str, Any]]:
         })
         return blocks
 
-    for s in items:
+    # Active polls first, then most recent closed (limit 3)
+    active = [s for s in items if s.active]
+    closed = [s for s in items if not s.active]
+    MAX_CLOSED = 3
+    shown = active + closed[:MAX_CLOSED]
+
+    for s in shown:
         status = "🟢 Active" if s.active else "⚪ Closed"
         configured = "  ✓ configured" if s.configured else ""
         blocks.append({
@@ -154,10 +160,18 @@ def format_surveys_blocks(items: list[SurveyListItem]) -> list[dict[str, Any]]:
                 "type": "mrkdwn",
                 "text": (
                     f"*{_sanitize_mrkdwn(s.title)}*  {status}{configured}\n"
-                    f"/peek {s.id}\n"
-                    f"/generate {s.id}"
+                    f"To peek at early results: /peek {s.id}\n"
+                    f"To generate a full dashboard: /generate {s.id}"
                 ),
             },
+        })
+
+    if len(closed) > MAX_CLOSED:
+        blocks.append({
+            "type": "context",
+            "elements": [
+                {"type": "mrkdwn", "text": f"+ {len(closed) - MAX_CLOSED} older closed polls not shown"},
+            ],
         })
 
     return blocks
