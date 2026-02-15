@@ -178,18 +178,16 @@ def handle_generate(ack: Any, respond: Any, command: dict) -> None:
 
 
 @app.action("peek_survey")
-def handle_peek_action(ack: Any, body: dict, client: Any) -> None:
-    ack()
+def handle_peek_action(ack: Any, body: dict, respond: Any) -> None:
     survey_id = body["actions"][0]["value"]
     channel_id = body["channel"]["id"]
 
     if channel_id != ALLOWED_CHANNEL:
+        ack()
         return
 
-    client.chat_postMessage(
-        channel=channel_id,
-        text=f"Running peek for `{survey_id}`... ~30-60 seconds.",
-    )
+    ack()
+    respond(text=f"Running peek for `{survey_id}`... ~30-60 seconds.", replace_original=False)
 
     def _run() -> None:
         try:
@@ -204,35 +202,31 @@ def handle_peek_action(ack: Any, body: dict, client: Any) -> None:
                 close_label=result.close_label,
                 survey_id=survey_id,
             )
-            client.chat_postMessage(channel=channel_id, blocks=blocks, text=f"Peek results for {survey_id}")
+            respond(blocks=blocks, text="Peek results", replace_original=False, response_type="in_channel")
         except Exception:
             logger.exception("peek_survey action failed for %s", survey_id)
-            client.chat_postMessage(channel=channel_id, text=f"Peek failed for `{survey_id}`. Check the logs.")
+            respond(text=f"Peek failed for `{survey_id}`. Check the logs.", replace_original=False)
 
     threading.Thread(target=_run, daemon=True).start()
 
 
 @app.action("generate_survey")
-def handle_generate_action(ack: Any, body: dict, client: Any) -> None:
-    ack()
+def handle_generate_action(ack: Any, body: dict, respond: Any) -> None:
     survey_id = body["actions"][0]["value"]
     channel_id = body["channel"]["id"]
 
     if channel_id != ALLOWED_CHANNEL:
+        ack()
         return
 
     key = f"generate:{survey_id}"
     if not _mark_active(key):
-        client.chat_postMessage(
-            channel=channel_id,
-            text=f"Generate is already running for `{survey_id}`. Please wait.",
-        )
+        ack()
+        respond(text=f"Generate is already running for `{survey_id}`. Please wait.", replace_original=False)
         return
 
-    client.chat_postMessage(
-        channel=channel_id,
-        text=f"Generating dashboard for `{survey_id}`... ~2-3 minutes.",
-    )
+    ack()
+    respond(text=f"Generating dashboard for `{survey_id}`... ~2-3 minutes.", replace_original=False)
 
     def _run() -> None:
         try:
@@ -247,10 +241,10 @@ def handle_generate_action(ack: Any, body: dict, client: Any) -> None:
                 title=result.config.title,
                 preview_url=preview_url,
             )
-            client.chat_postMessage(channel=channel_id, blocks=blocks, text=f"Dashboard ready for {survey_id}")
+            respond(blocks=blocks, text="Dashboard ready", replace_original=False, response_type="in_channel")
         except Exception:
             logger.exception("generate_survey action failed for %s", survey_id)
-            client.chat_postMessage(channel=channel_id, text=f"Generate failed for `{survey_id}`. Check the logs.")
+            respond(text=f"Generate failed for `{survey_id}`. Check the logs.", replace_original=False)
         finally:
             _mark_done(key)
 
