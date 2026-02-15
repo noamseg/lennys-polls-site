@@ -1,0 +1,1646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How has AI changed how you feel about your job? — Lenny's Polls</title>
+
+<!-- Open Graph -->
+<meta property="og:title" content="How has AI changed how you feel about your job? — Lenny's Polls">
+<meta property="og:description" content="83 product and tech professionals shared how AI has affected their day-to-day work, what's better, what's worse, and what's just different.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://lennyspolls.com/polls/how-has-ai-changed-how-you-feel-about-your-job.html">
+<meta property="og:image" content="https://lennyspolls.com/apple-touch-icon.png">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="How has AI changed how you feel about your job? — Lenny's Polls">
+<meta name="twitter:description" content="83 product and tech professionals shared how AI has affected their day-to-day work, what's better, what's worse, and what's just different.">
+<meta name="twitter:image" content="https://lennyspolls.com/apple-touch-icon.png">
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #FFFFFF;
+  --card: #FFFFFF;
+  --text: #1A1A1A;
+  --text-secondary: #6B6B6B;
+  --text-light: #767676;
+  --border: #E8E5E0;
+  --border-orange: #E8A880;
+
+  /* Lenny orange palette */
+  --orange: #EF7B4E;
+  --orange-dark: #D96A3E;
+  --orange-light: #F5B07A;
+  --orange-gradient: linear-gradient(to right, #EF7B4E, #F5B88A);
+  --orange-bg: #FEF8F4;
+  --orange-bg-deep: #FEF0E6;
+
+  /* Neutral for inactive tracks and surfaces */
+  --neutral-surface: #F7F6F4;
+  --neutral-track: #EDECEA;
+
+  /* Semantic */
+  --positive: #0a9396;
+  --positive-light: #E6F4F4;
+  --positive-bg: #F2F9F9;
+  --negative: #ae2012;
+  --negative-light: #F6E8E7;
+  --negative-bg: #FAF3F3;
+
+  /* Rating scale - orange tonal */
+  --r1: #C4724A;
+  --r2: #D4894B;
+  --r3: #E0A050;
+  --r4: #EF7B4E;
+  --r5: #EF7B4E;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Nav bar */
+.site-nav {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.nav-logo {
+  width: 88px;
+  height: 88px;
+  border-radius: 8px;
+}
+
+.nav-title {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.nav-back {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.nav-back:hover { color: var(--orange); }
+
+.nav-link {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.nav-link:hover { color: var(--orange); }
+
+.container {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: 48px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+}
+
+.header .eyebrow {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--orange);
+  margin-bottom: 20px;
+}
+
+.header h1 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(30px, 5vw, 44px);
+  line-height: 1.15;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+
+.header .subtitle {
+  font-size: 16px;
+  color: var(--text-secondary);
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.header .meta {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+.header .meta span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.header .meta .dot {
+  width: 5px;
+  height: 5px;
+  background: var(--orange);
+  border-radius: 50%;
+}
+
+/* Hero stat */
+.hero-stat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 48px;
+  padding: 40px;
+  background: var(--bg);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+}
+
+.hero-number { text-align: center; }
+
+.hero-number .big {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 72px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--orange);
+}
+
+.hero-number .label {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+.hero-bar { flex: 1; max-width: 600px; }
+
+.stacked-bar {
+  display: flex;
+  height: 44px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  border: 1px solid var(--border);
+}
+
+.stacked-bar .segment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 12px;
+  color: white;
+}
+
+.stacked-bar .s1 { background: #D4926A; }
+.stacked-bar .s2 { background: #E09060; }
+.stacked-bar .s3 { background: #E8A46E; }
+.stacked-bar .s4 { background: #EF7B4E; }
+.stacked-bar .s5 { background: #D96535; }
+
+.bar-question {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.bar-question strong {
+  color: var(--text);
+  font-weight: 600;
+  font-size: 22px;
+}
+
+.bar-scale {
+  font-size: 12px;
+  color: var(--text-light);
+  margin-bottom: 8px;
+}
+
+.bar-labels {
+  display: flex;
+  margin-top: 6px;
+}
+
+.bar-label-item {
+  font-size: 12px;
+  color: var(--text-secondary);
+  text-align: center;
+}
+
+.bar-labels-mobile {
+  display: none;
+  justify-content: space-between;
+  margin-top: 6px;
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+/* Section title with orange underline accent */
+.section-title {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 700;
+  font-size: 22px;
+  margin-bottom: 6px;
+  display: inline-block;
+  position: relative;
+  text-wrap: balance;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 32px;
+  height: 3px;
+  background: var(--orange);
+  border-radius: 2px;
+}
+
+.section-subtitle {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-top: 8px;
+}
+
+.section-header {
+  margin-bottom: 24px;
+}
+
+/* Section divider */
+.section-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 48px 0;
+}
+
+/* Rating cards */
+.rating-cards {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  margin-bottom: 48px;
+}
+
+.rating-card {
+  background: var(--bg);
+  border-radius: 10px;
+  padding: 20px 14px;
+  text-align: center;
+  border: 1px solid var(--border);
+  transition: transform 0.2s;
+}
+
+.rating-card:hover { transform: translateY(-2px); }
+.rating-card .emoji { font-size: 26px; margin-bottom: 8px; }
+.rating-card .count {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1;
+}
+.rating-card .pct {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+.rating-card .lbl {
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-top: 6px;
+  font-weight: 500;
+}
+
+.rc1 .count, .rc2 .count, .rc3 .count, .rc4 .count, .rc5 .count { color: var(--text); }
+
+/* Two-col */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.card {
+  background: var(--bg);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  padding: 28px;
+}
+
+.card h3 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 20px;
+  position: relative;
+  display: inline-block;
+}
+
+.card h3::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 24px;
+  height: 2px;
+  background: var(--orange);
+  border-radius: 2px;
+}
+
+/* Horizontal bar (orange gradient, rounded) */
+.h-bar-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 14px;
+  gap: 12px;
+}
+
+.h-bar-label {
+  width: 110px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.h-bar-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.h-bar-fill {
+  height: 32px;
+  border-radius: 8px;
+  background: var(--orange-gradient);
+  display: flex;
+  align-items: center;
+  padding-left: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+  min-width: 36px;
+  border: 1px solid rgba(0,0,0,0.04);
+}
+
+.h-bar-value {
+  width: 52px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  flex-shrink: 0;
+}
+
+/* Insight callout */
+.insight-box {
+  background: var(--orange-bg);
+  border-radius: 12px;
+  padding: 28px 32px;
+  margin-bottom: 48px;
+  border: 1px solid #F0E0D4;
+}
+
+.insight-box .insight-title {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 700;
+  font-size: 21px;
+  margin-bottom: 12px;
+  color: var(--orange-dark);
+}
+
+.insight-box p {
+  font-size: 15px;
+  color: var(--text);
+  line-height: 1.7;
+}
+
+.insight-box .top3-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.top3-col h4 {
+  font-weight: 700;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.top3-col.positive-col h4 { color: var(--positive); }
+.top3-col.negative-col h4 { color: var(--negative); }
+
+.top3-item {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 4px;
+}
+
+.top3-num {
+  font-weight: 700;
+  font-size: 12px;
+  flex-shrink: 0;
+  width: 18px;
+}
+
+.positive-col .top3-num { color: var(--positive); }
+.negative-col .top3-num { color: var(--negative); }
+
+/* Compare bars */
+.compare-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 14px;
+  gap: 12px;
+}
+
+.compare-label {
+  width: 130px;
+  font-size: 13px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.compare-bar-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.compare-bar {
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 10px;
+  font-size: 13px;
+  font-weight: 700;
+  color: white;
+  min-width: 40px;
+  background: var(--orange-gradient);
+  border: 1px solid rgba(0,0,0,0.04);
+}
+
+.compare-n {
+  font-size: 12px;
+  color: var(--text-light);
+  white-space: nowrap;
+}
+
+/* Survey results grid */
+.survey-results-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+/* Positive/Negative themes */
+.theme-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.theme-card {
+  background: var(--bg);
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  padding: 28px;
+}
+
+.theme-card.positive { border-top: 3px solid var(--positive); }
+.theme-card.negative { border-top: 3px solid var(--negative); }
+
+.theme-card h3 {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.theme-card h3::after { display: none; }
+
+.theme-card .card-subtitle {
+  font-size: 12px;
+  color: var(--text-light);
+  margin-bottom: 20px;
+}
+
+.theme-card.positive h3 { color: var(--positive); }
+.theme-card.negative h3 { color: var(--negative); }
+
+.theme-item {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  user-select: none;
+}
+
+.theme-item:last-child { border-bottom: none; }
+
+.theme-item-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.theme-rank {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.positive .theme-rank { background: var(--positive-light); color: var(--positive); }
+.negative .theme-rank { background: var(--negative-light); color: var(--negative); }
+
+.theme-name {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.theme-count {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+
+.theme-bar-mini {
+  width: 50px;
+  height: 5px;
+  background: var(--neutral-track);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.positive .theme-bar-mini .fill { background: var(--positive); }
+.negative .theme-bar-mini .fill { background: var(--negative); }
+
+.theme-toggle {
+  font-size: 12px;
+  color: var(--text-light);
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+
+.theme-item.open .theme-toggle { transform: rotate(180deg); }
+
+/* Quote drawer */
+.quote-drawer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s ease, opacity 0.25s ease;
+  opacity: 0;
+}
+
+.theme-item.open .quote-drawer {
+  max-height: 600px;
+  opacity: 1;
+}
+
+.quote-drawer-inner {
+  padding: 10px 0 4px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mini-quote {
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.55;
+  font-style: italic;
+  color: var(--text);
+}
+
+.positive .mini-quote {
+  background: var(--positive-bg);
+  border-left: 3px solid var(--positive);
+}
+
+.negative .mini-quote {
+  background: var(--negative-bg);
+  border-left: 3px solid var(--negative);
+}
+
+.mini-quote .quote-attr {
+  font-style: normal;
+  font-size: 12px;
+  color: var(--text-light);
+  margin-top: 5px;
+  font-weight: 500;
+}
+
+/* Data tables */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin-top: 12px;
+}
+
+.data-table th {
+  text-align: left;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-secondary);
+  padding: 8px 12px;
+  border-bottom: 2px solid var(--border);
+}
+
+.data-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+}
+
+.data-table tbody tr:hover {
+  background: var(--neutral-surface);
+}
+
+.data-table tfoot td {
+  border-top: 2px solid var(--border);
+  border-bottom: none;
+  font-weight: 600;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding-top: 40px;
+  border-top: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--text-light);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .rating-cards { grid-template-columns: repeat(5, 1fr); gap: 6px; }
+  .rating-card { padding: 12px 6px; }
+  .rating-card .emoji { font-size: 18px; }
+  .rating-card .count { font-size: 20px; }
+  .two-col, .theme-grid, .survey-results-grid { grid-template-columns: 1fr; }
+  .hero-stat { flex-direction: column; gap: 24px; padding: 24px 16px; align-items: stretch; }
+  .bar-labels { display: none; }
+  .bar-labels-mobile { display: flex; }
+  .h-bar-label { width: 80px; font-size: 12px; }
+  .compare-label { width: 100px; font-size: 12px; }
+  .insight-box .top3-grid { grid-template-columns: 1fr; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-in {
+  animation: fadeInUp 0.45s ease forwards;
+  opacity: 0;
+}
+
+.delay-1 { animation-delay: 0.08s; }
+.delay-2 { animation-delay: 0.16s; }
+.delay-3 { animation-delay: 0.24s; }
+.delay-4 { animation-delay: 0.32s; }
+.delay-5 { animation-delay: 0.4s; }
+
+.theme-item:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
+
+.sticky-toc {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+  display: none;
+}
+
+.sticky-toc.visible { display: block; }
+
+.sticky-toc-inner {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 10px 24px;
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+}
+
+.toc-link {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 4px 12px;
+  border-radius: 20px;
+  white-space: nowrap;
+  transition: color 0.15s, background 0.15s;
+}
+
+.toc-link:hover { color: var(--orange); }
+
+.toc-link.active {
+  background: var(--orange-bg);
+  color: var(--orange);
+}
+
+.header-actions {
+  margin-top: 20px;
+}
+
+.pdf-btn {
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.pdf-btn:hover {
+  border-color: var(--orange);
+  color: var(--orange);
+}
+
+@media (max-width: 768px) {
+  .sticky-toc { display: none !important; }
+}
+
+@media print {
+  .site-nav, .sticky-toc, .header-actions, .newsletter-cta { display: none; }
+  .animate-in { animation: none; opacity: 1; transform: none; }
+  .theme-item.open .quote-drawer { max-height: none; opacity: 1; }
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  main.container { padding-top: 0; }
+}
+
+.newsletter-cta {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 32px 24px;
+  text-align: center;
+}
+
+.newsletter-cta-text {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 12px;
+}
+
+.newsletter-cta-btn {
+  display: inline-block;
+  padding: 12px 28px;
+  background: var(--orange);
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background 0.15s;
+}
+
+.newsletter-cta-btn:hover {
+  background: var(--orange-dark);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-in { animation: none; opacity: 1; transform: none; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <a href="/" class="nav-brand">
+    <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB3aWR0aD0iMjAwMCIgem9vbUFuZFBhbj0ibWFnbmlmeSIgdmlld0JveD0iMCAwIDE1MDAgMTQ5OS45OTk5MzMiIGhlaWdodD0iMjAwMCIgcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQgbWVldCIgdmVyc2lvbj0iMS4wIj48ZGVmcz48ZmlsdGVyIHg9IjAlIiB5PSIwJSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgaWQ9ImUyYmMyODBhODUiPjxmZUNvbG9yTWF0cml4IHZhbHVlcz0iMCAwIDAgMCAxIDAgMCAwIDAgMSAwIDAgMCAwIDEgMCAwIDAgMSAwIiBjb2xvci1pbnRlcnBvbGF0aW9uLWZpbHRlcnM9InNSR0IiLz48L2ZpbHRlcj48ZmlsdGVyIHg9IjAlIiB5PSIwJSIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgaWQ9ImYyN2MwMDFhNTQiPjxmZUNvbG9yTWF0cml4IHZhbHVlcz0iMCAwIDAgMCAxIDAgMCAwIDAgMSAwIDAgMCAwIDEgMC4yMTI2IDAuNzE1MiAwLjA3MjIgMCAwIiBjb2xvci1pbnRlcnBvbGF0aW9uLWZpbHRlcnM9InNSR0IiLz48L2ZpbHRlcj48Y2xpcFBhdGggaWQ9IjQzYjVlMDIyN2YiPjxwYXRoIGQ9Ik0gNDE4IDQxOCBMIDEwODIuODA4NTk0IDQxOCBMIDEwODIuODA4NTk0IDEwODIuODA4NTk0IEwgNDE4IDEwODIuODA4NTk0IFogTSA0MTggNDE4ICIgY2xpcC1ydWxlPSJub256ZXJvIi8+PC9jbGlwUGF0aD48bWFzayBpZD0iODZkZjllMzQ3ZSI+PGcgZmlsdGVyPSJ1cmwoI2UyYmMyODBhODUpIj48ZyBmaWx0ZXI9InVybCgjZjI3YzAwMWE1NCkiIHRyYW5zZm9ybT0ibWF0cml4KDguMzE1NjI0LCAwLCAwLCA4LjMxNTYyNCwgNDE3LjU1ODc0MSwgNDE3LjU1ODY4OCkiPjxpbWFnZSB4PSIwIiB5PSIwIiB3aWR0aD0iODAiIHhsaW5rOmhyZWY9ImRhdGE6aW1hZ2UvcG5nO2Jhc2U2NCxpVkJPUncwS0dnb0FBQUFOU1VoRVVnQUFBRkFBQUFCUUNBQUFBQUNyZXExeEFBQUFBbUpMUjBRQS80ZVB6TDhBQUFZOFNVUkJWRmlGclpoOWpCMVZHY2FmbVhQdmRsdEtWMlA0aUJBb0xVS2IxaXJFeHE3bG82Rm9nRkFTVmdIUm9zUTBvQ2tmYWxDMFJHS2dwb0drbUpTbUNyUWhSRUdvbEpKaStTZ3BTQnRySUxZVjJ0VlZnUzZXZ3J1MVJaYnE5czdNT1QvL21MbmJ1M2RtN3N6ZDl2M3IzTG5uUE9kNTN2TituQm1wMkx3U2MwYk1sSnRWRWUyZ0ZwZ2ZnN1pGdEJYYVZBYlczOUFscVhxTUlMVWM0T1c1S3V1Z1ludVlZUXZ2THpwR2NKNzBIbk8vQjN6UWZXd1FqUzVnblI1akdHNDdTbTUrZmJRYm5Rd2gzTnBlVk9hWTBkVXMxTHRFRnFiTEwxNlF3MC9tbVVueUpQa3liTkFxQWdKZVBocG1qMU9WSjhtVERoM1V0ZFJ3OElteFV2VFZ3OURJZUNjNmo4Z1JjcFdxclpmbG1PZU9XNnUrZVN0bEpIbHlpclBaNmV3aUhqbUdmbVUwK2ZtcGt1UlpuVFdneWJLZVBIV09EZERvM0N2Zisrc0o0NmJJU3A0bVRYeGVsOGI3RExZR3pMZG5tZDlEeENreXh0Y3FwZ2tzT000ZlUwYjc2Z0o5aTJFZWw2UUZ2S0tIaU1CQ213VTNNYU5ydVZkL0o0UWxPbk0xZmJvVGdKRDFZMHVWcWxZek14WUpjT0NtUDVMWUY4Wld3NHkyb2hQQllrTmNCRmdMUk93cVdsbkpmb3lxMGtSSjh1VmtaS25FUDM0ZzR5cGgrd3lyV2t1SE55STVzWWkzRWdINURTWW5EcDAyNlZJK2JPcDFhS2s2TlBXN3NyYmRKdWhyQW4xYVN0QkkwRUpGSFpySG0yY3NianQ0ZksxaGprWnJEdm1UWkRTTmZuaTFIVVRQa3lRRCt2SW9GOWI0aFl4Uk4zb2FldHZqYUh4ZkY3SlJUeEEyQXQ0alU5RzMwVGhDdHJTcnVxb2ZzMGg3aVJva1A2VU9UMzhaVkE5aHhGM2xBSTJ1NTRPK3V5ZEswa1k2SmpTNDBlSWtmWW12YWplaGc3TkwxVzVmbndaZzF4Sko3Tkl0RFJRdEc4OVp4VHF0eEVISTFuSlNQVDNBenlhRnNIK0NMdUkwN1c5QUJIREwrdXJEMmFYeTJtZ092VnJORUd1azJ2MWFScTBoVjhJQWNDTXVMZU5GWCtOQU56TE1zTFJobHk1clBHaUFNQnFKYzVOR1RMc1YxU1M5bzRvNnAranc0ZlNPbFVTbmIzVkplbjNlT1RrcDBuUmQ4WnkrS0pjengrcUtNdWZzeXdOZFJ4Q3k0U2VIMWRWY2NocFQ4ZlV5d2UzcmRBNXFXVndYN2x0Y1A0SU1pd2pLQUJyMThLdzJFeWJVY3ZIaVUyblduUGFCcjI1dFZyYzh5WmNOYkVzS0o2YWVwRnRBcVBQME80MlB0WmlDeUQydTlkK1M1RW1nODV1REwwZnlXYWxjU1VuMmRJTCtwVXR5WTJXMEhVNjlFR1VBZmtyYlZmWjJQcEI2a2hIcHAydW5KcGVKV09ScXhReWRUbEsvUGxZbTdWRnYrbUVHa2FyKzEvcVNlbVR2YmFvV012VDFiM1hwdjJYZVBvMmVUcDlkaHVTM05GUC9MRVBRNkFYWlFrRDB1aTdVMWhKaDQ3U09qa3FocnozcFhUU3JSUW9mQ2V2UEpRdGFtOUZ0WEsyaHBrNlN0cEEvU0QrOHFWQ0lmRlU0cUZ1S2NzL0JERDBDckNrazZldHV2cVlQQ3loRzNLY25tVDZYUFdWcTRpRTBxMVVsaEJwLzFvdm80M3NaM3pLcFBMOXFKSFd5VjkvSDVpTkdER25USy9vRzlTdG9OcHFKRTZSendRckgzM1FYTFZSSHg5OXhoMVlBc3pVdTd6cHJKS25ybXQ4Q2JMcUJRWDBUb3N3R0ZmRytKRzBtWk51UnBSbDIwUVA5d0d0ZnIwZ3pkc0NDejd3SkxnUFN3bXMzbnR5UDVTTjQrOTVaT1hBTEFiaFYrdVNTZjhRTFgvM0swbjB0RGlaaWp4WURIUHBzRnQ3dDlNNlpzaHkyQUJCR1JCWjZmNzM1UUdaZkRzTW9zZ3h0Z3A5L2ZwR2p1L21vZlozS1E1cDY1M1lBVzB0Y0Z6bGdPT2VzNjl0cytVNUYrMUp2Z0VZUE1yTWZ3SVpSQTBMVU9ycHRuRTVQenFjbmRUQ0RINzFER0dTc3o3dUlqSWdQSER0WVd3ZU1pWG9JT2Z5eGZaTUJXOTE1cnU4UzU5VTFpN0YrMFBOOGFYejlSeDNRbHV2RGVaRDZULzFRWWtCVVVQU0pVclcrMFp6ZXFBOFRoa2EvVDdlSEVUUWJlQlZqZy95KzVldWxwa0EwbW8vTEREZ1hCZzdZVndPaVduWVVXWmpZQk9oSkF4bTF4WVlCd1A3bE02VEwxd1BZV3BqZU4rdExoTkg5bzk5bElhb0ZBSHZ2bVZhZmRQR2p3d0Mxc0NrMkl5N0x1SVdkMFZpaWJhSnU5NDlPbFNSajVNV2ZkR2V2R0FBSWF3MkZMZUpBWmh0NEpIbkRjVkVZRDE2Ni92Z0VMZkZMUEpwOCt4czBFblVSQ3pNcW9pZnR3UVpCVUxNQWd3L09reVJWUjJkUGd0bDV6Vk0xZ0RBSWdzRHhtelM3MkkvYkVnMWJiajVGa3J4cVp2dnhZL0d6ZnJvN21iNnlVWEREL2g2YWU5MXBoM2E4dUYyU2pGeUx1RFBPU3FwZWNQRzBTdTh2KzNPbmpVQlhpOHRFdmFNMXNXb3VpNzd6NVZwUWF3TDFmZWNmWlJrb3RQOERDbCtkNUxVbE9PNEFBQUFBU1VWT1JLNUNZSUk9IiBoZWlnaHQ9IjgwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWlkWU1pZCBtZWV0Ii8+PC9nPjwvZz48L21hc2s+PC9kZWZzPjxnIGNsaXAtcGF0aD0idXJsKCM0M2I1ZTAyMjdmKSI+PGcgbWFzaz0idXJsKCM4NmRmOWUzNDdlKSI+PGcgdHJhbnNmb3JtPSJtYXRyaXgoOC4zMTU2MjQsIDAsIDAsIDguMzE1NjI0LCA0MTcuNTU4NzQxLCA0MTcuNTU4Njg4KSI+PGltYWdlIHg9IjAiIHk9IjAiIHdpZHRoPSI4MCIgeGxpbms6aHJlZj0iZGF0YTppbWFnZS9wbmc7YmFzZTY0LGlWQk9SdzBLR2dvQUFBQU5TVWhFVWdBQUFGQUFBQUJRQ0FJQUFBQUJjMlg2QUFBQUJtSkxSMFFBL3dEL0FQK2d2YWVUQUFBZ0FFbEVRVlI0bk8yYmQzaGR4Wm4vdnpOenpybjlYbDMxYXRteUxkdVNlNVVOYnRpbUdFUEFJSnNRSUJDQzJSQTJ1MEFJMlVDQ0lTUkFmb0VFV0hvQ0NXUXBGb1JtR3pBMmJoajNMc2xGc214WnZWN2RldXJNN0IrQ2JEYWgyUmI4L3RuM3VZK2VSODhkbmZsKzlNNlplZDkzWm9EL3MvK3pyOWVXaGZGMEh1VC9ieGtEYnhRZ0FQbjBWdzF3QVdFL0prMkNCS3FCRmQrSURPVWI2ZVVUenIvOVpJQUthTURJbk5CNXB2SmlHZHkxUGQrTWttOElHSUQ4RkZnQ0V1Q0FBWFMxUjhmY3RDaFczNUkzcVRSTUdGNzQ2T3VXUWIvdUR2cE4vdDJuSDl0Tm9SRTBKL0d6eDFjU0h6Mzd1M1A4Yy9QdHQ3LzFkU3RoWDNjSC8yd1NvTUMwU2VWMzNuNU50TFc2dGNYYWZLQXRKMTFVbEx2NmVtd20rRWRISTE5Zjc5K1FoLy9CQktCNTNGZGRzdWlKTzY0OHB4UTZjTWZ2UDY0N1lXdTJmVmFSSDhEZCtMcm03YS9UdzRSODdqZkE4Wk50T1dndFpGMlhuejl0NDQ2YTNqaE9IcTI3NEt3eEJjbTIrVzcxK3VOSkFQZDhEYUsrTm1ER0lJUWZzRDdyUzBuaGRxUEk0MHd1Q0FSZ2xZNGI4ZWFIOWUwUlZFd3BHRm1rWkR2NjN1eG9mUUdHWElzTkd3WlkxNEFQYVVKQUFhcHlQdWx6bXdDQTRZQUFxdUNha3l6Tll1ZU5Sd3hZdGJYYThpZ3R5Wk1ZcFc2Y2c5TDRRS3NiZUdCQ0pZaW1zQ0F3ZG1MNnp5NHMrSytGcnJ2TElDdi92Z2tvZzVRZ0Vzemxjc01NaWVpY0tjVUMrSEJmWjBwb0phT3ozSlF1YW9YZkhtQjFHUGgxV0hLbStibVZVSUVuYmpuWGFsdVhhTmV1OUprMS83dVZxc0l5QVFKRmNDWWROemNLc3pLVGFHenVnME1WQjBxWUtkMHc4NDBCVm9lQjlqQUJHTGRNRGdEbzdlM3plbjNVcFZYOVV5TlRCNUZRd0IxbVMrb3dRVDJxV3dCUkV3Nmhnb2l2TDdRZU1HQUM4dWtTS3dBSW9OZVdTZFhiNS9OMmVuQlBFOExoVDFvS0RvVWhLT0FXbGtKMFFSeW9pRWFqUGhVZUZWUUtRQmkyQXlEeG1UUGVtZG1BQVZNUUJZeUFLQ0IrTUJ0NDRmMU5TWDlSYTA5VDlxQUNGQ0VTQVFDTmdBRitCMFZBZWE2aXBqcDBKMm94Y2FDdVdyY3hZUWhVa1l6RXVwUTIzaEJCdUdHZzFQMjl6b0V3QXNJaHZNU2xnVTRmWGZ6S2YvNjhTTUU3SCtpSDJ0ajQyWXRObWRYWG5wdWJCYThDaFNKSFUvS0FxeGNXblRlaE1CeFNkTzZZbnZRRDlRZ0RjeVlWdVppb2M0WnNQZXBVVm9GMUQ0aTYvMlVENW1FTm1na0I2b3dlNUN2MU50ejl2U0VNdU83SHEvKzhwb2VHSnZZMjJRckFIYWdjZnN0WnRualVqWXZIQi8yV1lSdEtJRzl2TTE5L0JGbkFCUlhqVFM1aVNldWFYWGk0RU9XMUE2WHVmMnpBWm1rTERxVFFKQ1lPNXJKbjEzblRCblhHMk1PdjFQLzJpWTJFYkRRa0JCQUdCcm54MjU5ZVVwcERyY2hSbTNmb2poRUlaYTllZGNRRGxHUmhVSmpFZXBzamNXdEZKYXBxOExtUjJobll3QUJMQUJBaERlZE5ML3orZHlhMjdQb3dIa2w4ZTJiUm5BbFpLM2R0MzM5TWNBTkQ4akZ2eW9UaTlGQnhtcVdJbEVtdFh0UHhaSWVib3NrM1ZqWEhnT3VXbGdiUkdmZjdJcXo3M1U0MHhRWkUyai9hUUhtWUFpeGxXYm02RTQzMEV0VUZQVVppRFlXYTcvcUZVNkg2aUNQc1pKeWF0c283UksvRGlUVDB1Q1dwMjUyLy9yM3FGREFpQTJkTks0LzJick9EdE9oYzY3WS9mUExjdXl2TGFwdGlaVVhCZTZvR1pud1B6S2doVUJWNEpPSU9wQVRxbjVnV1RqV3Jlc3FyK2xQQ3BadGNvY0tsTWlHNUVKd3dCZ2hkVHlqaGZOMDMvUEliMyt3QjdyMmxZdEVVZjFOSDc3RlU3Yk5yakVOTmFHajRKR0dTS3lySmtxb3ZVZkNWYmFBbUxTbmdPSEFEN0w2WkJjazRDM3FDQ2xXbGNGVFRTS1BJY0t0K2pmb1VvaW1FVWhBRkhxL0dOUC9tUFUwV01ESUxaMDB1N2JYY0szWjI3dDFubkRpQjVnWklpclFBdTMzeDhKKzh2Ry9GN2RNSFNPY0FBVXNJamhTRGRFSHNpdG01N3JBcXZVSzZPR1BVeCtBUkpyRk5ZZHB3d0NRamtoSk9LSGY1UFd0M0g0d0E1MHpTcU1HSFhMdHkzL0g0aWhyRVVqQUJUVUdmd1E4M2QvN20reE9tREZQKzQxc0ZBeUoxb05KRFNVQUJvVUowZFNSTENqd0ZhUjVGRllBREl1VW5uMDl6ZWlJSmlNdmpTWkR3dlg4K0ZuZnc2MlV6dlN4Wk1aNytkVjliYlMwc0RzcGhjWUNnczkwc0xaU2pjNVNZU1NERm9SYjlibURER2FUS0E3WU9Td2dCcmdNOXdGdjd1eUs1cFVucTFrMlRmR1laUUNvTXdVUktheldnRVdTbEtjellYem80dW53NUFGZ21tQUlBSlVYNWZRNSs4RUR0eHVQSzRxbWhxK2VtLzllTXdISmcrUm5vSE1qa0lUUExDd1VPeFFlSDJwNWRzVEVPSlMwalRYNU9yY1kyT2JkNHBndCtQMVNWZVJpNld2OG5kSFljS01EWXdSbDFkYXR6dzdqdDNpMzFiZnljcWZTQzJYay9HK0UrazBySW1RSVRRbFJDVkVJRzVma1hYem9xTDhjUElHSGhoZFVuM3RuZEdUV1RncEsvMWFmSS81amtJdUhYcEREaHhHRXJRWjBXTXllemFna0FxSlJRZ2t5Q01kbGFlTWRmbnIvcnNnRHd2ZHQyUkx2TGpHRjJlRXdRUU5ucCt2a00zdUZQaDZxaWFXbWN6eityWVB6Z1FFNW1hT2ZCZGlyQUJWWWVqRDc0cXl1U0o1cVljT2cvRG16Q1FKa240MFRUeVpPZElxQ2xobzJkK2RjUDI5YjNHTkswcWVyMUVqdkFzWFNxdDBScHpjb0l1dFRZdGtQSlpEdzJ1MnpFRVBQRXlFQmdjSU1PWU1NM0Nrd0pvMHlobEF0QklHZVVxOWRkV0JHS1JOSXNzNzQ5RlpQd0FTM0gyNmNOeTNBNWNhSlFDUkJKS1lna0VtQzJ5UnhUR1RWaTlEc2I2OWJWOUIyUEdDUTdlOTN1SXpFQ09MYkNjWHZsOE11bWhabUlPenhTTktyOEwrOGZPM0FzZnNtOGtxRkRjejNDUWNpQ3k3cDJEazQxSGprRFlBa3BwU1psUU1vTUZYV0hVbFBIcEo4MWhEei8xT0hpVWI1RzNkWTU2dXZqNVpuMnNCeEtWUlVDQkV5QTJWVGxSRE5TRG1OS1hrN21qQW5GSDJ3NlZuMmlxN2JtaE9GQUVaZzhHSy8rY3VsWlF6dytxaHZKSGszamdhd0NPNWl6ZnZkSkdXMllQcldzejRnY1M0bjBqR1JWRFdxN1RrMzFHVVZhS21OQnp1ZE95SDMwSi9NdnUvNHZNTEgreGZtUlZQc0xLOXZ2ZktmYjRTaWtXRGJiZi9OY255dmdFWTZFVFpndmxOQjhpdVpXalpUZTEydHpFY3pJTmlVNzB0RFYxSjRVakphUEt3bjdrZU5SRlNzWjYyMmo0SUtJSkV2cjlZMWMraTlWSEhqdjJVc3l6WTdYTnpWZXQ2TDFvVUxjMm54cURHYzBhZG1jcThERVlXbDVXdnk2SytiMGN0ZzZWeHhqeVRUdmhBeDRBRWVBQ2dxaEVxaUFOQjNiazVieC9JcVB2My9IaHp0YVlqSnZtQ3M5cDdlN2xTWWJ4eFdLUzg4YVdqbDkrQWgzTkYxdnNqcnJrcEZtUmdRQUtxa3FyWHhQNG9vTEVBTSszSE5VMGRUVksxcWZHTTF1YlVaTjJhbHBQbjFnOHVsL1ZvVU5ZZzhmbk9VR1d1cGFmU20xNXVESmtUbStFS0FDVkZDWVhpb1VnRkZWaVNaaUU2Y1BQeDdGdDM5ZGU5VXZWNStJNXdVeXg5bEVNMFV5b2JmR2tzMnBSSzlsbUE3blhFZ3BQNW5lRldFcHliWXBaVU1ZOE9hSHRXb3cvUThQaENjTVVhb3F3VE8vS1dDQXFGUmpnR1BwVHFwdjFOQU1DbXlwYnZYa1RSazlka2JBRTFRQlB6Q2kyRStFUXlpQnBLcWltRlp5L3FKWlUyWWhDdFIyNDdyL2VPM2xsUjk3c2t1VHdwVTBvcHBtYXk1RlZSVk4weFNGL1Mxb1VlQjRuUGlZb1VXQ1l0OVI5TVlOcVhrelJydEx3ampWck9MMGdTVUVGNDRFdUdWMHRUUlN2V25LS0R5d01yNDJNcWduWTg3R0hXMCs0SWJMaGkzKzduVHU3VEc0cnJoVTRYQXoxUW5uMEpLbEk5MGFYRjdGQUI1N3QrdjIzNjVtMldYK3RJeFlYd2UzVFFDT2JRc3UvdVpoSm9ScXA4SnVOUzhibGtSWE5DR28yK2YzNzE2TCt6Ymg3bThHR0lEbzMrbTFUWVU0SHRsNzYwM25GeGZpcXB2dVczckRyd3NDK09XeWlxWG5qdW11M2V2TkNmYnBDWXNMcjFzamRpclNmSFRVNEF4cFFTUE9DMy84VVZFUUc2dng0M3RXR2xwMklMUEVnU0s0K1B0ZWlBUUFidHRNaXZ3TUZ3RmF1N3NkNnR2ZDZmbTQ0WlQzM000MDB1b1h3NFJKa2kyWlRtUFZyeFo4Y1ArRTUzNlUrOHF2Wmw4NEpxREZtNlhMbFZSOFdpZ3NLTlZqaWR4UXVwWVErYTYwMmVVdzJqR2xKUFdYcHk4b0xjQ2U0N2p2eVExbWNKUkR2QUNJcEVRQ1JCQUlDa0VBMDVGU1ltUitXQU9hVGpacHZ2U0xINmtmUFpyZUE1U2Z5cngxMnV0dy81RU42b1dZT2xTWk9veTRGV29idmNTSlozcjVzT3hncXJlVjI2bWtGRnJCMEovZnYwV1ZQYU5IRkhQVEJFVGMxUDJaUTdyaXBMYTZaOXl3cGxGaml5ZU9LOSt6KzlEdW82QXNPWHhRcGlwTktrR3BoT1NBcEpCVVVNZVJjR1hWZFRrN3Fyc25sN0pSdzRmT0M3WTF1RUd1NUYzQWhxOGNmcHltaHdsbElCb2dkV0RFb0RTWDZqR2s0S3BtQ1c3b1JxSXZDa3FjZEYrd2ZQd2RqNjljVjR2MHJDeEFtQjZYN3ZGekpRM01NeWpYcjF2WTM5eUZFSExUR241eHkxZ2RlT0sxRTdvcjAzR0ZGY1duU3NhSVZBbFhKVkhBVk9KMUhLb3FIZ0YwOWhpcUZnaG1wWS9LVUFBRVQwWDU2UUtEcXBvS2tIbFQ4aGJPbWVUekJibE5LRlFtd2FRQWNhakhrelhoclA5ODVmM1hOd3FiUUZLM1lWaW1rQ1lYM0JGd2VDZ3JxQU1KQWR1S2c3ZmxaNGwvWHpaZUFWNVk4UTdjNGFSdUtZUlJDU0pCSUtnVWhCQkNZQWlUQXJZRlBXVXpJaGxqWmN0UFRmbnBBUk1oVEdGenQ4ZGRrdVBwamtRZ3FTSmNtcTE1YkdqQ01Ya3lQSExFbnVyZUoxL3F2bkpKcWQrRmxyWU9yeThOaGsxTmc1a0pPRW1kRVIwSWVTRlNKbldGMDBLaFJkT0xTMEo0Y3hQNkxPb0pCQjN1RUVtcEJKVUFjUVRpek1OMVJ5ZEFibWFhaHpIbXlLN0RkdTF5b09aTEJaOHhzQUlQQUVQWEhjZXhiVXRQSkppZ2xCTlZnRW9SeXM5R3dQK0RuNzVrQU4vL1RxVnRvTFhic3BSMGw4dmoxWmptVnVIMjlTV2wxNDhoZzdOZEhrSVVhVnJkUWRGOCtRTGlBYmJzUGVMMnAxbFdmM3BNQllFZ3dvWkYzRElsVEFsa1puaWxHZnY1bzYydUpNZHlGSjZLOU5NRWRzQzVFS0FxNTRJN2prdlZpSlFxSkNCMHdaWEN3Vyt0M2REWWpaL2NOanRMTmFhTndKL2ZSNnNlWU14dE8yWktjeUVyLzlVVjY4MEV4bzh1MHhOTjBDS0JvSjdwNjd2d25FbHg0S045RFVuYmRuazBCa2FnZ2pCQldTQTk2RUFlYm14TkFFVzVRVGRpeS85dFpNMSsrMjZnNWxRU3B0TUQ3ajk4eFB1RFN5SW9CUlJZVkhFY1lpdHBZWGpEejc3YURvcXJLcWNaa2Vydlh6MWVBRSsvOEpydEtWQ3p4b1JIekh6OW5jMEhxN0ZnTHRMVE5jSXNFSXNTaXdxTFFraWcrZ1NrUzBrYVNRRUtTUVdobkNLV05CTzJyRzJBeXBDZkUxSVFHNW9iSDFGeXl0blBhUmJpS2Jqb3gvNWs0WGNJTTZtbXhDMHJsSnZYWWJnUEhNWDhPWEJqUC9NMXBvME0vdWlhMEZNdlJOL2Z2RElZUUplQkZodmppdkNMTytZN2RxL05RYm1iY0QrRXk1RkJkeEJOdllDaVVwWDIrME1TSWFFUXBrbnE3KzZEelpHZDRlSGRSNk54ZTlKODNIVVk5Mnc2SmVXblkvMFZTQUVwRlVxcEpCQlVJVlJTeGdsMWhUSnFUdlJTTitiUGhGdTBhelNTbFkxL1dYYnVpOCtkUDIwMm5BQUtoK08rSHhldmZQV1N2RUM4cS8yNGJYRWhKR0VLcE9TRStvT2dERnpLVUhwWUVnaENBUWdveEp0ZmZhZ0RISE1uRUNhZHVKSGEwMlEwUkRDNytOU2tuNTZISlVmL0xyK0FSTG92RFhZdkVYN1lraEV1dVhLOHVTOWxJTk1kY3R0VTFieUczbVhUU05FZzVlR0haOWhFNFJRdTdyQ2VRNnF3MHQxK0xpMkhKK0gyUzhaVmwyMGJZQnlDaXQ1NDFFdDhGR0NTbU5TYlVISSszck1wRTFoY01kTkt4ckwvdy96MmFGTGZBZWI2Sm9DQi9ySEJxS0pwblpHK3pJQm0yNGJwU0VsaG0xeWxxcFRRV0lBcGZvRStCa05LVzBqVGlEVGFVa2pLSUZqUVZoV3BnV2lFS29TNXVPMElwcWdlYjA4My9GNG9qTmtDOHBQNkgrVnc5MWplbHovb0RnTHpKZ3hudlBxeEpZVlBybWcramUybTA0K2xCU0JzKzFoN3NuaDBlWklRcmxMS0tDRkVoU3pPOUhzSkdobzc0RWtEQklPbFNlYVZmajlQQzhuME5CN3dTNi9DTktsUVFFQlNJdjI2NlVtS1FFTlRqdzVNbVpScGN5a2tRSVFrUW9EYVZOdTQ1NmdOTEp5SVhGZXN2YU92dTg5dUFyemZKSEMvYlRuWXR1TDlIYzJHTkJoemlFTWtpQkNETXIwdVlNczJXd28vaHdhcEVLRVF6cGpERkl1b05tTTJrNUp3U1FCUVNTMkhjK0tMbW9GdGV4dEN3SUlaRS9Wa25FTUtJamloSnZXbHFQKzVsM2Y0Z091dm1LWEgyMXVpcm5WSFk0SWlkZW8xcWpNQ1ppcDBCeXQzZHlKakNFMUxweXJWTksybitYaFJtR1g3c0gwdjZwcDBXNmJianQ5d0NFQVZDb1VTVlRKRlVIQ1ZRZFdZUjFWVm9nanFDWFFtMHA1N3BUZExRVVZwUG93RUJGZVlsckNvNGN0WnRXVnZhd29MNXFVVlpMZ2p2YkZYdDdZZE9LRW5CWmhDL3Y0azlsZlNmUHE0QkpKRFUzR3lXUjlkN01vS1NlWWt1RzNadGgzS1NQT245MjdjcmRjM0hyNWl5VVZTV0lRNmxraEpHRVE0VWhCSHdCRzJFRnhLaDNORmMrZDFSWDBQUHJxNnBRMDNMeDA2S3MvdFFxOGlMVDFwYTZHOGhxUjI5eU1ITk9DeCs2OWxqdlBrbWhOL1dkK2lxM0FFbUZBa0JEbVZrNmhuNEdFSmxZRUQ4T0M5UFYyRnc4dGNBYmVVVUlsb3FkOS95Y0lGK1VYWXZCTjMzZmU4bWpiU2Nua1RKT1c0azQ1YkY1b2tLcVVhWnk2dXFKekNvOGVHUFArSEhSL3VSdWx3WER4clpNaHFkOWx4bDZaa1pPY2txZWZuajY1SkFvLytiRVFhamY5dVpkMS9yajZlQUM0NjczeloxK2NpcW9lNXhaZEsvVHM3azkxRElnR2JBeUFuVHladEkxWmVsaDhJcU5GWXQya2FtanMwWmZyVXY3NVZzNytHYjkrNXUzeGlTZDZnd1ZEOFZNMmthZzdWTXFFRjRNNGs3cHlXYnMrZGQ2MWM5YkdScnVHeFh5LzB4cHQ5TUpKMkV1NDA3c3E3ODhFUERwN0V2LzdMMlBrVjQ1NS90Kzd4bC9lYXdGVlhYUHo0a3c5ZWNPSGk1dWFXNjI2NHFyQXd2L0ZrczZxcWp1TjhMY0Q5dWIvODVNK2xwcWlFaXQzVlVVbWRFWlBDbXR0Z3RpZlYyVmNRSkVzdkhiTm1TOTJ1ZXJ5eW9tbnJ6Z1pINWh0T2tVbnlPL3BjYlgyK2pUdTdIM2gyMnk5LzExalhpWWtGK09NOWMwTjZteUlTV3ByZjlxYkhsT3piSGx5ejdSaHV1QUNYWERBNWY5S0ZpNzcvSkFVdXYzait6VC84N2grZWV1YU5OOVlzL2ZZbFQvM3A0ZnI2eG9hR3BzN096cS9rcGEvUWhQYkRFUWdKTUVBQUtpQUFCVkQ2YjJ4UXBBUmN3RlVMcys2K2RYcFBUVWVJd2s0ZVo2R3NTR0RzbjE1YnYyWk51NkhEa3ArYzFWTUlpRVFLNElDUDRaYnZsUzZjTmlyRGJvLzF0SEJ2MkpPZTMyUGc1dHZmcjR2ajVzWEZWMTgwb2pIbWFVNTRqN1VZcGtWbm5WVnhxTDcremw4OUxWV2NkOG1GMFZpeUw1N2N2ZnNBQU5NMHp3eVlLUUFJaUNRTWpnVUlkLys1UWtBQVhpQUdYRGxuNHZBaFJjc2YvZTNUdjM3b0YvYy94UUVDMUh6NFVIZmQ5bHp0ZUYvWGNhR21oektLRE1FUDF4K3ZPZHpZZUJJZDNaQUM2V2tvek1IVTBZUEdqaWdrVGt3bGppTUZkMmZxdnZKWFYyNTUrc1ZhRlhqb2h4WG56SnkrODFoMWtuaWtxeGh1dDk2YktDb2V2Ty9vc1RmZTNiRGx3TEY0L3h2MTZhUkZLS1Q4a2huc0M0RXBnNkpTSVZRaXFIQWNEZ0s0VlJRWERabzVkZUxqanoyNmEvVkxkcnpEc1N6RzNLSE1RYjBwNTRrWFhuaHY4MzRLWkFFcm5qMnZJRWlKeGJzNjI1a21WSmRiODRSc1J4VWl5S1VxaWZCcjNDK2p3b3k0VkNvVnBUUEYxMnc3L052bkluRmcraGovdnkrN2JxaUh0N1UzSllKWjNCVWd0a0ljSHZCN08zcWpyclM4aktIbHQvN3MzZzA3OXdzaE5Bb2hRRlZZb0xBRnZuRFcvbHhnMmorQ1FRRVJCQWhnQUc0R2srT3lSZk91cjF4a0o2TWVseXIxS0VsME9icWh1TE1WVDVnRmZVMGRUYSt0ZW1YVGxrNUh3azF4OWFMQk15ZVdEUjJXYVZ0OUhoZUljS1JEYmFGWW1wc3l6VEgwWkN5NVozLzE5cDBuTjFVanFHRFlNRnk1ZE1HRWNXY2RxcTMzK1RVYjBuRzVKR2NlVHZ3dXQyM29QZEdVY0FlMWpNSTdmL1Awd2FQMUZKQ0FEYmhWTUEyNkJmR0ZwNnkveU1NdUJzRnh3NVdMSG4vaS9xTWZiWWx6dW5Icm5wOCs4SlFDM0hmejBta1R4L1hGa3d5MjMwbFNhWE9oU2lpU1NzWG5UaS9JcVdrOHNldFEzYVoxRzFxUEdENUFJWUJFWGlaVUJWNFZSRVZMRk4xOTBEa1VRQUtaYVppN29PS2N1VE55MDdtZFNKb3hhZG5VOFNoRVZXd1FLcUU2Y0VsQ2hLbWJkbGJSME9lcjNubit6YTJLaGwvZGZjZVk4YVBUQ3NPamVuMVhQSGpuRys5OWJGTVFnYzhiMnA4TjNIOW5UZ0hlZitVUkdldDJLWXhBbUthWmxwbXpic3ZlKzMvL29ncjg4YWxmQzB1bkVFU0NTaDB5Sm5nS0ZpTlFQWUVNd2FRN2c5bVc0YU9CeG9hbW8wY2FPanQ2MnpzNmJPNllWdHptVXZPRzB3TEIwa0U1d3dZWERCMHlPSnlSYVhMUzB0NmNOT0p1d2dJeXdBaXhxVzdEQVdHU2FRN1J3QjAzSEk5TFBkbmMrdU1IcWd6Z2tmOTN4NUNpb3U1b3A2bHhvcENDOVB4cnYzZlQwUTVRd1A0YzRNL09saWlnVUtTNVNiYVhLWXIvVHk5VitYM3UrYk5udE5iVm5qMXgxUHlLb2U5dU83Wng2NDRMWms5ekREMmhjOTEyY25QVE5SYlM0SkVPY1N3YTZldlN6YVNFcFRNOUt6dTNvR0Nra0JwVFBWUlJxT0l3U2lFVmhUSXIyYU5IT3kzVHJxK3ZOMnlIS0pvdm1PV1lRakpmS0JCeVNFcFNEcUttYkxzdmtUUnNSMUdKNHZhczI3d1p3SzNYTHlndnpqMWVmeml6SVB0UGI3MmVtNU03OHFLTEg3bHYrUlUvWE43MytRZXRQd080b3FKUWo1dlZOVjJUcGs3VGRTdlcxZkhhRzd2dXV1dGFDZFh0MFR6RU9PK2NpbmUySGR1MGZlY1ZDMmQyUmxweXMvS0ZsbjY4dVdYSHpwMUhhZy9WSGVtT1dwZ3pNZSthYXlwZENxV0UycHgwOXJZeXBuSUJUV1hDTVlSamU3MSswM2E0d3dtVkFaOFhucERQUjJ3dVlpbkR0dVR2bi8vam9XUFJVQUFqUnBXTUdqMm1Zc3JrM1B3OFc0OTNkclJSUjc2NXBWMGhtRHA1ZkRMU0d2YlFnS3I2bE9CN2I2KzdwT0xzekdBb0VQRDM5SmdBLzNSSitUTGdXTXhjdm56T2Q1ZFVhVzZQcW5xYVd0cWlFaGxGd3ovWXRCNUc5TkpGQzRvTGNoV2cvbmlMWlJ1UTlwcjNWNzMwMXkxZE9qaGdBZWRNR2JKbzRjSng0OFpET0k2UlRNVWlYVjBkUlVWRjBVaXYyOFZzMjlRMHhSc09XWmFsZ2xCR0tTR0VVWWVUN3A2K25NTGkzRURJN1FuKzhxSEphOWV0ZTMvTjJvOTJOcXpiMGZEWWMyK1ZadUQ4K1pQbnpaOFhUVGs2TUxZMG5KRVp0cU45ZjMzdi9YR1R6eW9wR2ZQS2lxM3hhRHlvQmhURkEwakEvS3JBd2FEcnZuczNPQXBpc1poSzRRaFlRRXRjaktxWSsrODMzVGx1ektnUll5ZGtaR3JOM1piak9MWmpOemFlbURsaitQZ0prMGFNS2k4WVZHd0xldVRZOFplcTNxdytkSGpMdm1NWndPeHBCVGRjL1cwdkU0ckNndG5aU1pzMXRyUjZ2ZDZzakd3WHNaTFJ2bmkwMjViMHFlZWVPOUlrWFY0TUhUWnM5cXl6eDVTTnVhSnlTYVNubzcyNWVlL3VqK3ZyYTZMUktLTnFOQnFSd09qUm96MGV6N3NyVjczNi9wSEZOOTY1NDUyVkptQlNMV0ZZdHFrekNQNDVTOU5uQUcvYjFrd29BYUV0TGEwV2Q3S3k4eVd3ZmZmQm4vN2JEelFOKzZzUGpwODJJemNuSjlyWFJDbk56OHUvOWRaYi9Xa1pYVDJSMnFOMXYzdnNpZTM3MmhTR09JZEdjTzcwc292T216ZXV2TlREZUNvUmIyNXVmdm10ZHpkOGZLZ25BUWNvTGFBTFpzK1lQbTFxZnNsd29tajMvK2FoYmJzT3ZQRHlhenNQMU84NlVPOENDSERCN0xIeno1bXo5TnZmOGJscDQvRTZLUWtYQWdDaHhPVnliZDZ5ZFZoWllkYmc0UitzMzJRRGdiVHNhQ0xSMTVlUW9KKzNGbjl1aVVkS0hHOXNhMm5yS2hoVW5KOGIvTXRMSzZ4b2wyMGptVFFvSlNsZHR4d0E2Tzd1YnRoWDg4NEhHN2RVOTBwQUpkQlV6SmhhT210NnhZenAwN0t6czF2YU92YlhIRnEvWmZ0N0grenFyNE1GS2E2K1ltNUxTOHZhelVkclh2cm85eTk5VkpUbm5UdG4xdXpwa3k5ZWVPNTNMbDljWDErLzZhTXRHei9ldnY5Zzg2cU5COTdlZUVBRkxqdTNmT0g4czlQUzBnY1hGek5BQ2ltbFZKaTZyN2I1SnorNTQ4aUo5c3I1azlQU00vZlgxcG1BZ0hBeFpuTCtWWUVsb0dnVWh2aDQ5NTdMTDc3Z3h6ZmZjTWRkRDYxZXRkNER6SmhSa1Vna096dTZKMDhjRmdxRnVwc2JWcTFhMmRoaHo1MDFadFNZOFJNbmpDbk15c29LQi91Nk83WnYzYkw1bzAwZmJtMlNRQXBJODJEKy9Ga0w1czBaTmloUFdDa2h4TTMvNnFvK2N2ekREUit0V2JmenBaZmZXL1g2ZThUQm9vV1RLNlpWWExwNDhiY3V2YXc3cHJkMWRPODVVSDNrNE80OWUycVNrYllycjd3cWtCRWtRRk5UVXlxWnZPUmJGMi8vVGRYYXRadktzOWtWbDF5UVNpWTJiTmprQWtxeXNob2luMzFGOVhQV1lVcENQbmN5cnBlazRibkhIM1pTVVV0UHRYVDNoQUwrd2RuK3JtanlraDg5Y3UvZHQ1UmxVSmMwZ3BsNS92UWN6UisydVR4NjlNaXVYYnRYdnJYeVpJZWRBdElKTXZ5NGNzbUNxVk1uaFlNaDI3RU55MjVxT1psYk5FeFJGQ3ZhbTVhZXhrQWN6cHRhbWpkdTJQejZlN1V4UUFVOEdzYVBLMTE0L3JubDVlVkZSVVhDTm94WVIwZkw4V1RTeU1ncmV2YVZOemFzMjdiaXFWOElYVy90VHRwY1pHZUZxS0lsZGZHOUgvMUtCNEpEMHBxTzk2RVFhUDRLd0dWbHFLM0ZkNVpPN21nMWQydytlTVg1azM5d3plWGRYUzBXWVk1dDVhVDdYM3oxcnp1UFI1YmZlNThTNzhnTUJKSzJjcmorMkw2OU83ZHUzWHFpRXo1QVVoUVdzWFBPbVQ5L3pzeWdTbFJoQ1NkKzdFUmR1R2lJM21mWmxwbTlvWTc0dXdLVGZLa2grYjVBZGxlcmt4YklJOUtsMjJwM1hHejRhT3ZxMWU5Rlk1Q0FBNHdjRkpnMTYrd0pFOHNMQ3JPNWxORzQ3dkduLytzUGZuVExOZDhhV3BRdlZhL05SY0RuOW9YU2YzamJIVWRheEpKckY3MyswZWIyQ1ZGcy9XckFjK1pnemh6MDljejkzVytlUEhmdTR1M2JhcjkzK2RtTEx6MmZVQ21FSGZUN210cTYwdktMdS90U0owK2NmUHZOdGZzUG5wRGNnZUFhTUsraVpQYXNhY1BHRmdWOHFtSnpPMjd1MzNlNFpQUVFKNkZibHFrYkJzb1pxbEJXVTFOZVcvdk1NaXg3R3MvZWxXTzJEU3Nia3FmNEMxTThtWlUxbUJMQ3FXbVk1dDY5Qjk5Nis0TjlKNjMrU043ang3d0ZVOHRIbEU0c0xjdnorWlI0eEtPNURLWWFVaGlXdVBlQkIzWWY3VnZ3clJGcGdkRDIxbVA3UHV4QkdmQlBoZHpQQUY2K0hCczJZUGJNODJFT09udlN4RWQrODd1ZHU0LzQvVmg0NGJUczdFemg4UHFHWXp0MjFiWDFRQUFXVUppZWNlRjU4MlpOR1RHOElNdnR3SEgwWGlmeXArZitzUENDdVp6NGF4dmFZMVJNWHhCRUZmRHAyWVN5cWhyRFV4dWVqeXJncHc5aVJTV0F5c05HNytDU1FhTUdGeWgrNWZDeGZZT0hGU2VsSnh3dVN2WHhJM1hIdGg3YTl2YWE3VkxDTXVFRGhtWGhuS2t6c3JPejQ3QWFXbHBXcmRrdmdDV1hWZnpnOW1XdnZ2VmlkZjM2bWhyVWZsYlorb3VTaDZzdlg3UjA2b1RjL0xTMzE2NTc3RStyQ1FVWDhERklEZ3BVVEI1eXpxeVprOGFQYzJtS3RFeE55cmE2cGc0cGRjdHFPM28wQUI1cHJTdVlVTmlXZjlIeTVjdHZxYXlZWGxhRVdpeXArc2R6UnBWbEtBd1dBdmpkdHVZVmxaV1ZsWlh2TmI3YUdVOTE5dG0yRVY2elp1ZGR0OTJZR1dEU0hTT1VXekZuNC9xZFczYnNyNjZMR0lBTkdJQ1BRZ1B1KytsMVo0MGJ1V0xibnJyZVl4L3YzRlZlam4vcTZzdUFBVHo5YnpjdU8ydmVGbjZTcW91SDd6VUFBQUh6U1VSQlZKNlRyVjJHYm5nMFpJVDhRWS9mcjZwVVdKSHU5cU4xTllOR2pSUXh5M09pNWVDMll6ZnUydmYwc21WdHp6empuNVNIT1hQMkh6blpsRkEzZklXTHo1VmxaUlhsNWVlVmxYVmwxMjdzcXNwclhYYmpNOC9jZE9tVTRzSmdjYzVnWDlEMEtMRU1tUjcwRjBTNVd3dmtON2ZGdXVOUmk4UUtDN0xDSHIrUHNsaHY1OHRyUG5ya3RiVmYwTXVYbDNoKy8rT0x4bzRzaWNjVEFTMmRLY3lHN25JcjNhMXRNVE5rcCtJeG96bVdpTVlVdldMK0dGU2hzcXJxd1pLU0dtQmNPSnpZdlh2NWx6NzlzMno1Y3ZqamsvWWZpUUFZT3JraHIzWFoyc2d6ZVhiR2tIQm85T0M4azFIZjlRK3ZlZWZCSHhha0Z4dUcwSHhLM05KUHRMZEVrMDVkWTl2aksxWjk4Y08vQkxoL0FodVVtaGtrQlF5S1ZEbWhrdk9lY0V2dmtVTk5OMjN2ZkhyWnBMYjgzY3VYNDViS2lrb2dXQk1ycjYwZHFCdGwvZVM5cVVoTkRkN2ExTENpRXBFd0ltR0VNTjdEY2pPOHc0akxJNlNNcFlncDVhYmFJMyt1ZXVkTG4va2wydm92SVdSMWxtVjFsVWZDRGVGSVNTVGNBQ0FjMlYxWmhRZEx3djFuTzVzU2tRRy9yUDhQVmxtRzdFeE1MVVo1SlNaZGhLb2xsWkZ3T0R3L0Vsa2JCdENXbjc5aHc0YXY4dUo4Sldlc3FLelUzUkhHVlV0TEFnQ2FTeG9pbWQyUjh0cXY1WHJnRjV1VXFLa3E2KzdJYkc0dXRGUU5RQ3dXZEZRMUVRZ3M3L2ZQRjlwL0EzQmtkelZDS0V1TEFBQUFBRWxGVGtTdVFtQ0MiIGhlaWdodD0iODAiIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIG1lZXQiLz48L2c+PC9nPjwvZz48L3N2Zz4=" alt="Lenny's Newsletter" class="nav-logo">
+  </a>
+  <a href="/" class="nav-back">← All Polls</a>
+  <a href="https://www.lennysnewsletter.com/" class="nav-link" target="_blank">Lenny's Newsletter ↗</a>
+</nav>
+
+<div class="sticky-toc" id="sticky-toc">
+  <nav class="sticky-toc-inner" aria-label="Section navigation">
+    <a href="#overview" class="toc-link">Overview</a>
+    <a href="#tldr" class="toc-link">Key findings</a>
+    <a href="#patterns" class="toc-link">Patterns</a>
+    <a href="#breakdowns" class="toc-link">Breakdowns</a>
+    <a href="#respondents" class="toc-link">Respondents</a>
+  </nav>
+</div>
+
+<main class="container">
+
+  <!-- HEADER -->
+  <div class="header animate-in">
+    <div class="eyebrow">Lenny's Polls</div>
+    <h1>How has AI changed how you feel about your job?</h1>
+    <p class="subtitle">83 product and tech professionals shared how AI has affected their day-to-day work, what's better, what's worse, and what's just different.</p>
+    <div class="meta">
+      <span><span class="dot"></span> 83 responses</span>
+      <span><span class="dot"></span> Feb 12 – Feb 14, 2026</span>
+      <span><span class="dot"></span> Polly survey</span>
+    </div>
+    <div class="header-actions">
+      <button class="pdf-btn" onclick="window.print()">Download PDF ↓</button>
+    </div>
+  </div>
+
+  <!-- HERO STAT -->
+  <div class="hero-stat animate-in delay-1" id="overview">
+    <div class="hero-bar" style="max-width:100%;flex:1">
+      <div class="bar-question"><strong>How has AI changed how you feel about your job?</strong></div>
+      <div class="bar-scale">1 = much worse, 5 = much better</div>
+      <div class="stacked-bar">
+        <div class="segment s1" style="flex: 4.8;">5%</div>
+        <div class="segment s2" style="flex: 16.9;">17%</div>
+        <div class="segment s3" style="flex: 13.3;">13%</div>
+        <div class="segment s4" style="flex: 37.3;">37%</div>
+        <div class="segment s5" style="flex: 27.7;">28%</div>
+      </div>
+      <div class="bar-labels">
+        <div class="bar-label-item" style="flex: 4.8;">Much worse</div>
+        <div class="bar-label-item" style="flex: 16.9;">Somewhat worse</div>
+        <div class="bar-label-item" style="flex: 13.3;">No real change</div>
+        <div class="bar-label-item" style="flex: 37.3;">Somewhat better</div>
+        <div class="bar-label-item" style="flex: 27.7;">Much better</div>
+      </div>
+      <div class="bar-labels-mobile">
+        <span>Much worse</span>
+        <span>Much better</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- TL;DR -->
+  <div class="insight-box animate-in delay-3" id="tldr">
+    <div class="insight-title">The tl;dr</div>
+    <p>65% of respondents feel at least somewhat better about their jobs since AI arrived, with only 22% feeling worse. The average rating of 3.69 sits comfortably on the positive side of neutral.</p><p style="margin-top:12px"><strong>What's better:</strong></p><ul style="margin:8px 0 0 20px;font-size:15px;line-height:1.7;color:var(--text)"><li style="margin-bottom:6px"><strong>Expanded capabilities and skills.</strong> 28 people mentioned feeling like they can do more than before, learning new skills and taking on challenges that previously felt out of reach.</li><li style="margin-bottom:6px"><strong>Faster execution and productivity.</strong> 26 respondents cited speed gains, getting work done in hours instead of days.</li><li style="margin-bottom:6px"><strong>Automating tedious tasks.</strong> 18 people celebrated ditching repetitive work, freeing up time for higher-value activities.</li></ul><p style="margin-top:14px"><strong>What's worse:</strong></p><ul style="margin:8px 0 0 20px;font-size:15px;line-height:1.7;color:var(--text)"><li style="margin-bottom:6px"><strong>Pressure and increased expectations.</strong> 15 mentions of the dark side of productivity: when you can do more, you're expected to do more.</li><li style="margin-bottom:6px"><strong>Job security concerns.</strong> 12 people worried about AI making their roles obsolete or less valuable to employers.</li><li style="margin-bottom:6px"><strong>Keeping up and learning fatigue.</strong> 11 respondents felt exhausted by the constant need to learn new tools and adapt to changing workflows.</li></ul><p style="margin-top:14px">One more thing: People at companies with 5,001+ employees rated their experience at 3.31, barely above neutral, compared to 4.0 at companies with 2-10 people. The bigger the company, the less enthusiastic people feel.</p>
+  </div>
+
+  <!-- SURVEY RESULTS (additional MC question distributions) -->
+  <div class="section-header animate-in delay-2" id="survey-results">
+    <div class="section-title">Poll results</div>
+  </div>
+
+  <div style="height:24px"></div>
+
+  <div class="survey-results-grid animate-in delay-3">
+    <div class="card">
+      <h3>Which best describes the primary way AI adoption is happening at your company?</h3>
+      <div class="h-bar-row">
+        <div class="h-bar-label">Top-down, supportive</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:100.0%">37</div></div>
+        <div class="h-bar-value">39%</div>
+      </div>
+      <div class="h-bar-row">
+        <div class="h-bar-label">Messy middle</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:70.3%">26</div></div>
+        <div class="h-bar-value">28%</div>
+      </div>
+      <div class="h-bar-row">
+        <div class="h-bar-label">Bottom-up, organic</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:43.1%">16</div></div>
+        <div class="h-bar-value">17%</div>
+      </div>
+      <div class="h-bar-row">
+        <div class="h-bar-label">Top-down, restrictive</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:35.0%">13</div></div>
+        <div class="h-bar-value">14%</div>
+      </div>
+      <div class="h-bar-row">
+        <div class="h-bar-label">Not really happening</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:5.3%">2</div></div>
+        <div class="h-bar-value">2%</div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Which of these describe how AI has changed your workload?</h3>
+      <div class="h-bar-row">
+        <div class="h-bar-label">More productive</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:100.0%">59</div></div>
+        <div class="h-bar-value">63%</div>
+      </div>
+      <div class="h-bar-row">
+        <div class="h-bar-label">More pulled in</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:83.1%">49</div></div>
+        <div class="h-bar-value">53%</div>
+      </div>
+      <div class="h-bar-row">
+        <div class="h-bar-label">More work</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:69.6%">41</div></div>
+        <div class="h-bar-value">44%</div>
+      </div>
+      <div class="h-bar-row">
+        <div class="h-bar-label">Less work</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:23.8%">14</div></div>
+        <div class="h-bar-value">15%</div>
+      </div>
+      <div class="h-bar-row">
+        <div class="h-bar-label">No real change</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:5.0%">3</div></div>
+        <div class="h-bar-value">3%</div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Has AI changed how secure you feel in your role?</h3>
+      <div class="h-bar-row">
+        <div class="h-bar-label">Somewhat more secure</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:100.0%">23</div></div>
+        <div class="h-bar-value">25%</div>
+      </div>
+      <div class="h-bar-row">
+        <div class="h-bar-label">Somewhat less secure</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:100.0%">23</div></div>
+        <div class="h-bar-value">25%</div>
+      </div>
+      <div class="h-bar-row">
+        <div class="h-bar-label">Much less secure</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:96.0%">22</div></div>
+        <div class="h-bar-value">24%</div>
+      </div>
+      <div class="h-bar-row">
+        <div class="h-bar-label">No change</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:91.5%">21</div></div>
+        <div class="h-bar-value">23%</div>
+      </div>
+      <div class="h-bar-row">
+        <div class="h-bar-label">Much more secure</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:17.4%">4</div></div>
+        <div class="h-bar-value">4%</div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Has AI changed how fulfilling your work feels?</h3>
+      <div class="h-bar-row">
+        <div class="h-bar-label">Somewhat more fulfilling</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:100.0%">35</div></div>
+        <div class="h-bar-value">38%</div>
+      </div>
+      <div class="h-bar-row">
+        <div class="h-bar-label">No change</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:71.5%">25</div></div>
+        <div class="h-bar-value">27%</div>
+      </div>
+      <div class="h-bar-row">
+        <div class="h-bar-label">Much more fulfilling</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:63.0%">22</div></div>
+        <div class="h-bar-value">24%</div>
+      </div>
+      <div class="h-bar-row">
+        <div class="h-bar-label">Somewhat less fulfilling</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:25.8%">9</div></div>
+        <div class="h-bar-value">10%</div>
+      </div>
+      <div class="h-bar-row">
+        <div class="h-bar-label">Much less fulfilling</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:5.9%">2</div></div>
+        <div class="h-bar-value">2%</div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>What's the size of the company where you work?</h3>
+      <div class="h-bar-row">
+        <div class="h-bar-label">Just me</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:4.2%">1</div></div>
+        <div class="h-bar-value">1%</div>
+      </div>
+      <div class="h-bar-row">
+        <div class="h-bar-label">2-10</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:37.4%">9</div></div>
+        <div class="h-bar-value">11%</div>
+      </div>
+      <div class="h-bar-row">
+        <div class="h-bar-label">11-50</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:100.0%">24</div></div>
+        <div class="h-bar-value">29%</div>
+      </div>
+      <div class="h-bar-row">
+        <div class="h-bar-label">51-250</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:50.2%">12</div></div>
+        <div class="h-bar-value">14%</div>
+      </div>
+      <div class="h-bar-row">
+        <div class="h-bar-label">251-1000</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:50.2%">12</div></div>
+        <div class="h-bar-value">14%</div>
+      </div>
+      <div class="h-bar-row">
+        <div class="h-bar-label">1001-5000</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:50.2%">12</div></div>
+        <div class="h-bar-value">14%</div>
+      </div>
+      <div class="h-bar-row">
+        <div class="h-bar-label">5001+</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:54.3%">13</div></div>
+        <div class="h-bar-value">16%</div>
+      </div>
+    </div>
+    <div class="card">
+      <h3>How long have you been at this company, in this role?</h3>
+      <div class="h-bar-row">
+        <div class="h-bar-label">Less than a year</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:100.0%">24</div></div>
+        <div class="h-bar-value">29%</div>
+      </div>
+      <div class="h-bar-row">
+        <div class="h-bar-label">1-2 years</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:100.0%">24</div></div>
+        <div class="h-bar-value">29%</div>
+      </div>
+      <div class="h-bar-row">
+        <div class="h-bar-label">3-5 years</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:95.8%">23</div></div>
+        <div class="h-bar-value">28%</div>
+      </div>
+      <div class="h-bar-row">
+        <div class="h-bar-label">6-10 years</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:33.2%">8</div></div>
+        <div class="h-bar-value">10%</div>
+      </div>
+      <div class="h-bar-row">
+        <div class="h-bar-label">11+ years</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:16.6%">4</div></div>
+        <div class="h-bar-value">5%</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- PATTERNS INSIGHT -->
+  <div class="insight-box animate-in delay-3" id="patterns">
+    <div class="insight-title">Patterns worth noting</div>
+    <p><strong>The honeymoon effect is real.</strong> People with less than 1 year of tenure rate their AI experience at 4.0 (much better territory), matching the 11+ year veterans. But tenure groups in between show steadily declining enthusiasm: 3.71 for 1-2 years, 3.39 for 3-5 years, and just 3.12 for the 6-10 year group. The novelty might be wearing off faster than expected.</p><p style="margin-top:10px"><strong>Founders love AI, middle managers don't.</strong> Founder and C-suite respondents rated their experience at 4.33, the highest of any group. VPs and Directors came in at 3.75, and ICs at 3.61. But the single Group PM/Manager respondent gave a rating of 1.0 (much worse), suggesting the squeeze of increased expectations hits hardest in the middle.</p><p style="margin-top:10px"><strong>Small companies are having more fun.</strong> Companies with 2-10 people show an average rating of 4.0, compared to 3.31 at enterprises with 5,001+ employees. Every size bracket below 1,000 employees sits above 3.5, but once you hit the big leagues, enthusiasm drops to barely positive. Corporate AI adoption might come with more baggage than opportunity.</p><p style="margin-top:10px"><strong>The positives outweigh the negatives by volume.</strong> The top three positive themes (expanded capabilities, faster execution, automating tedious tasks) account for 72 total mentions. The top three negative themes (pressure, job security, learning fatigue) add up to just 38 mentions. People have twice as much to say about what's working than what's not.</p>
+  </div>
+
+  <!-- THEMES -->
+  <div class="section-header animate-in delay-3" id="themes">
+    <div class="section-title">What's better vs. what's worse</div>
+    <p class="section-subtitle">Click any theme to see representative quotes.</p>
+  </div>
+
+  <div class="theme-grid animate-in delay-4">
+
+    <!-- POSITIVE -->
+    <div class="theme-card positive">
+      <h3>What's better</h3>
+      <div class="card-subtitle">Top themes from those rating 4–5</div>
+
+      <div class="theme-item" tabindex="0" role="button" aria-expanded="false" onclick="this.classList.toggle('open');this.setAttribute('aria-expanded',this.classList.contains('open'))" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.classList.toggle('open');this.setAttribute('aria-expanded',this.classList.contains('open'))}">
+        <div class="theme-item-header">
+          <div class="theme-rank">1</div>
+          <div class="theme-name">Expanded capabilities and skills</div>
+          <div class="theme-bar-mini"><div class="fill" style="width:100.0%;height:100%;border-radius:3px"></div></div>
+          <div class="theme-count">28</div>
+          <div class="theme-toggle">▼</div>
+        </div>
+        <div class="quote-drawer">
+          <div class="quote-drawer-inner">
+            <div class="mini-quote">"I've become a builder, product owner, designer and engineer all in one..."<div class="quote-attr">AI Insights Manager · 1,001–5,000</div></div>
+            <div class="mini-quote">"I have learned a new skill, which is amazing, and I feel so motivated and I am so into new improvements. I feel empowered also to do things that I was not able to do. I'm talking about doing more coding."<div class="quote-attr">I'm a co-founder and CEO of a small health tech startup. · 2–10</div></div>
+            <div class="mini-quote">"I can learn almost anything. I've taken on extra challenges and excelled at them, not buy automating them, but by expanding my capabilities and what I can bring to my role."<div class="quote-attr">Marketing Manager & Tech Lead · 11–50</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="theme-item" tabindex="0" role="button" aria-expanded="false" onclick="this.classList.toggle('open');this.setAttribute('aria-expanded',this.classList.contains('open'))" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.classList.toggle('open');this.setAttribute('aria-expanded',this.classList.contains('open'))}">
+        <div class="theme-item-header">
+          <div class="theme-rank">2</div>
+          <div class="theme-name">Faster execution and productivity</div>
+          <div class="theme-bar-mini"><div class="fill" style="width:93.0%;height:100%;border-radius:3px"></div></div>
+          <div class="theme-count">26</div>
+          <div class="theme-toggle">▼</div>
+        </div>
+        <div class="quote-drawer">
+          <div class="quote-drawer-inner">
+            <div class="mini-quote">"It enables faster research, faster prototyping (both in things built with code, and with no-code tools) and it's an excellent thinking/writing partner."<div class="quote-attr">COO of a software development studio · 51–250</div></div>
+            <div class="mini-quote">"I can do much more of product work in same time as before"<div class="quote-attr">Head of Product · 51–250</div></div>
+            <div class="mini-quote">"Easier to move from idea to execution"<div class="quote-attr">VP of Product Management · 5,001+</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="theme-item" tabindex="0" role="button" aria-expanded="false" onclick="this.classList.toggle('open');this.setAttribute('aria-expanded',this.classList.contains('open'))" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.classList.toggle('open');this.setAttribute('aria-expanded',this.classList.contains('open'))}">
+        <div class="theme-item-header">
+          <div class="theme-rank">3</div>
+          <div class="theme-name">Automating tedious tasks</div>
+          <div class="theme-bar-mini"><div class="fill" style="width:64.0%;height:100%;border-radius:3px"></div></div>
+          <div class="theme-count">18</div>
+          <div class="theme-toggle">▼</div>
+        </div>
+        <div class="quote-drawer">
+          <div class="quote-drawer-inner">
+            <div class="mini-quote">"The biggest impact for me is the ability to delegate low-level tedious tasks and the capacity that frees for me to think more creatively, more mindfully, more thoughtfully about some of the more challenging and interesting parts of what I do"<div class="quote-attr">Senior PM · 11–50</div></div>
+            <div class="mini-quote">"Even thought AI is not adopted in my company AI takes a huge workload of mundane tasks in my daily life. Documentation, creating presentations, excel files, dashboards etc is done by AI and people think I am a genius because its done so fast..."<div class="quote-attr">Local It Manager · 1,001–5,000</div></div>
+            <div class="mini-quote">"Quicker to deal with all the corporate paperwork requirements."<div class="quote-attr">Staff Product Manager · 5,001+</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="theme-item" tabindex="0" role="button" aria-expanded="false" onclick="this.classList.toggle('open');this.setAttribute('aria-expanded',this.classList.contains('open'))" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.classList.toggle('open');this.setAttribute('aria-expanded',this.classList.contains('open'))}">
+        <div class="theme-item-header">
+          <div class="theme-rank">4</div>
+          <div class="theme-name">Better documentation and writing</div>
+          <div class="theme-bar-mini"><div class="fill" style="width:50.0%;height:100%;border-radius:3px"></div></div>
+          <div class="theme-count">14</div>
+          <div class="theme-toggle">▼</div>
+        </div>
+        <div class="quote-drawer">
+          <div class="quote-drawer-inner">
+            <div class="mini-quote">"I'm able to translate the thoughts in my head into meaningful, polished documentation that others can understand much, much quicker."<div class="quote-attr">Lead product manager · 51–250</div></div>
+            <div class="mini-quote">"Better: Quicker cycles. Automating away boring tasks like writing product docs, PRD's. Having a sparring partner to help me figure things out."<div class="quote-attr">Lead Product Manager · 51–250</div></div>
+            <div class="mini-quote">"I'm spending way more time perfecting messages and documents, and discussing and researching with Perplexity, so I produce higher quality work now, not necessarily more work."<div class="quote-attr">Director of Product · 251–1,000</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="theme-item" tabindex="0" role="button" aria-expanded="false" onclick="this.classList.toggle('open');this.setAttribute('aria-expanded',this.classList.contains('open'))" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.classList.toggle('open');this.setAttribute('aria-expanded',this.classList.contains('open'))}">
+        <div class="theme-item-header">
+          <div class="theme-rank">5</div>
+          <div class="theme-name">Enhanced research and analysis</div>
+          <div class="theme-bar-mini"><div class="fill" style="width:43.0%;height:100%;border-radius:3px"></div></div>
+          <div class="theme-count">12</div>
+          <div class="theme-toggle">▼</div>
+        </div>
+        <div class="quote-drawer">
+          <div class="quote-drawer-inner">
+            <div class="mini-quote">"Able to build working prototypes against actual codebase and even make PRs. Write sharper strategy docs and PRDs. Synthesize multiple data sources (customer interviews and requests, sales calls, competitor research) much more efficiently"<div class="quote-attr">Product Lead · 51–250</div></div>
+            <div class="mini-quote">"I am able to interpret and analyse user research much, much quicker and two times more accurately."<div class="quote-attr">Lead product manager · 51–250</div></div>
+            <div class="mini-quote">"AI does research for me. Can push POC PRs instead of writing requirements."<div class="quote-attr">Product Manager · 51–250</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="theme-item" tabindex="0" role="button" aria-expanded="false" onclick="this.classList.toggle('open');this.setAttribute('aria-expanded',this.classList.contains('open'))" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.classList.toggle('open');this.setAttribute('aria-expanded',this.classList.contains('open'))}">
+        <div class="theme-item-header">
+          <div class="theme-rank">6</div>
+          <div class="theme-name">Sense of empowerment and fun</div>
+          <div class="theme-bar-mini"><div class="fill" style="width:36.0%;height:100%;border-radius:3px"></div></div>
+          <div class="theme-count">10</div>
+          <div class="theme-toggle">▼</div>
+        </div>
+        <div class="quote-drawer">
+          <div class="quote-drawer-inner">
+            <div class="mini-quote">"Makes work more fun, engaging, and empowering - there is this childlike sense of wonder in seeing ideas come to life quickly, and accomplishing things that would have taken significantly longer before."<div class="quote-attr">Senior PM · 251–1,000</div></div>
+            <div class="mini-quote">"I'm using A LOT Notion AI; it's a life and game changer. I'm not a gev or engineer; i vibe coded 30 apps (prototypes, real work for clients, portals over Notion, surveys like this one...). I never felt that productive and creative in my life."<div class="quote-attr">Founder and CEO at two companies (agency & startup) · 2–10</div></div>
+            <div class="mini-quote">"I'm a builder again and can parallelize much more"<div class="quote-attr">Fractional CPO / Product Builder · 11–50</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NEGATIVE -->
+    <div class="theme-card negative">
+      <h3>What's worse</h3>
+      <div class="card-subtitle">Top themes from those rating 1–2</div>
+
+      <div class="theme-item" tabindex="0" role="button" aria-expanded="false" onclick="this.classList.toggle('open');this.setAttribute('aria-expanded',this.classList.contains('open'))" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.classList.toggle('open');this.setAttribute('aria-expanded',this.classList.contains('open'))}">
+        <div class="theme-item-header">
+          <div class="theme-rank">1</div>
+          <div class="theme-name">Pressure and increased expectations</div>
+          <div class="theme-bar-mini"><div class="fill" style="width:100.0%;height:100%;border-radius:3px"></div></div>
+          <div class="theme-count">15</div>
+          <div class="theme-toggle">▼</div>
+        </div>
+        <div class="quote-drawer">
+          <div class="quote-drawer-inner">
+            <div class="mini-quote">"Better: Able to build working prototypes against actual codebase and even make PRs. Write sharper strategy docs and PRDs. Synthesize multiple data sources (customer interviews and requests, sales calls, competitor research) much more efficiently
+
+Worse: The expectation to do more with less. And as a result, actual deep thinking time is less - I'm defaulting to shipping. And, I've had to consciously tried to pull myself back from over-reliance on AI. I dont want it to be a substitute for my critical thinking"<div class="quote-attr">Product Lead · 51–250</div></div>
+            <div class="mini-quote">"major time saver and productivity driver. a considerable level of pressure to deliver AI-driven tools in a product, in a way that solves a problem, and is not just forced for vanity metrics."<div class="quote-attr">product lead · 11–50</div></div>
+            <div class="mini-quote">"Better thought process if I'm given time with AI but expectation of leadership is less for long AI sessions and more about automation and getting AI output fast"<div class="quote-attr">Senior Product Manager · 11–50</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="theme-item" tabindex="0" role="button" aria-expanded="false" onclick="this.classList.toggle('open');this.setAttribute('aria-expanded',this.classList.contains('open'))" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.classList.toggle('open');this.setAttribute('aria-expanded',this.classList.contains('open'))}">
+        <div class="theme-item-header">
+          <div class="theme-rank">2</div>
+          <div class="theme-name">Job security concerns</div>
+          <div class="theme-bar-mini"><div class="fill" style="width:80.0%;height:100%;border-radius:3px"></div></div>
+          <div class="theme-count">12</div>
+          <div class="theme-toggle">▼</div>
+        </div>
+        <div class="quote-drawer">
+          <div class="quote-drawer-inner">
+            <div class="mini-quote">"Where is this all heading with respect to job security and future of work is a concern."<div class="quote-attr">Senior PM · 251–1,000</div></div>
+            <div class="mini-quote">"AI IS GOING TO TAKE MY JOB"<div class="quote-attr">Nurse Practitioner and business owner · 2–10</div></div>
+            <div class="mini-quote">"Worse: less need for headcount, livelihoods are at real risk, not sure I like where this ultimately is heading even with drastic upskilling in the field of AI. Concerned about the societal impact if things keep growing at the pace they currently are"<div class="quote-attr">Lead Product Manager · 1,001–5,000</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="theme-item" tabindex="0" role="button" aria-expanded="false" onclick="this.classList.toggle('open');this.setAttribute('aria-expanded',this.classList.contains('open'))" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.classList.toggle('open');this.setAttribute('aria-expanded',this.classList.contains('open'))}">
+        <div class="theme-item-header">
+          <div class="theme-rank">3</div>
+          <div class="theme-name">Keeping up and learning fatigue</div>
+          <div class="theme-bar-mini"><div class="fill" style="width:73.0%;height:100%;border-radius:3px"></div></div>
+          <div class="theme-count">11</div>
+          <div class="theme-toggle">▼</div>
+        </div>
+        <div class="quote-drawer">
+          <div class="quote-drawer-inner">
+            <div class="mini-quote">"In terms of what's worse I just think the fatigue of it all: The fatigue of having to learn lots of new tools. The fatigue of feeling like it's never enough. The fatigue of having a view on the future of my role. The fatigue of the occasional article or conversation with a friend about a doomsday scenario."<div class="quote-attr">Lead product manager · 51–250</div></div>
+            <div class="mini-quote">"PM already leaves very little time to do heads down work so it's very easy to feel severely behind on AI advancements and adoption. I feel like there's no way to keep up without sacrificing what little work life balance I have."<div class="quote-attr">Lead product manager · 51–250</div></div>
+            <div class="mini-quote">"Some efficiency but mostly just stresses me out. I'm a Product Director, in my 40s with young kids. I don't have the time or energy at this stage of life to spend my nights and weekends tinkering with AI, but feel it's necessary for keeping my skills relevant and do the best I can."<div class="quote-attr">Director of Product · 251–1,000</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="theme-item" tabindex="0" role="button" aria-expanded="false" onclick="this.classList.toggle('open');this.setAttribute('aria-expanded',this.classList.contains('open'))" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.classList.toggle('open');this.setAttribute('aria-expanded',this.classList.contains('open'))}">
+        <div class="theme-item-header">
+          <div class="theme-rank">4</div>
+          <div class="theme-name">Stress and overwork</div>
+          <div class="theme-bar-mini"><div class="fill" style="width:53.0%;height:100%;border-radius:3px"></div></div>
+          <div class="theme-count">8</div>
+          <div class="theme-toggle">▼</div>
+        </div>
+        <div class="quote-drawer">
+          <div class="quote-drawer-inner">
+            <div class="mini-quote">"It's been incredible with allowing me to do more than I could before but also has added a level of stress and overwork because I want to continue to experiment with it so much."<div class="quote-attr">Product Manager · 5,001+</div></div>
+            <div class="mini-quote">"Can do a lot more crunch work quickly and brainstorming is fun. But I feel behind and have no time to learn the AI tools fast enough so it def adds stress"<div class="quote-attr">Managing Director, Digital Product Innovation · 1,001–5,000</div></div>
+            <div class="mini-quote">"Negative brain emotions"<div class="quote-attr">Product Operations · 11–50</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="theme-item" tabindex="0" role="button" aria-expanded="false" onclick="this.classList.toggle('open');this.setAttribute('aria-expanded',this.classList.contains('open'))" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.classList.toggle('open');this.setAttribute('aria-expanded',this.classList.contains('open'))}">
+        <div class="theme-item-header">
+          <div class="theme-rank">5</div>
+          <div class="theme-name">Less creativity and collaboration</div>
+          <div class="theme-bar-mini"><div class="fill" style="width:33.0%;height:100%;border-radius:3px"></div></div>
+          <div class="theme-count">5</div>
+          <div class="theme-toggle">▼</div>
+        </div>
+        <div class="quote-drawer">
+          <div class="quote-drawer-inner">
+            <div class="mini-quote">"better: handle boring/repetitive tasks worse: less creativity, more things to review"<div class="quote-attr">design manager · 11–50</div></div>
+            <div class="mini-quote">"Different: data data data, less collaboration (this is both a positive and a negative)"<div class="quote-attr">Lead Product Manager · 1,001–5,000</div></div>
+            <div class="mini-quote">"Worse: AI is changing so rapidly, it is hard to keep the pace and it somewhat feels overwhelming / felt behind. Discovery has changed, less customer contact."<div class="quote-attr">Product Owner · 11–50</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="theme-item" tabindex="0" role="button" aria-expanded="false" onclick="this.classList.toggle('open');this.setAttribute('aria-expanded',this.classList.contains('open'))" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.classList.toggle('open');this.setAttribute('aria-expanded',this.classList.contains('open'))}">
+        <div class="theme-item-header">
+          <div class="theme-rank">6</div>
+          <div class="theme-name">Feeling less valuable</div>
+          <div class="theme-bar-mini"><div class="fill" style="width:27.0%;height:100%;border-radius:3px"></div></div>
+          <div class="theme-count">4</div>
+          <div class="theme-toggle">▼</div>
+        </div>
+        <div class="quote-drawer">
+          <div class="quote-drawer-inner">
+            <div class="mini-quote">"I feel less valuable for my experience I can get so much done I've gotten back to designing and developing while being a PM I tinker a lot"<div class="quote-attr">Head of Product · 11–50</div></div>
+            <div class="mini-quote">"It made me and my team members more productive, but I feel that it has led to more budget cuts in the Engineering team"<div class="quote-attr">VP of Engineering · 251–1,000</div></div>
+            <div class="mini-quote">"My biggest way is how I'm managed. Every detail I deliver my boss runs through his prompt to find weaknesses. Every word I say he puts into gpt to double check. My feedback is ChatGPT, the ideas I get are ChatGPT - and they aren't reviewed. I get just a copy paste. He also requests to see every prompt we use."<div class="quote-attr">Head of product and ops · 11–50</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- COMPANY SIZE & TENURE & ROLE -->
+  <div class="section-header animate-in delay-4" id="breakdowns">
+    <div class="section-title">"How has AI changed how you feel about your job?"</div>
+    <p class="section-subtitle">By company size, tenure, and role · Scale: 1 = much worse, 5 = much better</p>
+  </div>
+
+  <div style="height:24px"></div>
+
+  <div class="two-col animate-in delay-4">
+    <div class="card">
+      <h3>By company size</h3>
+      <div class="compare-row">
+        <div class="compare-label">2–10</div>
+        <div class="compare-bar-container">
+          <div class="compare-bar" style="width:80.0%">4.0</div>
+          <div class="compare-n">n=9</div>
+        </div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">1,001–5,000</div>
+        <div class="compare-bar-container">
+          <div class="compare-bar" style="width:76.6%">3.83</div>
+          <div class="compare-n">n=12</div>
+        </div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">11–50</div>
+        <div class="compare-bar-container">
+          <div class="compare-bar" style="width:75.0%">3.75</div>
+          <div class="compare-n">n=24</div>
+        </div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">251–1,000</div>
+        <div class="compare-bar-container">
+          <div class="compare-bar" style="width:73.4%">3.67</div>
+          <div class="compare-n">n=12</div>
+        </div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">51–250</div>
+        <div class="compare-bar-container">
+          <div class="compare-bar" style="width:70.0%">3.5</div>
+          <div class="compare-n">n=12</div>
+        </div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">5,001+</div>
+        <div class="compare-bar-container">
+          <div class="compare-bar" style="width:66.2%">3.31</div>
+          <div class="compare-n">n=13</div>
+        </div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">Just me</div>
+        <div class="compare-bar-container">
+          <div class="compare-bar" style="width:60.0%">3.0</div>
+          <div class="compare-n">n=1</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>By tenure</h3>
+      <div class="compare-row">
+        <div class="compare-label">11+ years</div>
+        <div class="compare-bar-container">
+          <div class="compare-bar" style="width:80.0%">4.0</div>
+          <div class="compare-n">n=4</div>
+        </div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">Less than 1 year</div>
+        <div class="compare-bar-container">
+          <div class="compare-bar" style="width:80.0%">4.0</div>
+          <div class="compare-n">n=24</div>
+        </div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">1–2 years</div>
+        <div class="compare-bar-container">
+          <div class="compare-bar" style="width:74.2%">3.71</div>
+          <div class="compare-n">n=24</div>
+        </div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">3–5 years</div>
+        <div class="compare-bar-container">
+          <div class="compare-bar" style="width:67.8%">3.39</div>
+          <div class="compare-n">n=23</div>
+        </div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">6–10 years</div>
+        <div class="compare-bar-container">
+          <div class="compare-bar" style="width:62.4%">3.12</div>
+          <div class="compare-n">n=8</div>
+        </div>
+      </div>
+
+      <div style="height:28px"></div>
+      <h3>By role level</h3>
+      <div style="height:16px"></div>
+      <div class="compare-row">
+        <div class="compare-label">Founder / C-suite</div>
+        <div class="compare-bar-container">
+          <div class="compare-bar" style="width:86.6%">4.33</div>
+          <div class="compare-n">n=6</div>
+        </div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">VP / Director / Head</div>
+        <div class="compare-bar-container">
+          <div class="compare-bar" style="width:75.0%">3.75</div>
+          <div class="compare-n">n=20</div>
+        </div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">IC</div>
+        <div class="compare-bar-container">
+          <div class="compare-bar" style="width:72.2%">3.61</div>
+          <div class="compare-n">n=56</div>
+        </div>
+      </div>
+      <div class="compare-row">
+        <div class="compare-label">Group PM / Manager</div>
+        <div class="compare-bar-container">
+          <div class="compare-bar" style="width:20.0%">1.0</div>
+          <div class="compare-n">n=1</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESPONDENT PROFILE -->
+  <div class="section-header animate-in delay-4" id="respondents">
+    <div class="section-title">Who responded</div>
+  </div>
+
+  <div style="height:24px"></div>
+
+  <div class="two-col animate-in delay-5">
+    <div class="card">
+      <h3>Company size</h3>
+      <div class="h-bar-row">
+        <div class="h-bar-label">11–50</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:100.0%">24</div></div>
+        <div class="h-bar-value">28.9%</div>
+      </div>
+      <div class="h-bar-row">
+        <div class="h-bar-label">5,001+</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:54.2%">13</div></div>
+        <div class="h-bar-value">15.7%</div>
+      </div>
+      <div class="h-bar-row">
+        <div class="h-bar-label">1,001–5,000</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:50.0%">12</div></div>
+        <div class="h-bar-value">14.5%</div>
+      </div>
+      <div class="h-bar-row">
+        <div class="h-bar-label">51–250</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:50.0%">12</div></div>
+        <div class="h-bar-value">14.5%</div>
+      </div>
+      <div class="h-bar-row">
+        <div class="h-bar-label">251–1,000</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:50.0%">12</div></div>
+        <div class="h-bar-value">14.5%</div>
+      </div>
+      <div class="h-bar-row">
+        <div class="h-bar-label">2–10</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:37.5%">9</div></div>
+        <div class="h-bar-value">10.8%</div>
+      </div>
+      <div class="h-bar-row">
+        <div class="h-bar-label">Just me</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:4.2%">1</div></div>
+        <div class="h-bar-value">1.2%</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>Tenure in current role</h3>
+      <div class="h-bar-row">
+        <div class="h-bar-label">Less than 1 year</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:100.0%">24</div></div>
+        <div class="h-bar-value">28.9%</div>
+      </div>
+      <div class="h-bar-row">
+        <div class="h-bar-label">1–2 years</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:100.0%">24</div></div>
+        <div class="h-bar-value">28.9%</div>
+      </div>
+      <div class="h-bar-row">
+        <div class="h-bar-label">3–5 years</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:95.8%">23</div></div>
+        <div class="h-bar-value">27.7%</div>
+      </div>
+      <div class="h-bar-row">
+        <div class="h-bar-label">6–10 years</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:33.3%">8</div></div>
+        <div class="h-bar-value">9.6%</div>
+      </div>
+      <div class="h-bar-row">
+        <div class="h-bar-label">11+ years</div>
+        <div class="h-bar-container"><div class="h-bar-fill" style="width:16.7%">4</div></div>
+        <div class="h-bar-value">4.8%</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="newsletter-cta">
+    <p class="newsletter-cta-text">Want more insights like this?</p>
+    <a href="https://www.lennysnewsletter.com/" target="_blank" class="newsletter-cta-btn">Subscribe to Lenny's Newsletter →</a>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer animate-in delay-5">
+    <p>Data collected via Polly survey · Feb 12 – Feb 14, 2026 · 83 responses · Lenny's Polls</p>
+    <p>Research by Noam Segal</p>
+  </footer>
+
+</main>
+
+<script>
+(function() {
+  const toc = document.getElementById('sticky-toc');
+  const links = toc.querySelectorAll('.toc-link');
+  const header = document.querySelector('.header');
+
+  // Show/hide toc based on scroll past header
+  const observer = new IntersectionObserver(([entry]) => {
+    toc.classList.toggle('visible', !entry.isIntersecting);
+  }, { threshold: 0 });
+  observer.observe(header);
+
+  // Highlight active section
+  const sections = [...links].map(link => ({
+    link,
+    target: document.querySelector(link.getAttribute('href'))
+  }));
+
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const active = sections.find(s => s.target === entry.target);
+        if (active) active.link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -60% 0px' });
+
+  sections.forEach(s => { if (s.target) sectionObserver.observe(s.target); });
+
+  // Smooth scroll
+  links.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.querySelector(link.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+})();
+</script>
+
+<!-- Vercel Analytics -->
+<script>
+  window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+
+</body>
+</html>
