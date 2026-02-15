@@ -52,6 +52,13 @@ BANNED PHRASES — never use any of these:
 - Starting paragraphs with "When it comes to…"
 - Using "while" to create false balance ("While some love X, others hate Y")
 - Em-dashes (—) — do not use them at all. Use commas, periods, or colons instead.
+- AI-tell words: "delve" / "delving", "tapestry", "multifaceted", "nuanced" / "nuance", "underscores", "showcasing", "realm", "intricate", "cornerstone", "myriad", "meticulous", "testament to"
+- False-importance: "cannot be overstated", "plays a crucial role", "serves as a reminder", "more important than ever", "more crucial than ever", "perhaps most notably", "this is significant because"
+- Fake-casual transitions: "Here's the thing:", "But here's the kicker:", "So what does this mean?", "The reality is...", "Let that sink in.", "That said," as paragraph opener
+- Participial padding: do not end sentences with ", underscoring...", ", highlighting...", ", showcasing...", ", suggesting...", ", demonstrating..." — if it restates the main clause, cut it
+- Empty hedging: "generally speaking", "to some extent", "in many ways", "could potentially"
+- Drama-inflation verbs: "revolutionized" (say "changed"), "unveiled" (say "released" or "showed"), "discovered" (say "found" or "noticed")
+- Copula avoidance: do not use "serves as" instead of "is", "boasts" instead of "has", "stands as" instead of "is"
 """
 
 
@@ -231,7 +238,7 @@ INSTRUCTIONS:
    - Mix company sizes and seniority levels across quotes
    - Prefer vivid, specific quotes over generic ones
 6. Sort themes by count (highest first).
-7. Theme names should be lowercase except proper nouns."""
+7. Theme names should use sentence case (capitalize the first word, lowercase the rest except proper nouns)."""
 
     client = _client()
     response = client.messages.create(
@@ -330,8 +337,15 @@ WRITING RULES:
 - Lead with the most surprising finding, not the most obvious one.
 - Use concrete numbers: "27% are actively unhappy" not "a significant portion expressed dissatisfaction."
 - Do NOT lead with an average. Open with the most striking distribution insight.
+- When referencing a scale threshold, always define BOTH ends parenthetically. E.g. "65% feel better (rating 4 or 5), but 22% feel worse (rating 1 or 2)." Never leave one end undefined.
+- Do not explain what the midpoint means or narrate scale mechanics (e.g. "The midpoint represents no change, which means..."). The reader can see the scale. Just state findings directly.
 - Keep the tl;dr to ~250 words.
 - Patterns: 3-5 observations, each a short paragraph (2-4 sentences) starting with a bold mini-headline.
+- Vary sentence length deliberately. Mix short punchy sentences with longer ones. Do not write five sentences of similar length in a row.
+- Do not end sentences with participial phrases that restate the main clause (e.g. "Sales rose 30%, highlighting the effectiveness..." — the participial adds nothing).
+- Take positions. Do not hedge with "while some may..." or present false balance. If the data says something, say it.
+- Do not pose rhetorical questions then answer them ("So what does this mean? Three things:"). Just state the things.
+- Do not use "serves as", "stands as", or "boasts" — just use "is" or "has".
 
 OUTPUT FORMAT:
 Return valid JSON with two keys:
@@ -372,10 +386,64 @@ Return ONLY the JSON object, no other text."""
         text = text.strip()
 
     result = json.loads(text)
+    # Second pass: edit for voice
+    tldr_html, patterns_html = _edit_for_voice(result["tldr_html"], result["patterns_html"])
     return EditorialResults(
-        tldr_html=result["tldr_html"],
-        patterns_html=result["patterns_html"],
+        tldr_html=tldr_html,
+        patterns_html=patterns_html,
     )
+
+
+def _edit_for_voice(tldr_html: str, patterns_html: str) -> tuple[str, str]:
+    """Second pass: edit editorial content to remove AI writing patterns."""
+    prompt = f"""You are a sharp editor. Your job: take this survey analysis draft and
+rewrite it to sound like a human editorial writer, not an AI.
+
+DRAFT TL;DR:
+{tldr_html}
+
+DRAFT PATTERNS:
+{patterns_html}
+
+FIX THESE SPECIFIC PROBLEMS:
+- Flat sentence rhythm: vary length. Some sentences should be 5 words. Some 25.
+- Participial tails: cut any ", underscoring/highlighting/suggesting..." endings
+- Hedging: remove "generally speaking", "to some extent", "in many ways" — commit to claims
+- Drama verbs: downgrade "revolutionized" to "changed", "unveiled" to "showed"
+- Impersonal voice: prefer "X happened" over "it is worth noting that X"
+- Synonym cycling: if you mean the same thing, use the same word
+- False transitions: cut "That said,", "Here's the thing:", "The reality is..."
+- Copula avoidance: use "is" not "serves as", "has" not "boasts"
+
+{BANNED_PHRASES}
+
+RULES:
+- Preserve ALL HTML tags, structure, and inline styles exactly
+- Preserve all numbers, percentages, and factual claims exactly
+- Change only phrasing, rhythm, and word choice
+- Do NOT add new content, interpretations, or data points
+- Do NOT add em-dashes
+- Keep the same approximate length (plus or minus 10%)
+
+Return valid JSON with two keys: "tldr_html" and "patterns_html".
+Return ONLY the JSON object, no other text."""
+
+    client = _client()
+    response = client.messages.create(
+        model=MODEL,
+        max_tokens=4096,
+        messages=[{"role": "user", "content": prompt}],
+    )
+
+    text = response.content[0].text.strip()
+    if text.startswith("```"):
+        text = text.split("\n", 1)[1]
+        if text.endswith("```"):
+            text = text[:-3]
+        text = text.strip()
+
+    result = json.loads(text)
+    return result["tldr_html"], result["patterns_html"]
 
 
 # ── Call 3: Social card content ───────────────────────────────────────
@@ -518,6 +586,7 @@ def synthesize(
     themes = extract_themes(respondents, config, survey_data)
 
     print("  [qual] Writing editorial content...")
+    print("  [qual] (draft + editing pass for voice)")
     editorial = write_editorial(quant, themes, config)
 
     print("  [qual] Selecting social card content...")
