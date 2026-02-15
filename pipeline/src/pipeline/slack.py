@@ -219,41 +219,6 @@ def format_surveys_blocks(items: list[SurveyListItem]) -> list[dict[str, Any]]:
     return blocks
 
 
-def format_new_survey_blocks(item: SurveyListItem) -> list[dict[str, Any]]:
-    """Format a notification for a newly detected survey."""
-    status = "🟢 Active" if item.active else "⚪ Closed"
-    return [
-        {
-            "type": "header",
-            "text": {"type": "plain_text", "text": "🆕 New Survey Detected", "emoji": True},
-        },
-        {
-            "type": "section",
-            "text": {
-                "type": "mrkdwn",
-                "text": f"*{_sanitize_mrkdwn(item.title)}*  {status}",
-            },
-        },
-        {
-            "type": "actions",
-            "elements": [
-                {
-                    "type": "button",
-                    "text": {"type": "plain_text", "text": "Peek"},
-                    "action_id": "peek_survey",
-                    "value": item.id,
-                },
-                {
-                    "type": "button",
-                    "text": {"type": "plain_text", "text": "Generate Dashboard"},
-                    "action_id": "generate_survey",
-                    "value": item.id,
-                },
-            ],
-        },
-    ]
-
-
 def format_generate_blocks(
     slug: str,
     title: str,
